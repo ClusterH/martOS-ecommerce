@@ -1,0 +1,11 @@
+@import '../../../../../styles/variables.scss';
+
+:host ::ng-deep {
+  .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: $colorPrimaryGreen;
+  }
+}
+
+nav.mat-tab-nav-bar {
+  padding: 10px 25px 0;
+}

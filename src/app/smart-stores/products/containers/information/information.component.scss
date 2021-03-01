@@ -1,0 +1,15 @@
+.single-section {
+  width: 66.666667%;
+
+  @media screen and (max-width: 992px) {
+    width: 100%;
+  }
+}
+
+.t__header {
+  width: 66.666667%!important;
+
+  @media screen and (max-width: 992px) {
+    width: 100%;
+  }
+}

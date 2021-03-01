@@ -1,0 +1,465 @@
+@import './variables.scss';
+
+html,
+body {
+
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+// futura
+
+@font-face {
+  font-family: 'Futura Md BT';
+  src: url('../assets/fonts/FuturaBT-Medium.eot');
+  src: url('../assets/fonts/FuturaBT-Medium.eot?#iefix') format('embedded-opentype'),
+      url('../assets/fonts/FuturaBT-Medium.woff2') format('woff2'),
+      url('../assets/fonts/FuturaBT-Medium.woff') format('woff'),
+      url('../assets/fonts/FuturaBT-Medium.ttf') format('truetype'),
+      url('../assets/fonts/FuturaBT-Medium.svg#FuturaBT-Medium') format('svg');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
+@font-face {
+  font-family: 'Futura LT';
+  src: url('../assets/fonts/FuturaLT-BookOblique.eot');
+  src: url('../assets/fonts/FuturaLT-BookOblique.eot?#iefix') format('embedded-opentype'),
+      url('../assets/fonts/FuturaLT-BookOblique.woff2') format('woff2'),
+      url('../assets/fonts/FuturaLT-BookOblique.woff') format('woff'),
+      url('../assets/fonts/FuturaLT-BookOblique.ttf') format('truetype'),
+      url('../assets/fonts/FuturaLT-BookOblique.svg#FuturaLT-BookOblique') format('svg');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: 'Futura LT';
+  src: url('../assets/fonts/FuturaLT-ExtraBold.eot');
+  src: url('../assets/fonts/FuturaLT-ExtraBold.eot?#iefix') format('embedded-opentype'),
+      url('../assets/fonts/FuturaLT-ExtraBold.woff2') format('woff2'),
+      url('../assets/fonts/FuturaLT-ExtraBold.woff') format('woff'),
+      url('../assets/fonts/FuturaLT-ExtraBold.ttf') format('truetype'),
+      url('../assets/fonts/FuturaLT-ExtraBold.svg#FuturaLT-ExtraBold') format('svg');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Futura LT';
+  src: url('../assets/fonts/FuturaLT-Bold.eot');
+  src: url('../assets/fonts/FuturaLT-Bold.eot?#iefix') format('embedded-opentype'),
+      url('../assets/fonts/FuturaLT-Bold.woff2') format('woff2'),
+      url('../assets/fonts/FuturaLT-Bold.woff') format('woff'),
+      url('../assets/fonts/FuturaLT-Bold.ttf') format('truetype'),
+      url('../assets/fonts/FuturaLT-Bold.svg#FuturaLT-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Futura LT';
+  src: url('../assets/fonts/FuturaLT-Book.eot');
+  src: url('../assets/fonts/FuturaLT-Book.eot?#iefix') format('embedded-opentype'),
+      url('../assets/fonts/FuturaLT-Book.woff2') format('woff2'),
+      url('../assets/fonts/FuturaLT-Book.woff') format('woff'),
+      url('../assets/fonts/FuturaLT-Book.ttf') format('truetype'),
+      url('../assets/fonts/FuturaLT-Book.svg#FuturaLT-Book') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Futura LT';
+  src: url('../assets/fonts/FuturaLT-CondensedExtraBold.eot');
+  src: url('../assets/fonts/FuturaLT-CondensedExtraBold.eot?#iefix') format('embedded-opentype'),
+      url('../assets/fonts/FuturaLT-CondensedExtraBold.woff2') format('woff2'),
+      url('../assets/fonts/FuturaLT-CondensedExtraBold.woff') format('woff'),
+      url('../assets/fonts/FuturaLT-CondensedExtraBold.ttf') format('truetype'),
+      url('../assets/fonts/FuturaLT-CondensedExtraBold.svg#FuturaLT-CondensedExtraBold') format('svg');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Futura LT';
+  src: url('../assets/fonts/FuturaLT-Heavy.eot');
+  src: url('../assets/fonts/FuturaLT-Heavy.eot?#iefix') format('embedded-opentype'),
+      url('../assets/fonts/FuturaLT-Heavy.woff2') format('woff2'),
+      url('../assets/fonts/FuturaLT-Heavy.woff') format('woff'),
+      url('../assets/fonts/FuturaLT-Heavy.ttf') format('truetype'),
+      url('../assets/fonts/FuturaLT-Heavy.svg#FuturaLT-Heavy') format('svg');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Futura LT';
+  src: url('../assets/fonts/FuturaLT-Light.eot');
+  src: url('../assets/fonts/FuturaLT-Light.eot?#iefix') format('embedded-opentype'),
+      url('../assets/fonts/FuturaLT-Light.woff2') format('woff2'),
+      url('../assets/fonts/FuturaLT-Light.woff') format('woff'),
+      url('../assets/fonts/FuturaLT-Light.ttf') format('truetype'),
+      url('../assets/fonts/FuturaLT-Light.svg#FuturaLT-Light') format('svg');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: 'Futura LT';
+  src: url('../assets/fonts/FuturaLT.eot');
+  src: url('../assets/fonts/FuturaLT.eot?#iefix') format('embedded-opentype'),
+      url('../assets/fonts/FuturaLT.woff2') format('woff2'),
+      url('../assets/fonts/FuturaLT.woff') format('woff'),
+      url('../assets/fonts/FuturaLT.ttf') format('truetype'),
+      url('../assets/fonts/FuturaLT.svg#FuturaLT') format('svg');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Avenir Next';
+  src: url('../assets/fonts/AvenirNext-Medium.eot');
+  src: url('../assets/fonts/AvenirNext-Medium.eot?#iefix') format('embedded-opentype'),
+      url('../assets/fonts/AvenirNext-Medium.woff2') format('woff2'),
+      url('../assets/fonts/AvenirNext-Medium.woff') format('woff'),
+      url('../assets/fonts/AvenirNext-Medium.ttf') format('truetype'),
+      url('../assets/fonts/AvenirNext-Medium.svg#AvenirNext-Medium') format('svg');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Avenir Next';
+  src: url('../assets/fonts/AvenirNext-Bold.eot');
+  src: url('../assets/fonts/AvenirNext-Bold.eot?#iefix') format('embedded-opentype'),
+      url('../assets/fonts/AvenirNext-Bold.woff2') format('woff2'),
+      url('../assets/fonts/AvenirNext-Bold.woff') format('woff'),
+      url('../assets/fonts/AvenirNext-Bold.ttf') format('truetype'),
+      url('../assets/fonts/AvenirNext-Bold.svg#AvenirNext-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('../assets/fonts/SourceSansPro-Semibold.eot');
+  src: url('../assets/fonts/SourceSansPro-Semibold.eot?#iefix') format('embedded-opentype'),
+      url('../assets/fonts/SourceSansPro-Semibold.woff2') format('woff2'),
+      url('../assets/fonts/SourceSansPro-Semibold.woff') format('woff'),
+      url('../assets/fonts/SourceSansPro-Semibold.ttf') format('truetype'),
+      url('../assets/fonts/SourceSansPro-Semibold.svg#SourceSansPro-Semibold') format('svg');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('../assets/fonts/SourceSansPro-Bold.eot');
+  src: url('../assets/fonts/SourceSansPro-Bold.eot?#iefix') format('embedded-opentype'),
+      url('../assets/fonts/SourceSansPro-Bold.woff2') format('woff2'),
+      url('../assets/fonts/SourceSansPro-Bold.woff') format('woff'),
+      url('../assets/fonts/SourceSansPro-Bold.ttf') format('truetype'),
+      url('../assets/fonts/SourceSansPro-Bold.svg#SourceSansPro-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('../assets/fonts/SourceSansPro-Regular.eot');
+  src: url('../assets/fonts/SourceSansPro-Regular.eot?#iefix') format('embedded-opentype'),
+      url('../assets/fonts/SourceSansPro-Regular.woff2') format('woff2'),
+      url('../assets/fonts/SourceSansPro-Regular.woff') format('woff'),
+      url('../assets/fonts/SourceSansPro-Regular.ttf') format('truetype'),
+      url('../assets/fonts/SourceSansPro-Regular.svg#SourceSansPro-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('../assets/fonts/SourceSansPro-Light.eot');
+  src: url('../assets/fonts/SourceSansPro-Light.eot?#iefix') format('embedded-opentype'),
+      url('../assets/fonts/SourceSansPro-Light.woff2') format('woff2'),
+      url('../assets/fonts/SourceSansPro-Light.woff') format('woff'),
+      url('../assets/fonts/SourceSansPro-Light.ttf') format('truetype'),
+      url('../assets/fonts/SourceSansPro-Light.svg#SourceSansPro-Light') format('svg');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('../assets/fonts/SourceSansPro-Black.eot');
+  src: url('../assets/fonts/SourceSansPro-Black.eot?#iefix') format('embedded-opentype'),
+      url('../assets/fonts/SourceSansPro-Black.woff2') format('woff2'),
+      url('../assets/fonts/SourceSansPro-Black.woff') format('woff'),
+      url('../assets/fonts/SourceSansPro-Black.ttf') format('truetype'),
+      url('../assets/fonts/SourceSansPro-Black.svg#SourceSansPro-Black') format('svg');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
+
+
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  font-family: 'Avenir Next';
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+  &__end {
+    justify-content: flex-end;
+  }
+
+  &__center {
+    justify-content: center;
+  }
+
+  &__btw {
+    justify-content: space-between;
+  }
+
+  &.nowrap {
+    flex-wrap: nowrap;
+  }
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__start {
+    align-items: flex-start;
+    justify-content: start;
+  }
+
+  &__end {
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+
+  &__btw {
+    justify-content: space-between;
+  }
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.w-auto {
+  width: auto !important;
+}
+
+.bg-grey {
+  background-color: #E5E5E5;
+  color: #212B37;
+  // font-weight: bold;
+}
+
+.btn-purple {
+  background-color: #695EFC;
+  color: #FFF;
+  font-size: 20px;
+  font-family: $FuturaLT;
+  &:hover {
+    color: #FFF;
+  }
+}
+
+.total-font {
+  font-family: $SourceSansPro;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.page-content {
+  width: 100%;
+  height: 100%;
+  background-color: $colorPrimaryWhite;
+  box-shadow: 0px 5px 7px 0px rgba(0, 0, 0, 0.04);
+  border-radius: 5px;
+}
+
+
+.slick-dots li.slick-active button:before {
+  color: #fff !important;
+}
+
+.slick-dots li button:before {
+  font-size: 10px !important;
+  margin: 0 !important;
+  width: 0 !important;
+  color: #1A0FB7 !important;
+  opacity: 1 !important;
+}
+
+.slick-dots li {
+  width: 10px !important;;
+}
+
+img{
+  max-width: 100%;
+}
+
+
+app-home-header {
+  width: 100%;
+}
+
+app-plan-list {
+  width: 100%;
+}
+
+.ng-value {
+  width: 100%;
+}
+
+.custom-toast {
+  width: 100% !important;
+  top: 85px !important;
+  .toast-success {
+    width: 100% !important;
+    background-color: #BDF1DA !important;
+    color: #51A351 !important;
+    text-align: center;
+    opacity: .8;
+    background-image: none;
+    border-top: 5px solid #51A351;
+    box-shadow: 0 0 12px #999999;
+    h5 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #212B37;
+      font-size: 21px;
+      font-family: $FuturaLT;
+      .custom-toast-check-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #8FE8C0;
+        border-radius: 50%;
+        margin-right: 15px;
+        span {
+          width: 30px;
+          height: 30px;
+          display: block;
+          border: 5px solid #51A351;
+          color: #51A351;
+          border-radius: 50%;
+          box-shadow: 0 0 12px #9bda9b;
+          position: relative;
+          background-color: #FFF;
+          &:after {
+            content: '';
+            width: 9px;
+            height: 13px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -70%) rotate(45deg);
+            border-bottom: 3px solid #51A351;
+            border-right: 3px solid #51A351;
+    
+          }
+        }
+      }
+    }
+  }
+  
+}
+
+.owl-dt-container {
+  .owl-dt-container-inner {
+    display: flex !important;
+    flex-direction: column-reverse;
+    .owl-dt-container-info {
+      display: flex;
+      justify-content: space-between;
+      height: 50px;
+      .owl-dt-container-range {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 54%;
+        border: 1px solid #ddd;
+        &:first-child {
+          margin-left: -10px;
+        }
+        &:last-child {
+          margin-right: -10px;
+        }
+      }
+    }
+  }
+}

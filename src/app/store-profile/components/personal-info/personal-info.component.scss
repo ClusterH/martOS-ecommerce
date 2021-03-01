@@ -1,0 +1,104 @@
+.personal-info-wrap {
+  background: #fff;
+  border: 1px solid #DFE3E8;
+  padding: 40px 55px;
+  margin: 30px 0 0;
+}
+
+.personal-info-wrap h2 {
+  color: #277AFC;
+  font-size: 20px;
+  margin: 0;
+  font-family: 'Futura Md BT';
+  font-weight: 500;
+  padding-right: 12px;
+}
+
+.top-personal-header {
+  display: flex;
+  align-items: center;
+}
+
+.top-personal-header button {
+  border: 0;
+}
+
+.top-personal-header img {
+  max-width: 11px;
+}
+
+.top-personal-header span {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.top-personal-header span img {
+  max-width: 13px;
+  margin-right: 10px;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.personal-info-form {
+  padding: 30px 0 10px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.personal-form-fields label {
+  display: block;
+  color: #000000;
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+
+.personal-form-fields {
+  width: 20%;
+  padding: 0 20px;
+}
+
+.personal-form-fields input {
+  width: 100%;
+  border: 1px solid #707070;
+  padding: 10px 12px;
+  border-radius: 4px;
+  color: #222222;
+  font-size: 20px;
+  font-family: 'Futura LT';
+  font-weight: normal;
+  outline: 0;
+}
+
+.personal-save-btn {
+  display: flex;
+
+  button {
+    background: #26D086;
+    border: 0;
+    border-radius: 5px;
+    padding: 11px 35px;
+    color: #fff;
+    font-size: 17px;
+    font-family: 'Avenir Next';
+    font-weight: bold;
+    margin-left: auto;
+
+  }
+}
+
+.personal-form-fields {
+  margin-bottom: 15px;
+}
+
+.form-disabled-type .personal-form-fields input {
+  border: 0 !important;
+  background: transparent;
+  padding: 3px 0 0 0 !important;
+  font-family: 'Futura LT';
+  font-weight: normal;
+}

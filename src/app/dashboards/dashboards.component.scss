@@ -1,0 +1,285 @@
+@import '../../styles/variables.scss';
+
+@mixin whiteBackground {
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid #E1E5EA;
+  border-radius: 14px;
+}
+
+.summary-section {
+  margin-bottom: 30px;
+
+  .block-container {
+    .block-inner {
+      width: 100%;
+      @include whiteBackground;
+      height: 167px;
+
+      .inner-top-section {
+        display: flex;
+        padding: 22px 30px;
+
+        .top-section-icon {
+          width: 36px;
+          height: 33px;
+          background: #277AFC 0% 0% no-repeat padding-box;
+          border-radius: 3px;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          i {
+            font-size: 21px;
+          }
+        }
+
+        .top-section-title {
+          margin-left: 10px;
+          font-family: $SourceSansPro;
+          font-weight: bold;
+          font-size: 22px;
+          letter-spacing: 0px;
+          color: #000000;
+          opacity: 1;
+          white-space: nowrap;
+        }
+      }
+
+      .inner-data-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        .single-data {
+          font-family: $SourceSansPro;
+          font-weight: bold;
+          font-size: 40px;
+        }
+
+        .data-item {
+          padding-left: 30px;
+          padding-right: 30px;
+          margin-bottom: 10px;
+          width: 100%;
+
+          div {
+            text-align: center;
+          }
+
+          &:last-child {
+            margin-bottom: 0px;
+          }
+
+          &__img {
+            width: 34px;
+            height: 34px;
+          }
+
+          &__name {
+            font-family: $FuturaLT;
+            font-size: 15px;
+            color: $colorPrimaryDarkGray;
+          }
+
+          &__price {
+            font-family: $FuturaMD;
+            font-size: 15px;
+            color: $colorPrimaryDarkGray;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+.graphs {
+
+  // height: 401px;
+  margin-bottom: 30px;
+
+  .big-graph-container {
+    display: flex;
+
+    &__inner {
+      width: 100%;
+      @include whiteBackground;
+
+    }
+  }
+
+  .small-graph-container {
+    display: flex;
+
+    &__inner {
+      width: 100%;
+      @include whiteBackground;
+    }
+  }
+}
+
+.products-orders {
+  min-height: 400px;
+
+  .products-container {
+    display: flex;
+
+    &__inner {
+      width: 100%;
+      @include whiteBackground;
+
+    }
+  }
+
+  .orders-container {
+    display: flex;
+
+    &__inner {
+      width: 100%;
+      @include whiteBackground;
+    }
+  }
+}
+
+.inners-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 34px;
+
+  &__title {
+    font-size: 29px;
+    font-family: $SourceSansPro;
+    font-weight: bold;
+    color: #000000;
+  }
+
+  &__selectors {
+    select {
+      border: none;
+      background-color: #F8F9FB;
+      padding: 5px 15px 5px 15px;
+      border-radius: 16px;
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right: 0px;
+      }
+    }
+  }
+
+  &__small-data {
+    span {
+      font-family: $SourceSansPro;
+      color: #637381;
+      margin-right: 10px;
+      font-size: 15px;
+
+      &:last-child {
+        margin-right: 0px;
+      }
+    }
+  }
+}
+
+
+table.mat-table {
+  font-family: Futura LT;
+  width: 100%;
+  font-size: 14px;
+
+
+  .mat-column-name {
+    padding: 20px 35px;
+
+    .title-section {
+      display: flex;
+      flex-direction: column;
+
+      &__title {
+        margin-bottom: 10px;
+      }
+
+      &__tags {
+        display: flex;
+        font-family: $FuturaLT;
+
+        span {
+          display: block;
+          width: 52px;
+          height: 25px;
+          background: #EFF6FF 0% 0% no-repeat padding-box;
+          border-radius: 8px;
+          font-size: 14px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: 10px;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .mat-column-quantity {
+    width: 180px;
+
+    span {
+      text-align: center;
+    }
+  }
+
+  .mat-column-price {
+    width: 140px;
+  }
+
+  .mat-column-total {
+    width: 140px;
+  }
+
+  .mat-column-actions {
+    width: 80px;
+
+    mat-icon {
+      width: 20px;
+      height: 20px;
+      font-size: 20px;
+      cursor: pointer;
+
+    }
+  }
+
+  // th.mat-header-cell,
+  //
+  //   &:not(:first-child) {
+  //     text-align: left;
+  //   }
+  // }
+
+  th.mat-header-cell {
+    font-weight: bold;
+    font-size: 19px;
+    font-family: $SourceSansPro;
+    color: $colorPrimaryBlack;
+  }
+
+  td.mat-cell {
+    font-size: 18px;
+    font-family: $FuturaLT;
+  }
+}
+
+.product-image {
+  width: 65px;
+  height: 65px;
+  object-fit: contain;
+  margin-right: 10px;
+  border-radius: 3px;
+  border: 1px solid #cecece;
+  margin-right: 20px;
+}

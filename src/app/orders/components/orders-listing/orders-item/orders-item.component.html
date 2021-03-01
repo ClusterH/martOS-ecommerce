@@ -1,0 +1,23 @@
+<div class="order-item-container"
+  [ngClass]="(selectedItem && selectedItem.id)===item.id?'order-item-container__active':''">
+  <div class="order-item-image">
+    <img src="../../../../../assets/images/Avatar.png">
+  </div>
+  <div class="order-item-info">
+    <div class="top-section">
+      <span class="title">Elli Edison</span>
+      <div class="total-price">
+        <span> {{item.totalPrice}}&euro;</span>
+      </div>
+    </div>
+    <span class="order-number">Order # {{item.id}}</span>
+    <div class="bottom-boxes">
+      <div class="info-box">
+        {{item.articles.length}} articles
+      </div>
+      <div class="info-box">
+        {{item.storeOrderType | storeFilter}}
+      </div>
+    </div>
+  </div>
+</div>

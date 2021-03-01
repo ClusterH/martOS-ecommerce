@@ -1,0 +1,189 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import "~@angular/material/theming";
+// Plus imports for other components in your app.
+// timepicker css
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$oauth-client-primary: mat-palette($mat-indigo);
+$oauth-client-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$oauth-client-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$oauth-client-theme: mat-light-theme(
+  $oauth-client-primary,
+  $oauth-client-accent,
+  $oauth-client-warn
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($oauth-client-theme);
+
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+@import "../styles/common.scss";
+@import "../styles/buttons.scss";
+
+.custom-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+app-landing {
+  width: 100%;
+}
+
+.main-body {
+  background-color: #D9D6FF;
+  min-height: calc(100vh - 260px);
+}
+
+.main-heading {
+  height: 160px;
+
+  h1 {
+    font-size: 41px;
+    font-family: "Source Sans Pro";
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 18px;
+  }
+
+  .sub-heading {
+    display: flex;
+    align-items: center;
+    color: #707070;
+    font-size: 23px;
+
+    img {
+      margin-right: 10px;
+    }
+  }
+}
+
+app-register {
+  width: 100%;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  padding: 10px 0 0;
+}
+
+.square-img {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 3px;
+  border: 1px solid #cecece;
+  margin-right: 10px;
+}
+
+// buttons
+.button {
+  padding: 10px 15px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: 0;
+  background: 0;
+  border-radius: 2px;
+  margin: 0;
+  border: none;
+  font-family: $Avenir;
+  font-weight: bold;
+  font-size: 15px;
+
+  &.button-primary {
+    background-color: $colorPrimaryGreen;
+  }
+
+  &.button-cancel {
+    background-color: $colorPrimaryRed;
+  }
+
+  &.button-secondary {
+    background-color: white;
+    border: 1px solid $colorSecondaryBorderLight;
+    color: $colorPrimaryDarkGray;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  &:disabled {
+    background-color: #e6e6e6;
+    cursor: not-allowed;
+  }
+}
+
+// end button
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+image-cropper {
+  max-width: 250px !important;
+}
+
+.order-dialog-container .mat-dialog-container {
+  /* add your styles */
+  width: 700px;
+}
+
+// ngx bootstrap timepicker
+.bs-chevron {
+  display: none !important;
+}
+
+tr.text-center {
+  display: none !important;
+}
+
+.bs-timepicker-field {
+  width: 40px !important;
+  border: 1px solid #707070;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.btn {
+  &.btn-default {
+    border: none;
+    margin: 0px;
+    margin-left: -10px;
+  }
+}
+
+.center-align {
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 2150px) {
+  .custom-container {
+    max-width: 2034px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+}

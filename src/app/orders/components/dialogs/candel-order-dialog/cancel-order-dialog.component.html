@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Cancelation of Order #{{data.order.id}} </h2>
+<div class="border-bottom"></div>
+<mat-dialog-content class="mat-typography">
+
+  <span class="text-1">You are about to cancel the order #{{data.order.id}}  </span>
+  <span class="text-2">Your stock will be set to 0 for this article. If this was the last article of your order, delivery fees may still be charged.</span>
+  <span class="text-3">Are you sure you want to cancel this order?</span>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button class="event-no button button-cancel" mat-dialog-close>No</button>
+  <button class="event-yes button button-primary" [mat-dialog-close]="true" cdkFocusInitial>Yes</button>
+</mat-dialog-actions>

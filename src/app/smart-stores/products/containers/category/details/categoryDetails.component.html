@@ -1,0 +1,43 @@
+<div class="main-heading">
+  <h1>{{tagForm.get('id').value>0?'Edit Category':'Add Category'}}</h1>
+</div>
+<div class="row content-container">
+
+  <div class="col-12 col-lg-8 form-container">
+    <div class="row">
+      <div class="col-12 form-container-inner">
+        <h3>Category</h3>
+        <form [formGroup]="tagForm">
+          <div class="content">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" formControlName="name" />
+          </div>
+          <div class="submit-section">
+            <button class="button button-primary" type="button" (click)="save()">{{this.tagForm.get('id').value>0?'Edit':'Save'}}</button>
+            <button class="button button-cancel" type="button" (click)="cancel()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="col-12 col-lg-4 sub-category-container" *ngIf="this.tagForm.get('id').value>0">
+    <h3>Sub Categories</h3>
+    <div class="sub-categories-container">
+      <ng-container *ngFor="let sub of subCategories">
+        <div class="sub-container">
+          <span aria-hidden="true" class="sub-icon">×</span>
+          <span class="sub-value">{{sub.name}}</span></div>
+      </ng-container>
+    </div>
+
+    <div class="content">
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" [(ngModel)]="subCategory" />
+    </div>
+    <div class="submit-section">
+      <button class="button button-primary" (click)="AddSubCategory()">Add</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,434 @@
+@import "../../../../styles/variables.scss";
+
+.staff-management-wrapper {
+  &:first-child {}
+}
+
+.staff-info-view {
+
+  // margin-top: 124px;
+  // width: 37%;
+  @media screen and (max-width: 992px) {
+    margin-top: 20px;
+  }
+}
+
+.t {
+  &__header {
+    width: 100%;
+    margin: 0 0 25px 0;
+
+    h1 {
+      font-size: 41px;
+      font-family: 'Source Sans Pro';
+      font-weight: 600;
+      margin: 0;
+      margin-bottom: 10px;
+    }
+
+    &-subtitle {
+      color: $colorSecondaryBorder;
+      font-size: 23px;
+    }
+  }
+
+  &__content {
+    &-filter {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin: 25px 0 30px 25px;
+
+      mat-chip-list {
+        margin-left: 20px;
+      }
+
+      mat-chip {
+        border-radius: 4px;
+      }
+
+      mat-icon {
+        width: 20px;
+        height: 20px;
+        font-size: 20px;
+        margin-right: 5px;
+        color: #919eab;
+      }
+    }
+
+    ::ng-deep {
+      ng-select.ng-select.ng-select-single {
+        &:first-of-type .ng-select-container {
+          min-width: 190px;
+          height: 40px;
+          border-color: $colorSecondaryBorder;
+          border-radius: 5px;
+        }
+
+        &:last-of-type .ng-select-container {
+          min-width: 190px;
+          height: 40px;
+          border-color: $colorSecondaryBorder;
+        }
+      }
+    }
+
+    input {
+      font-family: Futura LT;
+      font-size: 17px;
+      outline: none;
+      color: $colorInputText;
+      width: 190px;
+      height: 40px;
+      padding: 0 10px;
+      border: 1px solid $colorSecondaryBorder;
+      border-radius: 5px;
+    }
+
+    table.mat-table {
+      font-family: Futura LT;
+      width: 100%;
+
+      .mat-column-name {
+        padding: 15px 0;
+
+        &:first-child {
+          padding-left: 40px;
+        }
+
+        // text-align: center;
+
+
+      }
+
+      .mat-column-quantity {
+        span {
+          padding: 5px 15px;
+          background-color: #eff6ff;
+          border-radius: 14px;
+        }
+      }
+
+      .mat-column-actions {
+        width: 100px;
+
+        mat-icon {
+          width: 20px;
+          height: 20px;
+          font-size: 20px;
+          cursor: pointer;
+
+          &:not(:last-child) {
+            margin-right: 30px;
+          }
+        }
+      }
+
+      th.mat-header-cell,
+      td.mat-cell {
+        font-size: 19px;
+
+        &:not(:first-child) {
+          // text-align: center;
+        }
+      }
+
+      th.mat-header-cell {
+        font-weight: bold;
+        color: $colorPrimaryBlack;
+      }
+
+      ::ng-deep {
+
+        .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+        .mat-checkbox .mat-ripple-element {
+          background-color: $colorPrimaryGreen;
+        }
+
+        .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+          background-color: $colorPrimaryGray;
+        }
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .ng-select {
+    .ng-select-container {
+      height: 52px;
+
+      .ng-value-container .ng-placeholder {
+        top: 15px;
+        color: #919eab;
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+.mat-column-select {
+  overflow: initial;
+  width: 140px;
+
+  .user-image {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-right: 10px;
+    border-radius: 3px;
+    border: 1px solid #cecece;
+  }
+}
+
+:host ::ng-deep {
+  .mat-tab-links mat-tab-link.mat-tab-label-active {
+    padding-bottom: 40px;
+  }
+
+  .mat-tab-link {
+    margin-bottom: 18px;
+    font-size: 19px;
+    font-weight: bold;
+    color: $colorPrimaryDarkGray;
+  }
+
+  .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: $colorPrimaryGreen;
+    height: 3px;
+  }
+}
+
+nav.mat-tab-nav-bar {
+  padding: 18px 25px 0;
+}
+
+.content-wrapper {
+  &:not(:last-child) {
+    margin-bottom: 23px;
+  }
+
+  .input-label {
+    font-size: 19px;
+    font-weight: 400;
+    color: $colorPrimaryBlack;
+    margin-bottom: 7px;
+  }
+}
+
+.dual-input-container {
+  margin-left: -15px;
+  margin-right: -15px;
+
+  .flex-col {
+    flex: 1;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    input {
+      width: 100%;
+    }
+
+    .ng-select-container {}
+  }
+}
+
+.ng-select {
+  width: 100%;
+}
+
+.btn-large.add-stuff-btn {
+  font-weight: bold;
+  min-width: 125px;
+}
+
+.staff-details-wrapper {
+  padding: 25px 0;
+}
+
+.staff-details-title {
+  span {
+    font-size: 20px;
+  }
+
+  &-subtitle {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 25px;
+    color: $colorSecondaryBlue;
+  }
+}
+
+.staff-info-wrapper {
+  margin-left: 25px;
+  margin-right: 25px;
+
+  .label-with-custom-btn {
+    position: relative;
+
+    .btn-custom-add.stores {
+      position: absolute;
+      top: 8px;
+      left: 42px;
+    }
+
+    .btn-custom-add.services {
+      position: absolute;
+      top: 8px;
+      left: 57px;
+    }
+  }
+
+  .btn-custom-add {
+    position: relative;
+    color: $colorSecondaryBlue;
+    border: none;
+
+    mat-icon {
+      position: absolute;
+      width: 11px;
+      height: 11px;
+      font-size: 11px;
+    }
+
+    span {
+      position: absolute;
+      left: 16px;
+      margin-left: 4px;
+      font-size: 9px;
+      font-weight: 500;
+    }
+  }
+
+  .btn-custom-add-2 {
+    position: relative;
+    margin: 7px;
+    color: $colorSecondaryBlue;
+    border: none;
+
+    mat-icon {
+      position: absolute;
+      width: 19px;
+      height: 19px;
+      font-size: 19px;
+    }
+
+    span {
+      position: absolute;
+      left: 25px;
+      top: 3px;
+      margin-left: 4px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+  }
+
+  .store-label {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    min-width: 102px;
+    height: 40px;
+    margin: 6px 3px;
+    padding: 0 10px;
+    background-color: $colorSecondaryLightGray2;
+    border-radius: 5px;
+
+    span {
+      font-size: 16px;
+      margin-right: 8px;
+      color: $colorPrimaryDarkGray;
+    }
+  }
+
+  .add-new-store-input {
+    // margin-top: 15px;
+  }
+
+  .btn-custom-white {
+    border: 1px solid $colorSecondaryBorder;
+    color: $colorSecondaryBorder;
+  }
+
+  .btn-see-contract {
+    width: 190px;
+    margin: 0;
+  }
+
+  .actions-contract-section {
+    height: 40px;
+  }
+
+  .btn-contract {
+    position: relative;
+    width: 93px;
+    margin: 0 2px;
+    font-size: 13px;
+    font-weight: 500;
+
+    mat-icon {
+      position: absolute;
+    }
+
+    span {
+      position: absolute;
+      left: 38px;
+      top: 3px;
+    }
+  }
+
+  .upload-icon-btn {
+    width: 18px;
+    height: 18px;
+    background: url(/assets/icons/upload_icon.svg) no-repeat center center;
+    background-size: contain;
+  }
+
+  .delete-icon-btn {
+    width: 18px;
+    height: 18px;
+    background: url(/assets/icons/delete_icon.svg) no-repeat center center;
+    background-size: contain;
+  }
+
+  div .btn-actions {
+    margin-top: 25px;
+  }
+
+  .btn-actions {
+    font-size: 17px;
+    font-weight: bold;
+  }
+}
+
+.btn-save-staff-details {
+  margin-top: 25px;
+}
+
+.mat-divider {
+  &.mat-divider-horizontal {
+    margin: 25px 0 25px 0;
+    width: 100%;
+  }
+}
+
+.main-heading {
+  // width: 61%;
+
+  .sub-heading {
+    display: flex;
+    justify-content: space-between;
+
+    .sub-heading-inner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .mat-icon {
+        margin-right: 15px;
+      }
+    }
+  }
+}

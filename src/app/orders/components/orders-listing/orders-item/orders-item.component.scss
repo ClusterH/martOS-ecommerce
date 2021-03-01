@@ -1,0 +1,95 @@
+@import '../../../../../styles/variables.scss';
+
+.order-item-container {
+  display: flex;
+  align-items: center;
+  height: 160px;
+  // width: 410px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  // padding: 36px 45px;
+  padding: 30px 30px;
+  cursor: pointer;
+
+  .order-item-image {
+    width: 80px;
+
+    img {
+      max-width: 100%;
+    }
+
+  }
+
+  .order-item-info {
+    display: flex;
+    flex-direction: column;
+    padding-left: 18px;
+
+    .top-section {
+      display: flex;
+
+      .title {
+        text-align: left;
+        letter-spacing: 0px;
+        color: #212B37;
+        font-family: $FuturaMD;
+        font-size: 19px;
+      }
+
+      .total-price {
+        width: 40px;
+        height: 22px;
+        margin-left: 16px;
+        padding: 3px 5px;
+        background: #FD6D7A 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #00000029;
+        border-radius: 4px;
+        color: #FFFFFF;
+        font-size: 12px;
+        font-family: $Avenir;
+        font-weight: 600;
+      }
+    }
+
+
+    .order-number {
+      text-align: left;
+      font-size: 14px;
+      letter-spacing: 0px;
+      color: #212B37;
+      font-family: $Avenir;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    .bottom-boxes {
+      margin-top: 15px;
+      display: flex;
+
+      .info-box {
+        margin-right: 20px;
+        height: 28px;
+        background: $colorSecondaryAqua 0% 0% no-repeat padding-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 13px;
+        font-size: 15px;
+        font-family: $FuturaLT;
+        padding-left: 15px;
+        padding-right: 15px;
+
+        &:last-child {
+          margin: 0px;
+        }
+      }
+    }
+  }
+
+  &__active {
+    background-color: $colorSecondaryAqua;
+
+    .info-box {
+      background: white 0% 0% no-repeat padding-box !important;
+    }
+  }
+}

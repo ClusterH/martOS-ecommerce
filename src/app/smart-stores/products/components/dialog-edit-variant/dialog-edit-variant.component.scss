@@ -1,0 +1,127 @@
+input[type="text"],
+input[type="number"] {
+  font-family: Futura LT;
+  font-size: 20px;
+  width: 390px;
+  height: 52px;
+  border: 1px solid #C4CDD5;
+  padding: 12px 22px;
+  border-radius: 5px;
+
+  &::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #919EAB;
+    opacity: 1;
+    /* Firefox */
+  }
+
+  &:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #919EAB;
+  }
+
+  &::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #919EAB;
+  }
+}
+
+.variant-view-block {
+  position: relative;
+  display: flex;
+
+  .variant-view-wrapper {
+    &:first-child {
+      flex-basis: 70%;
+
+      h3 {
+        margin-bottom: 10px;
+      }
+    }
+
+    &:last-child {
+      flex: 1;
+      padding: 24px;
+      margin: -24px 0;
+      border-left: 1px solid rgba(0, 0, 0, .12);
+    }
+  }
+
+  .variant-options {
+    padding-right: 100px;
+    margin-bottom: 25px;
+  }
+}
+
+.input-label {
+  font-size: 19px;
+  margin-bottom: 10px;
+}
+
+.close-dialog-button {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+}
+
+.variant-actions {
+  padding: 24px;
+  padding-right: 100px;
+  margin-top: 25px;
+
+  button.mat-button {
+    margin: 0;
+  }
+}
+
+.content-wrapper {
+  margin-bottom: 10px;
+}
+
+.image-block {
+  width: 100%;
+  height: 100%;
+
+  button {
+    width: 180px;
+    height: 60px;
+    border: 2px solid #C4CDD5;
+    font-size: 21px;
+  }
+
+  .drag-text {
+    margin-top: 15px;
+    font-size: 22px;
+    color: #707070;
+  }
+}
+
+.variant-images {
+  max-height: 320px;
+  overflow: auto;
+  margin-bottom: 20px;
+
+
+  .variant-image {
+    position: relative;
+    width: calc(100%/2 - 20px);
+    display: flex;
+    // margin: 5px;
+    display: flex;
+    border: 1px solid #E6E6E6;
+
+    .variant-remove {
+      position: absolute;
+      top: 0;
+      right: 0;
+      color: #FD6D7A;
+      cursor: pointer;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+  }
+}

@@ -1,0 +1,230 @@
+.main-thre-layout-wrap {
+  padding: 50px 50px;
+  border-top: 2px solid #DFE3E8;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.first-layout-store {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 30px;
+
+  img {
+    max-width: 150px;
+    margin: 0 auto;
+  }
+
+  .button-secondary {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+  }
+
+  .check-icon {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .image-crop-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.second-layout-store-flex {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.second-layout-store {
+  width: 40%;
+}
+
+.second-layout-subsc {
+  width: 60%;
+  padding-left: 10%;
+}
+
+.second-layout-location {
+  width: 40%;
+  padding-top: 40px;
+
+  .fa-pencil-alt {
+    color: black;
+    cursor: pointer;
+    margin-left: 15px;
+    font-size: 13px;
+  }
+}
+
+.second-layout-opening-days {
+  width: 60%;
+  padding-top: 40px;
+  padding-left: 10%;
+}
+
+.fnac-img img {
+  max-width: 160px;
+}
+
+
+.second-layout-store h3 {
+  margin: 0;
+  color: #277AFC;
+  font-size: 18px;
+  font-weight: normal;
+  padding: 0px 0;
+}
+
+.store-info-upadte-fields {
+  margin: 20px -20px 0px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.update-first-fields {
+  width: 50%;
+  padding: 0 20px 20px;
+}
+
+.update-first-fields.full {
+  width: 100%;
+}
+
+.update-first-fields label {
+  display: block;
+  color: #000000;
+  font-size: 16px;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+.update-first-fields input {
+  border: 1px solid #707070;
+  border-radius: 5px;
+  padding: 8px 10px;
+  width: 100%;
+  font-size: 15px;
+  color: #919EAB;
+  outline: 0;
+}
+
+.second-layout-subsc h3 {
+  margin: 0;
+  color: #277AFC;
+  font-size: 18px;
+  font-weight: normal;
+  padding: 0px 0;
+}
+
+.second-layout-location {
+
+  &__heading {
+    display: flex;
+    align-items: center;
+    padding-right: 50px;
+    justify-content: space-between;
+
+    h3 {
+      margin: 0;
+      color: #277AFC;
+      font-size: 18px;
+      font-weight: normal;
+      padding: 0px 0;
+    }
+  }
+}
+
+.second-layout-opening-days h3 {
+  margin: 0;
+  color: #277AFC;
+  font-size: 18px;
+  font-weight: normal;
+  padding: 0px 0;
+}
+
+
+.subsc-card {
+  margin: 20px 0 0;
+  background: #277AFC;
+  max-width: 350px;
+  box-shadow: 0px 5px 6px #00000029;
+  border-radius: 13px;
+  padding: 25px 35px;
+}
+
+.subsc-card h3 {
+  margin: 0;
+  color: #fff !important;
+}
+
+.subsc-card p {
+  margin: 0;
+  padding: 10px 0 0 0;
+  font-size: 27px;
+  color: #fff;
+}
+
+.subsc-card span {
+  color: #fff;
+  font-size: 32px;
+  padding: 10px 0 0 0;
+  display: inline-block;
+}
+
+.change-plan {
+  display: flex;
+  align-items: center;
+  margin: 20px 0 0;
+}
+
+// .change-plan p:first-child {
+//   width: 100px;
+//   background: #FFE07B;
+//   font-size: 12px;
+//   color: #212B37;
+//   margin: 0;
+//   border-radius: 7px;
+//   text-align: center;
+//   padding: 9px;
+//   font-weight: bold;
+// }
+
+.change-plan p:last-child {
+  font-size: 12px;
+  margin: 0;
+  padding: 0 10px;
+}
+
+button.save-lst-btn {
+  background: #26D086;
+  border: 0;
+  color: #fff;
+  padding: 13px 29px;
+  font-size: 15px;
+  font-family: "Avenir Next";
+  font-weight: bold;
+  margin-left: auto;
+  display: block;
+  margin-bottom: 30px;
+  margin-right: 5%;
+}
+
+.second-layout-opening-days a {
+  margin: 30px 0;
+  display: inline-block;
+  background: #277AFC;
+  color: #fff;
+  padding: 6px 20px;
+  border-radius: 0 50px 50px;
+  cursor: pointer;
+}
+
+.second-layout-location .store-info-upadte-fields {
+  padding-right: 50px;
+  border-right: 0.6px solid #707070;
+}

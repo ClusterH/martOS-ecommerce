@@ -1,0 +1,123 @@
+<div mat-dialog-content>
+    <div class="add-chain-pop">
+        <div class="add-chain-pop-first">
+            <h2 class="modal-title" [ngClass]="!addChainPart1 ? 'add-chart-close-1' : ''">1. Add a chain
+                <img src="../../../../assets/images/add-chain.svg" alt="">
+            </h2>
+            <div class="add-chain-pop-body" *ngIf="addChainPart1">
+              <div class="store-info-inner">
+
+                <div class="store-info-inner-add-image">
+                  <ng-template #emptyImage>
+                    <h3> <span> + </span></h3>
+
+                  </ng-template>
+                  <img [src]="mainImage " alt="" class="main-image" *ngIf="mainImage;else emptyImage">
+                  <!-- <angular-file-uploader [config]="afuConfig"></angular-file-uploader> -->
+                  <input type="file" id="main-image" accept='image/*' (change)="showPreview($event)" name="main-image"
+                    style="display: none;">
+                  <button class="button button-secondary replace-btn" *ngIf="mainImage && hideImageCrop;else emptyimagelabel">
+                    <label for="main-image"> Replace</label>
+                  </button>
+                  <ng-template #emptyimagelabel>
+                    <label for="main-image" >Add a picture </label>
+                  </ng-template>
+
+                  <div class="row" style="margin-top: 5%;">
+                    <div class="text-center col-md-8" *ngIf="!hideImageCrop">
+
+                      <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 4"
+                        [resizeToWidth]="256" format="jpeg" (imageCropped)="imageCropped($event)"></image-cropper>
+                      <!-- <span class="drag-text">Crop Image</span> -->
+                      <div class="button button-primary check-icon" *ngIf="imageChangedEvent" (click)="hideImageCrop=true">
+                        <i class="fas fa-check"></i>
+                      </div>
+
+                    </div>
+                  </div>
+                  <!-- <h3> <input type="file" accept="image/*" (change)="showPreview($event)" /> <span> + </span> Add a picture</h3> -->
+                </div>
+                <p class="chain-information">
+                    Chain information
+                </p>
+                <form [formGroup]="chainAddForm">
+                    <div class="main-inform-chain">
+                        <div class="left-main-inform-chain">
+                            <div class="left-chain-fields">
+                                <label for="">Display name</label>
+                                <input type="text" placeholder = "Name" formControlName="display_name">
+                            </div>
+                            <div class="left-chain-fields">
+                                <label for="">Company name</label>
+                                <input type="text" placeholder = "Company name" formControlName="company_name" disabled>
+                            </div>
+                            <div class="left-chain-fields">
+                                <label for="">SIREN N°</label>
+                                <input type="text" placeholder = "SIREN N°" formControlName="siren_n" disabled>
+                            </div>
+                        </div>
+                        <div class="right-main-inform-chain">
+                            <div class="right-chain-fields full">
+                                <label for="">Address</label>
+                                <input type="text" placeholder = "Address" formControlName="address" disabled>
+                            </div>
+                            <div class="right-chain-fields">
+                                <label for="">City</label>
+                                <input type="text" placeholder = "City" formControlName="city" disabled>
+                            </div>
+                            <div class="right-chain-fields">
+                                <label for="">Postal code</label>
+                                <input type="text" placeholder = "Postal code" formControlName="postal_code" disabled>
+                            </div>
+                            <div class="right-chain-fields">
+                                <label for="">Country</label>
+                                <input type="text" placeholder = "Country" formControlName="country" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="chain-info-add-btn" (click) = "addChainButton()"> Add </button>
+                    <!-- <button *ngIf="calledFor == 'add'" id="firstNameInput" (click) = "addChainButton()"> Add chain </button> -->
+                </form>
+            </div>
+        </div>
+        <div class="add-chain-pop-second">
+            <h2 class="modal-title">2. Connect or add a store</h2>
+            <div class="inner-pop-chain-store">
+                <div class="connect-stores-wrap" *ngIf="selectStoreStatus">
+                    <a (click) = "addChainSelectStore('existing')">Connect stores</a>
+                    <span>OR</span>
+                    <a (click) = "addChainSelectStore('new')">Add stores</a>
+                </div>
+                <div class="connect-store-second" *ngIf="existingStoreStatus">
+                    <h4>CONNECT STORES</h4>
+                    <!-- <select multiple [(ngModel)]="selectedShopValue" (change) = "selectedValueArray($event)">
+                        <option [ngValue] = "LE">LE</option>
+                        <option [ngValue] = "Test1">Test 1</option>
+                        <option [ngValue] = "Test2">Test 2</option>
+                    </select> -->
+
+                    <ng-select
+                        #MyNgSelect
+                        [items]="shopValueArray"
+                        bindLabel="name"
+                        placeholder="Select shop"
+                        [searchable]="true"
+                        [clearable]="true"
+                        appendTo="body"
+                        multiple="true"
+                        [(ngModel)]="selectedShopValue"
+                        (change)="selectedValueArray()"
+                    >
+                    </ng-select>
+
+                    <!-- chips -->
+                    <button class="connect-store-btn" (click) = "submitStoreAtion()">Connect</button>
+                </div>
+
+                <div class="connect-store-three" *ngIf="addNewStoreStatus">
+                    <app-store-info-add [calledFor] = "calledFor"> </app-store-info-add>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

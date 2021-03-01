@@ -1,0 +1,175 @@
+.card-payment-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #fff;
+    border-radius: 6px;
+    max-height: 90vh;
+    min-width: 750px;
+    max-width: 750px;
+    overflow-y: auto;
+}
+
+.second-card-wrapp-padd h3 {
+    font-family: 'Source Sans Pro';
+    font-weight: 600;
+}
+
+.card-payment-popup h2 {
+    margin: 0;
+    padding: 15px 30px;
+    color: #212B37;
+    font-size: 23px;
+    font-family: 'Source Sans Pro';
+    border-bottom: 2px solid #DFE3E8;
+    font-weight: 600;
+}
+
+.popup-body {
+    padding: 0 0px;
+}
+
+.second-card-wrapp-padd {
+    padding: 0 40px;
+}
+
+span.card-first {
+    display: flex;
+    align-items: center;
+    padding: 0px 0 10px;
+}
+
+span.card-first h4 {
+    margin: 0;
+    color: #000000;
+    font-weight: normal;
+    padding-right: 20px;
+    font-family: 'Futura LT';
+    font-weight: normal;
+    font-size: 18px;
+}
+
+span.card-first input {
+    border: 1px solid #707070;
+    border-radius: 5px;
+    padding: 6px 10px;
+    outline: 0;
+    font-size: 20px;
+    font-family: 'Futura LT';
+    font-weight: normal;
+    outline: 0;
+    color: #919EAB;
+}
+
+.card-second {
+    display: flex;
+    align-items: center;
+}
+
+.card-second-left {
+    width: 50%;
+    padding-right: 20px;
+}
+
+.card-right {
+    width: 50%;
+    padding: 0 10px;
+}
+
+.card-second-fields label {
+    display: block;
+    color: #000000;
+    font-size: 18px;
+    padding-bottom: 7px;
+    width: 100%;
+    font-family: 'Futura LT';
+    font-weight: normal;
+}
+
+.card-second-fields input {
+    border: 1px solid #707070;
+    border-radius: 5px;
+    padding: 11px 10px;
+    width: 100%;
+    font-family: 'Futura LT';
+    font-weight: normal;
+    font-size: 20px;
+    outline: 0;
+    color: #919EAB;
+}
+
+.card-second-fields {
+    padding-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-second-inner-flex {
+    padding: 0 10px;
+    width: 50%;
+}
+
+.card-second-fields.margin-minus {
+    margin: 0 -10px;
+}
+
+.card-third {
+    border-top: 1px solid #DFE3E8;
+    margin: 15px 0 0;
+    padding: 0 40px;
+}
+
+.card-third h3 {
+    margin: 0;
+    padding: 20px 0;
+    font-family: 'Source Sans Pro';
+    font-weight: 600;
+}
+
+.card-third-wrap {
+    padding: 0 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-third-fields label {
+    display: block;
+    color: #000000;
+    font-size: 18px;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.card-third-fields {
+    width: 50%;
+    padding: 0 10px 20px;
+}
+
+.card-third-fields input {
+    width: 100%;
+    border: 1px solid #707070;
+    border-radius: 5px;
+    padding: 0 15px;
+    height: 44px;
+    color: #919EAB;
+    font-family: 'Futura LT';
+    font-weight: normal;
+    outline: 0;
+    font-size: 20px;
+}
+
+.card-third-btns {
+    padding: 10px 40px 20px;
+}
+
+.card-third-btns button {
+    background: #26D086;
+    border: 0;
+    padding: 14px 41px;
+    font-size: 16px;
+    color: #fff;
+    font-family: 'Avenir Next';
+    font-weight: bold;
+    border-radius: 4px;
+}

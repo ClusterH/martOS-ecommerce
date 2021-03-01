@@ -1,0 +1,128 @@
+@import '../../../../../styles/variables.scss';
+
+.mat-dialog-title {
+  font-family: $SourceSansPro;
+  margin: 0;
+  padding: 15px 0px;
+  padding-top: 0px;
+  color: #212B37;
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.cdk-overlay-pane {}
+
+mat-dialog-content {
+  text-align: center;
+  max-width: 580px;
+
+
+}
+
+.mat-typography {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+
+  .text-1 {
+    margin-top: 18px;
+    font-family: $FuturaMD;
+    font-weight: 500;
+    margin-bottom: 20px;
+    font-size: 17px;
+
+
+  }
+
+  .text-2 {
+    margin-top: 20px;
+    font-size: 15px;
+    font-family: $FuturaLT;
+    margin-bottom: 20px;
+  }
+
+  .text-3 {
+    font-family: $FuturaLT;
+    color: #FF0000;
+    margin-bottom: 20px;
+    font-size: 15px;
+  }
+
+  .product-image {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+    margin-right: 10px;
+    border-radius: 3px;
+    border: 1px solid #cecece;
+    margin-right: 20px;
+  }
+
+  .title-section {
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    &__tags {
+      display: flex;
+      font-family: $FuturaLT;
+
+      span {
+        display: block;
+        width: 52px;
+        height: 25px;
+        background: #EFF6FF 0% 0% no-repeat padding-box;
+        border-radius: 8px;
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 10px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+.border-bottom {
+  border-bottom: 2px solid #DFE3E8;
+  margin-left: -23px;
+  margin-right: -23px;
+  margin-bottom: 10px;
+}
+
+
+h5 {
+  font-size: 22px;
+}
+
+.close-btn {
+  cursor: pointer;
+}
+
+.mat-dialog-actions {
+  margin-bottom: 0px;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    margin-left: 60px;
+    border-radius: 2px;
+    width: 80px;
+    font-family: $Avenir;
+    font-weight: bold;
+    font-size: 15px;
+    &:first-child {
+      margin-left: 0px;
+    }
+  }
+
+}

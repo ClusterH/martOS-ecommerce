@@ -1,0 +1,44 @@
+<!-- <app-header></app-header>
+
+<main role="main">
+  <ng-sidebar-container> -->
+<!-- A sidebar -->
+
+
+<!-- <ng-sidebar [opened]="isSidebarOpened$ | async" mode="push" dock="true" dockedSize="100">
+      <app-sidebar></app-sidebar>
+    </ng-sidebar> -->
+
+<!-- Page content -->
+<!-- <div ng-sidebar-content>
+      <div class="page-container">
+
+      </div>
+    </div> -->
+
+<!-- </ng-sidebar-container>
+</main> -->
+<ng-container *ngIf="authservice.isAuthenticated(); else loggedOut">
+  <app-header (toggle)="_toggleOpened()"></app-header>
+  <main role="main">
+    <ng-sidebar-container >
+      <!-- A sidebar -->
+      <!-- [opened]="isSidebarOpened$ | async" -->
+      <ng-sidebar mode="'push'" dock="true" dockedSize="100" sidebarClass='side-bar' [(opened)]="opened">
+        <app-sidebar></app-sidebar>
+      </ng-sidebar>
+      <!-- Page content -->
+      <div ng-sidebar-content>
+        <div class="page-container">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+
+    </ng-sidebar-container>
+  </main>
+
+</ng-container>
+
+<ng-template #loggedOut>
+  <router-outlet></router-outlet>
+</ng-template>

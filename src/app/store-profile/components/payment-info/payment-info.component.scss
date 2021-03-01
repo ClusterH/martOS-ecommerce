@@ -1,0 +1,133 @@
+.payment-info-wrap {
+  background: #fff;
+  border: 1px solid #DFE3E8;
+  padding: 40px 55px;
+  margin: 30px 0 0;
+}
+
+.top-payment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left-top-text {
+  display: flex;
+  align-items: center;
+  align-items: center;
+}
+
+.left-top-text h2 {
+  color: #277AFC;
+  font-size: 20px;
+  margin: 0;
+  font-family: 'Futura Md BT';
+  font-weight: 500;
+}
+
+.left-top-text span {
+  margin-right: 10px;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  top: 1px;
+  cursor: pointer;
+}
+
+
+button.add-btn {
+  display: flex;
+  align-items: center;
+  border: 0;
+  color: #277AFC;
+  font-family: 'Futura LT';
+  font-size: 18px;
+  font-weight: normal;
+}
+
+button.add-btn span {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+button.add-btn span img {
+  max-width: 19px;
+}
+
+.left-top-text span img {
+  max-width: 11px;
+}
+
+.payment-info-form {
+  padding: 40px 0 10px 0;
+}
+
+.payment-form-fields {
+
+  &__inner {
+    max-width: 300px;
+    box-shadow: 0px 2px 2px #00000029;
+    border: 0.6px solid #D8D8D8;
+    padding: 10px 20px;
+    border-radius: 6px;
+
+    span.edit-icon {
+      width: 22px;
+      height: 22px;
+      padding: 0 5px;
+      margin-left: auto;
+      text-align: right;
+      border-radius: 2px;
+      display: block;
+    }
+
+    span.edit-icon img {
+      max-width: 10px;
+      margin-left: auto;
+    }
+
+    h3 {
+      margin: 0;
+      color: #707070;
+      font-family: 'Futura LT';
+      font-size: 17px;
+      font-weight: normal;
+    }
+  }
+
+
+}
+
+.payment-card {
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 0 0;
+}
+
+span.payment-card-text p {
+  font-size: 12px;
+  color: #929497;
+  margin: 0;
+  padding-bottom: 5px;
+  font-weight: 500;
+}
+
+span.payment-card-text {
+  padding: 0 10px 20px;
+}
+
+.custom-btn {
+  background: #26D086;
+  border: 0;
+  color: #fff;
+  padding: 13px 19px;
+  font-size: 15px;
+  font-family: "Avenir Next";
+  font-weight: bold;
+  margin: 0 auto;
+}

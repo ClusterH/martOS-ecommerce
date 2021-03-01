@@ -1,0 +1,124 @@
+<form [formGroup]="data.form">
+  <div class="variant-view-block">
+    <div class="flex-row variant-view-wrapper">
+      <div class="flex-row flex-row__btw w-100 align-start">
+        <h1 mat-dialog-title>Edit Variant</h1>
+        <button mat-icon-button mat-dialog-close aria-label="Close Dialog" class="close-dialog-button">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="flex-row flex-row__btw w-100 align-start variant-options">
+        <div class="flex-col flex-col__start">
+          <h3>Options</h3>
+          <div  *ngFor="let option of attributes; index as i">
+              <div class="flex-col flex-col__start">
+                <span class="input-label">{{ option.name }}</span>
+                <input type="text" name="option" [ngModelOptions]="{standalone: true}" [(ngModel)]="option.value" >
+              </div>
+          </div>
+        </div>
+        <div class="flex-col flex-col__start">
+          <h3>Pricing</h3>
+          <div class="content-wrapper flex-col flex-col__start">
+            <span class="input-label">Default price Excl. taxes</span>
+            <input type="text" numeric decimals="2" name="variant-default-excl" placeholder="$ 0.00" formControlName="price">
+          </div>
+          <div class="content-wrapper flex-col flex-col__start">
+            <span class="input-label">Default price Incl. taxes</span>
+            <h3>$ {{+data.form.get('price').value  + +data.form.get('price').value * (data.vat / 100)}} </h3>
+          </div>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <h3>Promotion for this variant</h3>
+      <div class="flex-row flex-row__btw align-start w-100 variant-options">
+        <div class="flex-col flex-col__start">
+          <div class="content-wrapper flex-col flex-col__start w-100">
+            <span class="input-label">Percentage</span>
+            <input type="text" numeric decimals="2"  name="promotion" placeholder="10 %" formControlName="promotion">
+          </div>
+          <div class="content-wrapper flex-col flex-col__start w-100">
+            <span class="input-label">End day of the promotion (day included)</span>
+            <input type="text" name="promotionEndDate" placeholder="DD / MM / YYYY" readonly [min]="minPromotionDate"
+                [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" formControlName="promotionEndDate">
+            <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+          </div>
+        </div>
+        <div class="flex-col flex-col__start">
+          <div class="content-wrapper flex-col flex-col__start w-100">
+            <span class="input-label">Price Excl. taxes</span>
+            <input type="text" numeric decimals="2" name="promotion-price" placeholder="$ 0.00" formControlName="promotionPrice">
+          </div>
+          <div class="content-wrapper flex-col flex-col__start w-100">
+            <span class="input-label">Price Incl. taxes</span>
+            <input type="text" numeric decimals="2" name="promotion-taxed-price" placeholder="$ 0.00" formControlName="promotionTaxedPrice">
+          </div>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="flex-row flex-row__btw align-end w-100 variant-options">
+        <div class="flex-col flex-col__start">
+          <h3>Information</h3>
+          <div class="content-wrapper flex-col flex-col__start">
+            <span class="input-label">Barcode</span>
+            <input type="text" name="tags">
+          </div>
+        </div>
+        <div class="flex-col flex-col__start">
+          <h3></h3>
+          <div class="content-wrapper flex-col flex-col__start">
+            <span class="input-label">Stock</span>
+            <input type="number" name="stock" formControlName="stock">
+          </div>
+        </div>
+      </div>
+
+      <div mat-dialog-actions class="flex-row flex-row__end w-100 variant-actions">
+        <button mat-button mat-dialog-close class="btn-large">Cancel</button>
+        <button mat-button class="btn-large btn-green" [mat-dialog-close]="data" (click)="save()">Save</button>
+      </div>
+    </div>
+
+    <div class="flex-col flex-col__start variant-view-wrapper">
+      <h3>Pictures</h3>
+      <div class="flex-col flex-col__center image-block">
+        <div class="flex-col flex-col__center">
+          <div class="flex-row flex-row__center" class="flex-row flex-row__center variant-images"
+            *ngIf="data.variantsImages.length; else addVariantImage">
+            <div class="variant-image" *ngFor="let img of data.variantsImages; let i = index">
+              <mat-icon class="variant-remove" (click)="onRemoveVariantImage(i)">close</mat-icon>
+              <img [src]="img.image" alt="">
+            </div>
+          </div>
+
+          <ng-template #addVariantImage>
+            <img src="/assets/images/add-image.svg" alt="">
+          </ng-template>
+          <!-- <angular-file-uploader [config]="afuConfig"></angular-file-uploader> -->
+          <input type="file" id="variant-image" accept='image/*' (change)="onVariantImageUpload($event)"
+          multiple="multiple" name="variant-image" style="display: none;">
+        <button>
+          <label for="variant-image">Add Images</label>
+        </button>
+
+        <div class="row" style="margin-top: 5%;">
+          <div class="text-center col-md-8" *ngIf="!hideImageVariantCrop">
+
+            <image-cropper [imageChangedEvent]="imageVariantChangedEvent" [maintainAspectRatio]="true"
+              [aspectRatio]="4 / 4" [resizeToWidth]="256" format="jpeg"
+              (imageCropped)="imageVariantCropped($event)"></image-cropper>
+            <!-- <span class="drag-text">Crop Image</span> -->
+            <div class="button button-primary check-icon" *ngIf="imageVariantChangedEvent"
+              (click)="acceptVariantCrop()">
+              <i class="fas fa-check"></i>
+            </div>
+
+          </div>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

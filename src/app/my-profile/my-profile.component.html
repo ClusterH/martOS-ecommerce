@@ -1,0 +1,130 @@
+<!-- main heading -->
+<div class="main-heading">
+  <h1>My Profile</h1>
+  <div class="sub-heading"> <img src="../../assets/images/user.png" alt=""> Manage your personal information </div>
+</div>
+
+<!-- page body -->
+
+<div class="secondary-heading">
+  <span>Account</span>
+</div>
+
+
+<div class="main-container">
+  <div class="section-heading">
+    <span>Personal information</span><img src="../../assets/images/edit.png" (click)="editMode=!editMode">
+  </div>
+  <div class="section-inner">
+    <div class="user-img">
+
+      <div class="flex-col flex-col__center ">
+        <img
+          [src]="userProfile.get('imageUrl').value!==null?userProfile.get('imageUrl').value:'../../assets/images/add-image.svg'"
+          alt="" class="main-image">
+        <!-- <angular-file-uploader [config]="afuConfig"></angular-file-uploader> -->
+        <input type="file" id="main-image" accept='image/*' (change)="onMainImageUpload($event)" name="main-image"
+          style="display: none;">
+        <button class="button button-secondary" *ngIf="editMode"> <label
+            for="main-image">{{ userProfile.get('imageUrl').value!=='/assets/images/profile-img-2.png' ? 'Replace' : 'Add Image' }}</label></button>
+      </div>
+      <div class="image-selection text-center " *ngIf="!hideImageCrop">
+
+        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 4"
+          [resizeToWidth]="256" format="jpeg" (imageCropped)="imageCropped($event)"></image-cropper>
+        <!-- <span class="drag-text">Crop Image</span> -->
+        <div class="button button-primary check-icon" *ngIf="imageChangedEvent" (click)="saveImage()">
+          <i class="fas fa-check"></i>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="data" [formGroup]="userProfile">
+      <div class="row data__block">
+
+        <div class="col-12  col-md-6 col-lg-4 data__block__item">
+
+          <div class="label">
+            <span>First Name</span>
+          </div>
+          <div class="content">
+            <span *ngIf="!editMode">{{userProfile.value.name}}</span>
+            <input *ngIf="editMode" type="text" name="fname" [formControlName]="'name'" placeholder="Ellie">
+          </div>
+        </div>
+        <div class="col-12  col-md-6 col-lg-4 data__block__item">
+          <div class="label">
+            <span>Last Name</span>
+          </div>
+          <div class="content">
+            <span *ngIf="!editMode">{{userProfile.value.familyName}}</span>
+            <input *ngIf="editMode" type="text" name="lname" [formControlName]="'familyName'" placeholder="Edison">
+          </div>
+        </div>
+
+        <div class="col-12  col-md-6 col-lg-4 data__block__item">
+          <div class="label">
+            <span>Phone</span>
+          </div>
+          <div class="content">
+            <span *ngIf="!editMode">{{userProfile.value.phoneNumber}}</span>
+            <input *ngIf="editMode" type="text" name="phone" [formControlName]="'phoneNumber'"
+              placeholder="+1 678-766-8787">
+          </div>
+        </div>
+
+        <div class="col-12  col-md-6 col-lg-4 data__block__item">
+          <div class="label">
+            <span>Email</span>
+          </div>
+          <div class="content">
+            <span *ngIf="!editMode">{{userProfile.value.email}}</span>
+            <input *ngIf="editMode" type="email" name="email" [formControlName]="'email'"
+              placeholder="ellieedison@phonestore.com">
+          </div>
+        </div>
+
+        <div class="col-12  col-md-6 col-lg-4 data__block__item" *ngIf="!editMode">
+          <div class="label">
+            <span>Password</span>
+          </div>
+          <div class="content">
+            <span>************</span>
+          </div>
+        </div>
+
+        <div class="col-12  col-md-6 col-lg-4 data__block__item" *ngIf="!editMode">
+
+        </div>
+
+        <div class="col-12  col-md-6 col-lg-4 data__block__item" *ngIf="editMode">
+          <div class="label">
+            <span>New Password</span>
+          </div>
+          <div class="content">
+            <span *ngIf="!editMode">************</span>
+            <input *ngIf="editMode" type="password" [formControlName]="'nPassword'"
+              [ngClass]="userProfile.errors?.match?'ng-invalid':''" placeholder="************">
+          </div>
+        </div>
+
+        <div class="col-12  col-md-6 col-lg-4 data__block__item" *ngIf="editMode">
+          <div class="label">
+            <span>Confirm Password</span>
+          </div>
+          <div class="content">
+            <span *ngIf="!editMode">************</span>
+            <input *ngIf="editMode" type="password" [formControlName]="'cPassword'"
+              [ngClass]="userProfile.errors?.match?'ng-invalid':''" placeholder="************">
+          </div>
+        </div>
+
+      </div>
+      <div class="data__submit" *ngIf="editMode">
+        <button class="button button-primary" type="button" (click)="Save()">Save</button>
+      </div>
+
+    </div>
+  </div>
+</div>

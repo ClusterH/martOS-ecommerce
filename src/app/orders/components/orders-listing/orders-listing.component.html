@@ -1,0 +1,12 @@
+<ng-container *ngIf="(orderList && orderList.length>0); else emptyData">
+  <app-orders-item *ngFor="let item of orderList" [item]="item" [selectedItem]="selectedItem" (click)="selectedOrder.emit(item)">
+
+  </app-orders-item>
+</ng-container>
+
+<ng-template #emptyData>
+
+  <div class="empty-template">
+    No Data Found !
+  </div>
+</ng-template>

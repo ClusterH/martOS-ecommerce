@@ -1,0 +1,100 @@
+.store-page {
+  padding: 60px 0 20px;
+}
+
+.store-top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #DFE3E8;
+  padding-bottom: 15px;
+  margin: 0;
+
+  h3 {
+    color: #212B37;
+    font-size: 24px;
+    font-family: "Source Sans Pro", sans-serif;
+    margin: 0;
+    font-weight: bold;
+
+    span {
+      font-size: 16px;
+    }
+  }
+
+  button {
+    background: #26D086;
+    border: 0;
+    color: #fff;
+    padding: 13px 19px;
+    font-size: 15px;
+    font-family: 'Avenir Next';
+    font-weight: bold;
+  }
+}
+
+.store-listing-header {
+  padding: 40px 0 30px;
+
+  ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+      font-family: 'Source Sans Pro';
+      color: #212B37;
+      font-weight: bold;
+      font-size: 17px;
+      padding: 0 20px;
+    }
+  }
+}
+
+.chain-toggle {
+  display: flex;
+  align-items: center;
+}
+
+span {
+  &.arrowss {
+    display: flex;
+    align-items: center;
+
+    img {
+      max-width: 7px;
+      margin-right: 10px;
+      position: relative;
+      top: 3px;
+      cursor: pointer;
+    }
+
+  }
+}
+
+li {
+  &.first-td {
+    width: 7%;
+  }
+
+  &.second-td {
+    width: 25%;
+  }
+
+  &.third-td {
+    width: 23%;
+  }
+
+  &.fourth-td {
+    width: 20%;
+  }
+
+  &.five-td {
+    width: 15%;
+  }
+
+  &.six-td {
+    width: 10%;
+  }
+}

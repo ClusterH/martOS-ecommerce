@@ -1,0 +1,20 @@
+<div class="register-failure">
+  <div class="title">
+    <h2>Something went wrong</h2>
+    <p class="caption">
+      We are sorry, your payment failed. <br />
+      It's may due to an error in the payment informations.
+    </p>
+  </div>
+  <div class="content">
+    <p>Please check your payment informations and try again</p>
+    <div class="register-action">
+      <button class="payment" (click)="returnPayment.emit()">Go to Payment</button>
+    </div>
+    <p>
+      If your payment does not work, consider checking your payment limit, your
+      funds or try using a different card.
+    </p>
+    <p>If you need help, please <a class="register-link" href="/">contact us</a></p>
+  </div>
+</div>

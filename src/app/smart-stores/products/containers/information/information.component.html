@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-12 col-lg-8 flex-row flex-row__btw t__header">
+    <div class="flex-col flex-col__start">
+      <h1>Informations</h1>
+      <span class="t__header-subtitle">Manage Information</span>
+    </div>
+
+    <button mat-button class="btn-large btn-green" (click)="insert()">Add Information</button>
+  </div>
+
+  <div class="col-12 col-lg-8 t__content page-content single-section">
+    <app-products-navigation></app-products-navigation>
+
+    <div class="t__content-filter">
+    </div>
+
+    <table mat-table [dataSource]="tags$">
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (change)="onStatusChange(row)" [checked]="row.liveStatus">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Linked Templates Column -->
+      <ng-container matColumnDef="templates_linked">
+        <th mat-header-cell *matHeaderCellDef> Linked Templates </th>
+        <td mat-cell *matCellDef="let element"> {{element.linkedTemplates}} </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <div class="flex-row flex-row__btw">
+            <mat-icon (click)="onDelete(element)">delete</mat-icon>
+            <mat-icon (click)="onUpdate(element)">edit</mat-icon>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>
+

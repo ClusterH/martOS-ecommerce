@@ -1,0 +1,225 @@
+@import '../../../../../styles/variables.scss';
+
+.t {
+  &__header {
+    width: 100%;
+    margin: 75px 0;
+    margin-top: 0px;
+
+    h1 {
+      font-size: 41px;
+      font-family: 'Source Sans Pro';
+      font-weight: 600;
+      margin: 0;
+      margin-bottom: 10px;
+    }
+
+    &-subtitle {
+      color: #707070;
+      font-size: 16px;
+    }
+  }
+
+  &__filter {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    &-wrapper {
+      margin-right: 25px;
+    }
+
+    mat-icon {
+      color: #707070;
+      font-size: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    span {
+      font-size: 17px;
+      color: $colorPrimaryGray;
+      cursor: pointer;
+
+      &:not(:last-child) {
+        margin-right: 27px;
+      }
+    }
+  }
+
+  &__content {
+    &-filter {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin: 25px 0 30px 25px;
+
+      mat-chip-list {
+        margin-left: 20px;
+      }
+
+      mat-chip {
+        border-radius: 4px;
+      }
+
+      mat-icon {
+        width: 20px;
+        height: 20px;
+        font-size: 20px;
+        margin-right: 5px;
+        color: #919EAB;
+      }
+    }
+
+    ::ng-deep {
+      ng-select.ng-select.ng-select-single {
+        &:first-of-type .ng-select-container {
+          min-width: 190px;
+          height: 42px;
+          border-color: #919EAB;
+
+          border-right: none;
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+
+        &:last-of-type .ng-select-container {
+          min-width: 190px;
+          height: 42px;
+          border-color: #919EAB;
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
+
+      .ng-select .ng-arrow-wrapper {
+        display: none;
+      }
+    }
+
+    input {
+      font-family: Futura LT;
+      font-size: initial;
+      outline: none;
+      color: #919EAB;
+      width: 190px;
+      height: 42px;
+      padding: 0 10px;
+      border: 1px solid #919EAB;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+
+    table.mat-table {
+      font-family: Futura LT;
+      width: 100%;
+
+      td {
+        min-width: 140px;
+      }
+
+      .mat-column-status {
+
+
+        .product-image {
+          width: 50px;
+          height: 50px;
+          object-fit: contain;
+          margin-right: 10px;
+          border-radius: 3px;
+          border: 1px solid #cecece;
+          margin-right: 10px;
+        }
+      }
+
+      .mat-column-name {
+        padding: 15px 0;
+
+
+      }
+
+      .mat-column-quantity {
+        span {
+          padding: 5px 15px;
+          background-color: #EFF6FF;
+          border-radius: 14px;
+        }
+      }
+
+      .mat-column-price {
+        text-align: center !important;
+      }
+
+      .mat-column-actions {
+        width: 100px;
+
+        mat-icon {
+          width: 20px;
+          height: 20px;
+          font-size: 18px;
+          cursor: pointer;
+
+          // &:not(:last-child) {
+          //   margin-right: 30px;
+          // }          // &:not(:last-child) {
+          //   margin-right: 30px;
+          // }
+        }
+      }
+
+      th.mat-header-cell,
+      td.mat-cell {
+        font-size: 15px;
+
+        &:not(:first-child) {
+          text-align: left;
+        }
+      }
+
+      th.mat-header-cell {
+        // font-weight: bold;
+        font-family: 'Source Sans Pro';
+        font-weight: bold;
+        color: $colorPrimaryBlack;
+        font-size: 19px;
+      }
+
+      ::ng-deep {
+
+        .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+        .mat-checkbox .mat-ripple-element {
+          background-color: $colorPrimaryGreen;
+        }
+
+        .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+          background-color: $colorPrimaryGray;
+        }
+      }
+    }
+  }
+}
+
+tr.mat-footer-row,
+tr.mat-row {
+  height: 108px;
+}
+
+.sub-heading {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sub-heading-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .mat-icon {
+    margin-right: 15px;
+  }
+}
+
+.table-wrapper {
+  max-width: 100%;
+  overflow: auto;
+}

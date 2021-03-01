@@ -1,0 +1,135 @@
+<app-leading-header></app-leading-header>
+<div class="main-body">
+    <div class="custom-container">
+        <div class="register-form-land">
+            <div class="regs-left" *ngIf="modalType === 'register'">
+                <h1>Register to CitaDeal</h1>
+                <p>Start your CitaDeal aventure and manage your stores wherever you are!</p>
+                <ul>
+                    <li class="active" (click) = "modalType = 'register'">Register</li>
+                    <li (click) = "login()">Login</li>
+                </ul>
+                <div>
+                    <form [formGroup] = "registerForm" >
+                        <div class="step-input-wrapp">
+                            <div class="step-input-form full">
+                                <input type="email" placeholder="Email" formControlName="email"
+                                    [ngClass]="{'is-invalid': lndRegisterGet?.email.invalid && (lndRegisterGet?.email.dirty || lndRegisterGet?.email.touched)}">
+                                <div *ngIf="lndRegisterGet.email.invalid && (lndRegisterGet.email.dirty || lndRegisterGet.email.touched)" class="invalid-feedback">
+                                    <div class="error" *ngIf="lndRegisterGet.email.errors.required">Email is required</div>
+                                    <div class="error" *ngIf="lndRegisterGet.email.errors.email">Email must be a valid email address</div>
+                                </div>
+                            </div>
+                            <div class="step-input-form full">
+                                <input type="password" placeholder="Password" formControlName="password"
+                                    [ngClass]="{'is-invalid': lndRegisterGet?.password.invalid && (lndRegisterGet?.password.dirty || lndRegisterGet?.password.touched)}">
+                                <div *ngIf="lndRegisterGet.password.invalid && (lndRegisterGet.password.dirty || lndRegisterGet.password.touched)" class="invalid-feedback">
+                                    <div class="error" *ngIf="lndRegisterGet.password.errors.required">Password is required</div>
+                                    <div class="error" *ngIf="lndRegisterGet.password.errors.minlength">Password must be atleast 6 Char.</div>
+                                </div>
+                            </div>
+                            <div class="step-input-form full">
+                                <input type="password" placeholder="Confirm Password" formControlName="cpassword"
+                                    [ngClass]="{'is-invalid': lndRegisterGet?.cpassword.invalid && (lndRegisterGet?.cpassword.dirty || lndRegisterGet?.cpassword.touched)}">
+                                <div *ngIf="lndRegisterGet.cpassword.invalid && (lndRegisterGet.cpassword.dirty || lndRegisterGet.cpassword.touched)" class="invalid-feedback">
+                                    <div class="error" *ngIf="lndRegisterGet.cpassword.errors?.required"> Confirm password is required </div>
+                                    <div class="error" *ngIf="lndRegisterGet.cpassword.errors?.notEquivalent"> Confirm Password must match with password field. </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="submit-btn">
+                            <button type="submit" [disabled] = "registerForm.invalid" (click) = "onSubmit()" >Continue</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="regs-left" *ngIf="modalType === 'login'">
+                <h1>Login to CitaDeal</h1>
+                <p>Start your CitaDeal aventure and manage your stores wherever you are!</p>
+                <ul>
+                    <li class="active" (click) = "login()">Login</li>
+                    <li (click) = "modalType = 'register'">Register</li>
+                </ul>
+
+                <div>
+                    <form [formGroup] = "loginForm" >
+                        <div class="step-input-wrapp">
+                            <div class="step-input-form full">
+                                <input type="email" placeholder="Email" formControlName="email">
+                                <div *ngIf="lndLoginGet.email.invalid && (lndLoginGet.email.dirty || lndLoginGet.email.touched)" class="invalid-feedback">
+                                    <div class="error" *ngIf="lndLoginGet.email.errors.required">Email is required</div>
+                                    <div class="error" *ngIf="lndLoginGet.email.errors.email">Email must be a valid email address</div>
+                                </div>
+                            </div>
+                            <div class="step-input-form full">
+                                <input type="password" placeholder="Password" formControlName="password">
+                                <div *ngIf="lndLoginGet.password.invalid && (lndLoginGet.password.dirty || lndLoginGet.password.touched)" class="invalid-feedback">
+                                    <div class="error" *ngIf="lndLoginGet.password.errors.required">Password is required</div>
+                                    <div class="error" *ngIf="lndLoginGet.password.errors.minlength">Password must be atleast 6 Char.</div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="submit-btn">
+                            <button type="submit" [disabled] = "loginForm.invalid" (click) = "onLoginSubmit()" >Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="regs-right">
+                <img src="../../assets/images/landing.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- blue-bg -->
+<div class="bluebg">
+    <div class="slide-wrapp">
+        <ngx-slick-carousel class="carousel"
+        #slickModal="slick-carousel"
+        [config]="slideConfig" >
+
+    <div ngxSlickItem class="slide">
+        <div class="slider-wrapper">
+            <div class="slider-image">
+                <img src="../../assets/images/supplier.png" alt="">
+            </div>
+            <div class="slider-content">
+                <h2>Manage your inventory online</h2>
+                <p>You can easily add all your offline inventory and manage it all the way to let your next door
+                    clients know there are available anytime.</p>
+            </div>
+        </div>
+    </div>
+
+    <div ngxSlickItem class="slide">
+        <div class="slider-wrapper">
+            <div class="slider-image">
+                <img src="../../assets/images/supplier.png" alt="">
+            </div>
+            <div class="slider-content">
+                <h2>Manage your inventory online</h2>
+                <p>You can easily add all your offline inventory and manage it all the way to let your next door
+                    clients know there are available anytime.</p>
+            </div>
+        </div>
+    </div>
+
+    <div ngxSlickItem class="slide">
+        <div class="slider-wrapper">
+            <div class="slider-image">
+                <img src="../../assets/images/supplier.png" alt="">
+            </div>
+            <div class="slider-content">
+                <h2>Manage your inventory online</h2>
+                <p>You can easily add all your offline inventory and manage it all the way to let your next door
+                    clients know there are available anytime.</p>
+            </div>
+        </div>
+    </div>
+    </ngx-slick-carousel>
+    </div>
+</div>
+<!-- blue-bg -->

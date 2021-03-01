@@ -1,0 +1,37 @@
+<div class="pop-container">
+  <h2 class="modal-title">Request a new store address</h2>
+  <form [formGroup]="editAddressFrom">
+    <h3 class="inner-title">New store address</h3>
+    <div class="single-input-block">
+      <div class="label"><span>Address</span></div>
+      <div class="content">
+        <input name="address" placeholder="Address" type="text" [formControlName]="'address'">
+      </div>
+    </div>
+    <div class="dual-input-block">
+      <div class="single-input-block">
+        <div class="label"><span>City</span></div>
+        <div class="content">
+          <input name="city" placeholder="City" type="text" [formControlName]="'city'">
+        </div>
+      </div>
+      <div class="single-input-block">
+        <div class="label"><span>Postal Code</span></div>
+        <div class="content">
+          <input name="postalCode" placeholder="00000" type="number" [formControlName]="'postalCode'">
+        </div>
+      </div>
+    </div>
+    <div class="dual-input-block">
+      <div class="single-input-block">
+        <div class="label"><span>Country</span></div>
+        <div class="content">
+          <input name="country" placeholder="Country" type="text" [formControlName]="'country'">
+        </div>
+      </div>
+    </div>
+
+    <button class="button button-primary" type="submit" (click)="closeDialogue()">Submit</button>
+  </form>
+
+</div>

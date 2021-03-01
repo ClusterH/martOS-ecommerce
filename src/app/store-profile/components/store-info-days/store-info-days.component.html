@@ -1,0 +1,71 @@
+<div class="openinh-hrs-popup">
+  <h2 class="modal-title">Add opening days</h2>
+  <form [formGroup]="addStoreDaysForm">
+    <div class="open-hrs-flex">
+      <div class="left-open-hrs">
+        <h3>Weekdays</h3>
+        <ul class="week-wrapper">
+          <li *ngFor="let item of addStoreDaysForm.controls.days['controls']|slice:0:5; let i = index">
+            <ng-container formArrayName="days">
+              <ng-container [formGroupName]="i">
+                <p>{{item.get('dayOfWeek').value | daysPipe}}</p>
+                <div class="amtimes">
+                  <div class="inner-am-time">
+                    <input [owlDateTimeTrigger]="op" [owlDateTime]="op" formControlName="openingTime" readonly>
+                    <owl-date-time [pickerType]="'timer'" #op></owl-date-time>
+                  </div>
+                  <div class="inner-am-time">
+                    <input [owlDateTimeTrigger]="cl" [owlDateTime]="cl" formControlName="closingTime" readonly>
+                    <owl-date-time [pickerType]="'timer'" #cl></owl-date-time>
+                  </div>
+                </div>
+              </ng-container>
+            </ng-container>
+          </li>
+        </ul>
+      </div>
+      <div class="right-open-hrs">
+        <div class="weekends">
+          <h3>Weekends</h3>
+          <ul class="week-wrapper">
+            <li *ngFor="let item of addStoreDaysForm.controls.days['controls']|slice:5:7; let i = index">
+              <ng-container formArrayName="days">
+                <ng-container [formGroupName]="i+5">
+                  <p>{{item.get('dayOfWeek').value | daysPipe}}</p>
+                  <div class="amtimes">
+                    <div class="inner-am-time">
+                      <input [owlDateTimeTrigger]="op" [owlDateTime]="op" formControlName="openingTime" readonly>
+                      <owl-date-time [pickerType]="'timer'" #op></owl-date-time>
+                    </div>
+                    <div class="inner-am-time">
+                      <input [owlDateTimeTrigger]="cl" [owlDateTime]="cl" formControlName="closingTime" readonly>
+                      <owl-date-time [pickerType]="'timer'" #cl></owl-date-time>
+                    </div>
+                  </div>
+                </ng-container>
+              </ng-container>
+            </li>
+          </ul>
+        </div>
+        <div class="public-holidays">
+          <h3>Public holidays</h3>
+          <ul class="week-wrapper">
+            <li>
+              <div class="amtimes">
+                <div class="inner-am-time">
+                  <input [owlDateTimeTrigger]="op" [owlDateTime]="op" [value]="'2020-09-26T20:00:00.221Z'" readonly>
+                  <owl-date-time [pickerType]="'timer'" #op></owl-date-time>
+                </div>
+                <div class="inner-am-time">
+                  <input [owlDateTimeTrigger]="cl" [owlDateTime]="cl" [value]="'2020-09-26T20:00:00.221Z'" readonly>
+                  <owl-date-time [pickerType]="'timer'" #cl></owl-date-time>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <button class="add-opening-hrs-btn" (click)="addStoreDaysSubmitForm()">Add</button>
+  </form>
+</div>

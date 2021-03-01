@@ -1,0 +1,107 @@
+// popup
+.openinh-hrs-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background: #fff;
+  min-width: 650px;
+  transform: translate(-50%, -50%);
+  border-radius: 6px;
+  overflow-y: auto;
+}
+
+
+
+h2.modal-title {
+  margin: 0;
+  padding: 20px 30px;
+  color: #212B37;
+  font-size: 23px;
+  font-family: 'Source Sans Pro', ;
+  border-bottom: 2px solid #DFE3E8;
+  font-weight: 600;
+}
+
+.open-hrs-flex {
+  display: flex;
+  padding: 40px 50px 10px;
+}
+
+.open-hrs-flex h3 {
+  margin: 0;
+  color: #277AFC;
+  font-size: 18px;
+  font-weight: normal;
+  padding: 0px 0;
+}
+
+.open-hrs-flex ul {
+  padding: 0;
+  margin: 0;
+}
+
+.open-hrs-flex ul li {
+  list-style: none;
+  padding: 20px 0 0;
+}
+
+ul.week-wrapper li p {
+  margin: 0;
+  color: #000000;
+  font-size: 13px;
+  padding-bottom: 8px;
+}
+
+.left-open-hrs {
+  width: 50%;
+  border-right: 2px solid #DFE3E8;
+}
+
+.right-open-hrs {
+  width: 50%;
+  padding: 0 30px;
+}
+
+.amtimes {
+  display: flex;
+}
+
+.inner-am-time {
+  width: auto;
+  margin-right: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.inner-am-time input {
+  width: 70px;
+  border: 1px solid #707070;
+  border-radius: 5px;
+  padding: 5px;
+  margin-right: 6px;
+  text-align: center;
+}
+
+.inner-am-time label {
+  font-size: 12px;
+}
+
+.public-holidays {
+  padding: 40px 0 0 0;
+}
+
+button.add-opening-hrs-btn {
+  background: #26D086;
+  border: 0;
+  color: #fff;
+  padding: 13px 37px;
+  font-size: 15px;
+  font-family: "Avenir Next";
+  font-weight: bold;
+  margin: 10px 30px 40px auto;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  margin-top: 40px;
+}

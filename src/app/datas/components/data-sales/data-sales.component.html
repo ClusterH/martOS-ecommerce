@@ -1,0 +1,149 @@
+<div class="data-orders-container row flex-column">
+  <div class="data-orders-header col-12 d-flex justify-end align-items-center pl-4 pr-4">
+    <button class="btn btn-purple ">
+      <span>Export</span>
+      <img src="../../assets/images/export-purple.png" alt="" width="20" height="20">
+    </button>
+  </div>
+  <div class="data-orders-filter-section col-12 d-flex justify-content-between align-items-center mt-4 pl-4 pr-4">
+    <!-- filters section by date  -->
+    <div class="t__content-filter">
+      <mat-button-toggle-group name="date-filter" aria-label="Font Style">
+        <mat-button-toggle checked="true" (change)="selectionChanged($event)" value="monthly">Month</mat-button-toggle>
+        <mat-button-toggle value="yearly" (change)="selectionChanged($event)">Year</mat-button-toggle>
+        <mat-button-toggle value="dately" (change)="selectionChanged($event)" [owlDateTimeTrigger]="dt10">Calendar</mat-button-toggle>
+      </mat-button-toggle-group>
+      <input class="datetimepicker-hidden" [owlDateTimeTrigger]="dt10" [owlDateTime]="dt10"
+      [selectMode]="'range'" (dateTimeChange)="dateChange($event)" >
+      <owl-date-time [pickerType]="'calendar'" #dt10></owl-date-time>
+    </div>
+    <!-- filters section in general -->
+    <div class="t__content-filter">
+      <ng-select #selectFiltersDropdown [searchable]="false" [clearable]="false" placeholder="Filter"
+        class="custom-selects">
+        <ng-template ng-label-tmp let-item="item">
+          <div class="flex-row">
+            <mat-icon>search</mat-icon>
+            <span class="item-name">{{ item.value | titlecase }}</span>
+          </div>
+        </ng-template>
+
+        <ng-template ng-option-tmp let-item="item">
+          {{ item.value | titlecase }}
+        </ng-template>
+      </ng-select>
+
+      <ng-select #selectFilterValuesDropdown [searchable]="false" [clearable]="false" placeholder="Value"
+        class="custom-selects">
+        <ng-template ng-label-tmp let-item="item">
+          {{ item | titlecase }}
+        </ng-template>
+
+        <ng-template ng-option-tmp let-item="item">
+          {{ item | titlecase }}
+        </ng-template>
+      </ng-select>
+
+    </div>
+
+  </div>
+  <div class="data-orders-table-section">
+    <table mat-table [dataSource]="items">
+
+      <ng-container matColumnDef="reference">
+        <th mat-header-cell *matHeaderCellDef> Reference </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="flex-row">
+            <span>{{element.reference}}</span>
+          </div>
+        </td>
+        <td mat-footer-cell *matFooterCellDef class="bg-grey">  </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="articles">
+        <th mat-header-cell *matHeaderCellDef> Articles </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="flex-row">
+            <span>{{element.articles}}</span>
+          </div>
+        </td>
+        <td mat-footer-cell *matFooterCellDef class="bg-grey total-font"> Total </td>
+      </ng-container>
+
+      <ng-container matColumnDef="salesNumber">
+        <th mat-header-cell *matHeaderCellDef> Sales number </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="flex-row">
+            <span class="round-number">{{element.salesNumber}}</span>
+          </div>
+        </td>
+        <td mat-footer-cell *matFooterCellDef class="bg-grey">{{getTotalSalesNumber().toFixed(2) }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="taxes">
+        <th mat-header-cell *matHeaderCellDef> Sales Excl. Taxes</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="flex-row ">
+            <span>{{element.taxes}}&euro;</span>
+          </div>
+        </td>
+        <td mat-footer-cell *matFooterCellDef class="bg-grey">{{getTotalTaxes().toFixed(2)}}&euro;</td>
+      </ng-container>
+
+      <ng-container matColumnDef="incomeExclT">
+        <th mat-header-cell *matHeaderCellDef>Income Excl. T</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="flex-row ">
+            <span>{{element.incomeExclT}}&euro;</span>
+          </div>
+        </td>
+        <td mat-footer-cell *matFooterCellDef class="bg-grey">{{getTotalIncomeExclT().toFixed(2)}}&euro;</td>
+      </ng-container>
+
+      <ng-container matColumnDef="incomeInclT">
+        <th mat-header-cell *matHeaderCellDef>Income Incl. T</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="flex-row ">
+            <span>{{element.incomeInclT}}&euro;</span>
+          </div>
+        </td>
+        <td mat-footer-cell *matFooterCellDef class="bg-grey">{{getTotalIncomeInclT().toFixed(2)}}&euro;</td>
+      </ng-container>
+
+       <!-- Disclaimer column -->
+      <ng-container matColumnDef="prev">
+        <td mat-footer-cell *matFooterCellDef>
+          <a class="pagenation-icon d-flex align-items-center" (click)="pagenationNavigate('prev')">
+            <mat-icon>chevron_left</mat-icon>
+            <span>prev</span>
+          </a>
+        </td>
+      </ng-container>
+       <!-- Disclaimer column -->
+       <ng-container matColumnDef="showmore">
+        <td mat-footer-cell *matFooterCellDef colspan="4" class="text-center">
+          <a class="show-more" aria-disabled="pageNumber == 0 ? true : false" (click)="showMore()">
+            View more
+          </a>
+        </td>
+      </ng-container>
+       <!-- Disclaimer column -->
+       <ng-container matColumnDef="next">
+        <td mat-footer-cell *matFooterCellDef>
+          <a class="pagenation-icon d-flex align-items-center justify-end" (click)="pagenationNavigate('next')">
+            <span>next</span>
+            <mat-icon>chevron_right</mat-icon>
+          </a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-footer-row *matFooterRowDef="displayedFooterColumns" class=""></tr>
+
+      <tr mat-footer-row *matFooterRowDef="displayedColumns" class=""></tr>
+    </table>
+
+  </div>
+</div>

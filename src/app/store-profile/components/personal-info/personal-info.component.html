@@ -1,0 +1,36 @@
+<div class="personal-info-wrap">
+  <div class="top-personal-header">
+    <span>
+      <img *ngIf="isTabOpen == false" src="../../../../assets/images/plus.svg" alt="" (click)="tabAction(true)">
+      <!-- Add - img below -->
+      <img *ngIf="isTabOpen == true" src="../../../../assets/images/minus.svg" alt="" (click)="tabAction(false)">
+    </span>
+    <h2>Personal information </h2>
+    <img *ngIf="isTabOpen && !isEdit" src="../../../../assets/images/edit.svg" alt="" (click)="editActionPersonal()">
+  </div>
+  <form *ngIf="isTabOpen" [formGroup]="personalForm">
+    <fieldset [disabled]="!isEdit">
+      <div class="personal-info-form row" [ngClass]="!isEdit ? 'form-disabled-type' : ''">
+        <div class="personal-form-fields col-6 col-lg-3">
+          <label for="">First Name</label>
+          <input type="text" placeholder="Ellie" formControlName="first_name">
+        </div>
+        <div class="personal-form-fields col-6 col-lg-3">
+          <label for="">Last Name</label>
+          <input type="text" placeholder="Edison" formControlName="last_name">
+        </div>
+        <div class="personal-form-fields col-6 col-lg-3">
+          <label for="">Email</label>
+          <input type="email" placeholder="ellieedison@phonestore.com" formControlName="email">
+        </div>
+        <div class="personal-form-fields col-6 col-lg-3">
+          <label for="">Phone</label>
+          <input type="text" placeholder="+1 678-766-8787" formControlName="phone_number">
+        </div>
+        <div class="personal-save-btn col-12">
+          <button *ngIf="isEdit" (click)="updateProfile()"> Save </button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>

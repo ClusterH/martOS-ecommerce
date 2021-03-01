@@ -1,0 +1,143 @@
+:host {
+  width: 100%;
+  .cgu-wrap {
+    display: flex;
+    font-family: "Avenir Next";
+  }
+  .cgu-form {
+    width: 100%;
+    max-width: 630px;
+    margin: 55px auto 70px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 8px 8px 10px #00000010;
+    border-radius: 15px;
+    display: inline-block;
+    padding: 35px;
+    h3 {
+      font-size: 30px;
+      font-weight: 600;
+    }
+    .caption {
+      color: #929497;
+    }
+    .cgu-content {
+      height: 300px;
+      overflow: auto;
+      border: 1px solid #695efc;
+      margin: 20px 0px;
+      padding: 20px;
+    }
+    .cgu-checkbox {
+      margin: 30px;
+      color: #929497;
+      input {
+        margin: 10px;
+        &:checked {
+          background: #695efc;
+        }
+      }
+      [type="checkbox"]:not(:checked),
+      [type="checkbox"]:checked {
+        position: absolute;
+        left: -9999px;
+      }
+      [type="checkbox"]:not(:checked) + label,
+      [type="checkbox"]:checked + label {
+        position: relative;
+        padding-left: 1.95em;
+        cursor: pointer;
+      }
+
+      /* checkbox aspect */
+      [type="checkbox"]:not(:checked) + label:before,
+      [type="checkbox"]:checked + label:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1.25em;
+        height: 1.25em;
+        border: 2px solid #ccc;
+        background: #fff;
+        border-radius: 4px;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      /* checked mark aspect */
+      [type="checkbox"]:not(:checked) + label:after,
+      [type="checkbox"]:checked + label:after {
+        content: "\2713\0020";
+        position: absolute;
+        top: 0.07em;
+        left: 0.06em;
+        font-size: 1.4em;
+        line-height: 0.8;
+        color: #fff;
+        background: #695efc;
+        transition: all 0.2s;
+        border-radius: 4px;
+      }
+      /* checked mark aspect changes */
+      [type="checkbox"]:not(:checked) + label:after {
+        opacity: 0;
+        transform: scale(0);
+      }
+      [type="checkbox"]:checked + label:after {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* hover style just for information */
+      label:hover:before {
+        border: 2px solid #4778d9 !important;
+      }
+
+      label {
+        font-size: 14px;
+      }
+    }
+    .cgu-action {
+      width: 100%;
+      padding: 0 20px;
+      button {
+        width: 100%;
+        max-width: 116px;
+        margin: 0 auto;
+        display: table;
+        border: 0;
+        background: #695efc;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+    }
+  }
+  .progress-bar {
+    height: 130px;
+    background: #695efc;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    p {
+      width: 550px;
+      height: 13px;
+      border-radius: 50px;
+      background: #fff;
+      box-shadow: 8px 8px 10px #00000010;
+      position: relative;
+      border: 1px solid #287afb;
+      &::before {
+        width: 315px;
+        background: transparent;
+        position: absolute;
+        content: "";
+        height: 11px;
+        border-radius: 50px;
+        border: 0;
+        top: 0;
+      }
+    }
+  }
+}

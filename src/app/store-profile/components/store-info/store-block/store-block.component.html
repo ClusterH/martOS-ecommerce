@@ -1,0 +1,32 @@
+<div class="store-listing-names">
+  <ul>
+    <li class="first-td">
+      <p class="logo">C</p>
+    </li>
+    <li class="second-td">
+      <h2 class="name">{{store.name}}</h2>
+      <p class="address">{{store.address}}</p>
+    </li>
+    <li class="third-td">
+      <span class="chain-name">{{store.chainName}}</span>
+    </li>
+    <li class="fourth-td">
+      <span class="subsc">Free Trial</span>
+    </li>
+    <li class="five-td">
+      <button class="button button-secondary" disabled>
+        <span class="upgrade"> <img src="../../../../assets/images/upload.svg" alt=""> Upgrade</span>
+      </button>
+
+    </li>
+    <li class="six-td">
+      <div class="eye-edit">
+        <img (click)="detailAction(store)" src="../../../../assets/images/eye.svg" alt="">
+        <img (click)="editAction(store)" src="../../../../assets/images/edit.svg" alt="">
+      </div>
+    </li>
+  </ul>
+  <app-store-info-add *ngIf="calledFor == 'add'" [calledFor]="calledFor"> </app-store-info-add>
+  <app-store-info-update *ngIf="calledFor == 'edit' || calledFor == 'detail'" [currentStore]="store" [calledFor]="calledFor">
+  </app-store-info-update>
+</div>

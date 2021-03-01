@@ -1,0 +1,366 @@
+<div class="row">
+  <div class="main-heading col-12 col-lg-8">
+    <h1>Staff Management</h1>
+    <div class="sub-heading">
+      <div class="sub-heading-inner">
+        <mat-icon class="t__header-subtitle">lock</mat-icon> Manage right management
+      </div>
+      <div>
+        <button mat-button class="btn-large btn-green add-stuff-btn" (click)="onAddStuff()">
+          Add staff
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="flex-row flex-row__btw align-start row">
+  <div class="flex-col staff-management-wrapper col-12 col-lg-8">
+    <div class="t__content page-content">
+      <nav mat-tab-nav-bar>
+        <a mat-tab-link (click)="onShowAllStaff()" [active]="activeLink === 'Staff'">
+          Staff
+        </a>
+        <a mat-tab-link (click)="onShowActiveStaff()" [active]="activeLink === 'Active'">
+          Active
+        </a>
+        <a mat-tab-link (click)="onShowInactiveStaff()" [active]="activeLink === 'Inactive'">
+          Inactive
+        </a>
+      </nav>
+      <div class="t__content-filter">
+        <div class="content-wrapper flex-col flex-col__start">
+          <input matInput type="text" placeholder="Research staff members" (keyup)="applyFilter($event)" />
+        </div>
+      </div>
+
+      <table mat-table [dataSource]="dataSource">
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row;let element">
+            <div class="flex-row flex-row__btw">
+              <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                [checked]="selection.isSelected(row)">
+              </mat-checkbox>
+              <div *ngIf="!element.imageUrl; else productImage" class="user-image"></div>
+              <ng-template #productImage>
+                <!-- <img [src]="element.imageUrl" class="user-image" /> -->
+                <div class="square-img" [style.backgroundImage]="'url('+element.imageUrl+')'"></div>
+              </ng-template>
+            </div>
+
+          </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="flex-row flex-row__left">
+              <span>{{ element.name }}</span>
+            </div>
+          </td>
+        </ng-container>
+
+        <!-- Store Column -->
+        <ng-container matColumnDef="store">
+          <th mat-header-cell *matHeaderCellDef>Store</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.stores[0].name }}
+          </td>
+        </ng-container>
+
+        <!-- Rights Column -->
+        <ng-container matColumnDef="rights">
+          <th mat-header-cell *matHeaderCellDef>Rights</th>
+          <td mat-cell *matCellDef="let element">{{ "Manager" }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <div class="flex-row">
+              <mat-icon (click)="view(element)">visibility</mat-icon>
+              <mat-icon (click)="edit(element)">edit</mat-icon>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="flex-col staff-management-wrapper staff-info-view col-12 col-lg-4" *ngIf="showingStaffInfoView">
+    <div class="t__content page-content staff-details-wrapper">
+      <div class="flex-row flex-row__center staff-details-title">
+        <img src="/assets/images/add-user-staff-image.svg" alt="" />
+        <span>&nbsp;First Last Name&nbsp;</span>
+        <span>|&nbsp;Staff details</span>
+      </div>
+      <mat-divider></mat-divider>
+      <form (ngSubmit)="save()" [formGroup]="staffManagementForm">
+        <div class="staff-info-wrapper">
+          <div class="staff-details-title-subtitle">
+            <span> Personal information </span>
+          </div>
+          <div class="content-wrapper flex-row dual-input-container">
+            <div class="flex-col flex-col__start ">
+              <span class="input-label">First Name</span>
+              <input type="text" formControlName="userName" placeholder="First Name"
+                [readOnly]="!editingUserStaffInfo" />
+            </div>
+            <div class="flex-col flex-col__start">
+              <span class="input-label">Last Name</span>
+              <input type="text" formControlName="familyName" placeholder="Last Name"
+                [readOnly]="!editingUserStaffInfo" />
+            </div>
+          </div>
+          <div class="content-wrapper flex-row dual-input-container">
+            <div class="flex-col flex-col__start">
+              <span class="input-label">Phone number</span>
+              <input type="text" formControlName="phoneNumber" placeholder="Phone number"
+                [readOnly]="!editingUserStaffInfo" />
+            </div>
+            <div class="flex-col flex-col__start">
+              <span class="input-label">Date of birth</span>
+              <input type="text" formControlName="dateOfBirth" placeholder="Date of birth"
+                [readOnly]="!editingUserStaffInfo" />
+            </div>
+          </div>
+          <div class="content-wrapper flex-row dual-input-container">
+            <div class="flex-col flex-col__start">
+              <span class="input-label">Passport/ID</span>
+              <input type="text" formControlName="passportID" placeholder="Passport/ID"
+                [readOnly]="!editingUserStaffInfo" />
+            </div>
+            <div class="flex-col flex-col__start">
+              <span class="input-label">Social security n*</span>
+              <input type="text" formControlName="socialSecurityNum" placeholder="Social security n*"
+                [readOnly]="!editingUserStaffInfo" />
+            </div>
+          </div>
+          <div class="content-wrapper flex-row dual-input-container">
+            <div class="flex-col flex-col__start">
+              <span class="input-label">Email</span>
+              <input type="email" formControlName="email" placeholder="Email" [readOnly]="!editingUserStaffInfo" />
+            </div>
+            <div class="flex-col flex-col__start">
+              <span class="input-label">Password</span>
+              <input type="password" formControlName="password" placeholder="Password"
+                [readOnly]="!editingUserStaffInfo" />
+            </div>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div class="staff-info-wrapper">
+          <div class="staff-details-title-subtitle">
+            <span> Work information </span>
+          </div>
+          <div class="content-wrapper flex-row dual-input-container">
+            <!--            <div class="flex-col flex-col__start">-->
+            <!--              <span class="input-label">Staff ID</span>-->
+            <!--              <input-->
+            <!--                type="text"-->
+            <!--                formControlName="id"-->
+            <!--                placeholder="Staff ID"-->
+            <!--                [readOnly]="!editingUserStaffInfo"-->
+            <!--              />-->
+            <!--            </div>-->
+            <div class="flex-col flex-col__start">
+              <span class="input-label">Position</span>
+              <ng-select [searchable]="false" [clearable]="false" [multiple]="false" formControlName="position"
+                placeholder="Choose position" bindLabel="value">
+              </ng-select>
+            </div>
+            <div class="flex-col flex-col__start">
+              <span class="input-label">Created</span>
+              <input type="text" formControlName="created" placeholder="Created" [readOnly]="!editingUserStaffInfo" />
+            </div>
+          </div>
+          <div class="content-wrapper flex-row dual-input-container" style="align-items: unset;">
+            <div class="flex-col flex-col__start">
+              <span class="input-label">Rights</span>
+              <ng-select [searchable]="false" [clearable]="false" [multiple]="false" formControlName="rights"
+                placeholder="Choose position" bindLabel="value">
+              </ng-select>
+            </div>
+
+            <div class="flex-col flex-col__start">
+              <div class="flex-row flex-row__start label-with-custom-btn">
+                <span class="input-label">Stores</span>
+                <button type="button" class="btn-custom-add stores" (click)="onShowStoreInput()"
+                  *ngIf="editingUserStaffInfo">
+                  <mat-icon>add_circle</mat-icon>
+                  <span>Add</span>
+                </button>
+              </div>
+              <ng-container>
+                <div *ngFor="let item of storesUi">
+                  <div #storeNameToDelete class="store-label">
+                    <span>{{ item.name }}</span>
+                    <img src="/assets/icons/cancel-dark_icon.svg" alt="" width="12"
+                      (click)="onDeleteUserStore($event, storeNameToDelete)" style="cursor: pointer;" />
+                  </div>
+                </div>
+                <ng-container *ngIf="showingStoreInputField && editingUserStaffInfo">
+                  <!--                  <input-->
+                  <!--                    #storeNameToEnter-->
+                  <!--                    type="text"-->
+                  <!--                    placeholder="Add new store"-->
+                  <!--                    (keydown)="onAddNewStore($event, storeNameToEnter)"-->
+                  <!--                    [readOnly]="!editingUserStaffInfo"-->
+                  <!--                  />-->
+                  <ng-select [items]="stores$ | async" [searchable]="false" [clearable]="false" bindLabel="name"
+                    bindValue="id" (change)="onStoreChange($event)">
+                    <ng-template ng-label-tmp let-item="item">
+                      <div class="flex-row flex-row__center">
+                        <span class="item-name">{{ item.name }}</span>
+                      </div>
+                    </ng-template>
+                  </ng-select>
+                </ng-container>
+              </ng-container>
+            </div>
+
+          </div>
+          <div class="content-wrapper flex-row ">
+
+            <!-- <div>
+            <div class="flex-row flex-row__start label-with-custom-btn">
+              <span class="input-label">Services</span>
+              <button class="btn-custom-add services">
+                <mat-icon>add_circle</mat-icon>
+                <span>Add</span>
+              </button>
+            </div>
+            <div class="flex-col flex-col__start">
+              list of services
+            </div>
+          </div> -->
+          </div>
+
+          <!-- <div class="content-wrapper flex-row flex-row__btw align-center">
+          <span class="input-label">Cashier authorisation</span>
+          <div>
+            <button
+              mat-button
+              type="button"
+              class="btn-medium btn-white btn-custom-white"
+            >
+              Yes
+            </button>
+            <button mat-button type="button" class="btn-medium btn-red">
+              No
+            </button>
+          </div>
+        </div> -->
+        </div>
+
+        <!-- <mat-divider></mat-divider> -->
+
+        <!-- <div class="staff-info-wrapper">
+        <div class="staff-details-title-subtitle">
+          <span> Contract information </span>
+        </div>
+        <div class="content-wrapper flex-row flex-row__btw">
+          <div class="flex-col flex-col__start">
+            <span class="input-label">Start date</span>
+            <input type="text" name="startDate" placeholder="Start date" />
+          </div>
+          <div class="flex-col flex-col__start">
+            <span class="input-label">End date</span>
+            <input type="text" name="endDate" placeholder="endDate" />
+          </div>
+        </div>
+        <div class="content-wrapper flex-row flex-row__btw">
+          <div>
+            <button
+              mat-button
+              type="button"
+              class="btn-medium btn-blue btn-see-contract"
+            >
+              See contract
+            </button>
+          </div>
+          <div class="actions-contract-section">
+            <button
+              mat-button
+              type="button"
+              class="btn-medium btn-gray btn-contract"
+              (click)="openUploadContract()"
+            >
+              <div class="upload-icon-btn"></div>
+              <span>Upload</span>
+            </button>
+            <button
+              mat-button
+              type="button"
+              class="btn-medium btn-red btn-contract"
+            >
+              <div class="delete-icon-btn"></div>
+              <span>Delete</span>
+            </button>
+          </div>
+        </div>
+        <div class="staff-details-title-subtitle">
+          <span> Holidays - 7 days left </span>
+        </div>
+
+        <div class="content-wrapper flex-row flex-row__btw">
+          <div class="flex-col flex-col__start">
+            <span class="input-label">Start date</span>
+            <input type="text" name="startDate" placeholder="Start date" />
+          </div>
+          <div class="flex-col flex-col__start">
+            <span class="input-label">End date</span>
+            <input type="text" name="endDate" placeholder="endDate" />
+          </div>
+        </div>
+        <div class="content-wrapper flex-row flex-row__start">
+          <button class="btn-custom-add-2">
+            <mat-icon>add_circle</mat-icon>
+            <span>Add</span>
+          </button>
+        </div>
+      </div> -->
+        <div class="staff-info-wrapper">
+          <div class="content-wrapper flex-row flex-row__btw">
+            <ng-template [ngIf]="saveActionUpdate">
+              <button *ngIf="selectedStaff.isEnabled" mat-button type="button" class="btn-medium btn-red btn-actions"
+                (click)="onDesactiveteStaff()" [disabled]="!(editingUserStaffInfo && saveActionUpdate)">
+                Desactivate
+              </button>
+              <button *ngIf="!selectedStaff.isEnabled" mat-button type="button" class="btn-medium btn-blue btn-actions"
+                (click)="onActiveteStaff()" [disabled]="!(editingUserStaffInfo && saveActionUpdate)">
+                Activate
+              </button>
+            </ng-template>
+            <button mat-button type="submit" class="btn-medium btn-green btn-actions">
+              Save
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!--    <div class="content-wrapper flex-row flex-row__end w-100">-->
+    <!--      <button-->
+    <!--        mat-button-->
+    <!--        type="button"-->
+    <!--        class="btn-large btn-green btn-save-staff-details"-->
+    <!--      >-->
+    <!--        Save-->
+    <!--      </button>-->
+    <!--    </div>-->
+  </div>
+</div>
+
+<ng-template #other_content>other content here...</ng-template>

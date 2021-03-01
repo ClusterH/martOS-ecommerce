@@ -1,0 +1,110 @@
+<div class="store-info-upadte-page">
+  <form [formGroup]="editStoreForm">
+    <div class="main-thre-layout-wrap">
+      <!-- <div class="first-layout-store">
+        <div class="fnac-img">
+          <img src="../../../../assets/images/fnac.png" alt="">
+        </div>
+        <button>replace</button>
+      </div> -->
+      <div class="first-layout-store">
+        <img [src]="mainImage ? mainImage : '../../../../assets/images/add-image.svg'" alt="" class="main-image">
+        <!-- <angular-file-uploader [config]="afuConfig"></angular-file-uploader> -->
+        <input type="file" id="main-image" accept='image/*' (change)="showPreview($event)" name="main-image"
+          style="display: none;">
+        <button class="button button-secondary " *ngIf="hideImageCrop">
+          <label for="main-image">{{ mainImage ? 'Replace' : 'Add Image' }}</label>
+        </button>
+
+        <div class="image-crop-container" *ngIf="!hideImageCrop">
+
+          <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 4"
+            [resizeToWidth]="256" format="jpeg" (imageCropped)="imageCropped($event)"></image-cropper>
+          <!-- <span class="drag-text">Crop Image</span> -->
+          <div class="button button-primary check-icon" *ngIf="imageChangedEvent" (click)="hideImageCrop=true">
+            <i class="fas fa-check"></i>
+          </div>
+
+        </div>
+
+
+        <!-- <span class="drag-text" *ngIf="!imageChangedEvent">or drop image to upload</span> -->
+      </div>
+      <div class="second-layout-store-flex">
+        <div class="second-layout-store">
+          <h3>Store information</h3>
+          <div class="store-info-upadte-fields">
+            <div class="update-first-fields">
+              <label for="">Display name</label>
+              <input type="text" placeholder="Fnac" formControlName="display_name">
+            </div>
+            <div class="update-first-fields">
+              <label for="">Company name</label>
+              <input type="text" placeholder="XYZ" formControlName="company_name" readonly>
+            </div>
+            <div class="update-first-fields">
+              <label for="">Phone number</label>
+              <input type="text" placeholder="123 333 393" formControlName="phone_number" readonly>
+            </div>
+            <div class="update-first-fields">
+              <label for="">email address (contact)</label>
+              <input type="text" placeholder="tonystark@gmail.com" formControlName="email" readonly>
+            </div>
+            <div class="update-first-fields">
+              <label for="">SIREN N°</label>
+              <input type="text" placeholder="123 333 393" formControlName="siren_n" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="second-layout-subsc">
+          <h3>Subscription</h3>
+          <div class="subsc-card">
+            <h3>Current subscription plan</h3>
+            <p>Free Trial</p>
+            <span>€ 0.00</span>
+            <div class="change-plan">
+              <p>Credit card 3 VISA 2345</p>
+            </div>
+          </div>
+        </div>
+        <div class="second-layout-location">
+          <div class="second-layout-location__heading">
+            <h3>Location & opening hours
+              <i class="fas fa-pencil-alt" (click)="openEditAddressDialogue()" *ngIf="!pendingAddressVerification"></i>
+            </h3>
+            <div class="button button-secondary" *ngIf="pendingAddressVerification">Submission in review</div>
+          </div>
+
+          <div class="store-info-upadte-fields">
+            <div class="update-first-fields full">
+              <label for="">Address</label>
+              <input type="text" placeholder="11 rue de la liberté" formControlName="address" readonly>
+            </div>
+            <div class="update-first-fields">
+              <label for="">City</label>
+              <input type="text" placeholder="Paris" formControlName="city" readonly>
+            </div>
+            <div class="update-first-fields">
+              <label for="">Postal code</label>
+              <input type="text" placeholder="75001" formControlName="postal_code" readonly>
+            </div>
+            <div class="update-first-fields">
+              <label for="">Country</label>
+              <input type="text" placeholder="France" formControlName="country" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="second-layout-opening-days">
+          <h3>Opening days</h3>
+          <a *ngIf="calledFor == 'edit'" (click)="addDaysAction()"> + Add opening days</a>
+        </div>
+      </div>
+    </div>
+    <button *ngIf="calledFor == 'edit'" class="save-lst-btn" (click)="editStoreFOrmSubmit()">
+      Save
+    </button>
+  </form>
+</div>
+
+<app-store-info-days *ngIf="calledFor == 'edit' && addDays"></app-store-info-days>
+<!-- <a *ngIf="calledFor == 'edit' && addDays" (click) = "closeDaysAction()"> close add days </a> -->

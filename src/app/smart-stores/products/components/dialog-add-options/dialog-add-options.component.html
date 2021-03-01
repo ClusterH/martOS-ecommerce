@@ -1,0 +1,36 @@
+<div class="flex-col flex-col__btw">
+  <div class="flex-col flex-col__start w-100">
+    <div class="flex-row flex-row__btw dialog-header">
+      <h1 mat-dialog-title>Edit Options</h1>
+      <button mat-icon-button mat-dialog-close aria-label="Close Dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <div class="dialog-content">
+      <ng-container *ngFor="let option of optionsForm.controls; index as i">
+        <div class="flex-row flex-row__start content-wrapper">
+          <input type="text" [formControl]="optionsForm.controls[i]" [value]="option.value" >
+          <button mat-icon-button aria-label="Remove control" (click)="deleteOption(i)">
+            <mat-icon class="material-icons-outlined">delete</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="Remove control" (click)="updateOption(i)">
+            <mat-icon class="material-icons-outlined">edit</mat-icon>
+          </button>
+        </div>
+      </ng-container>
+
+      <div *ngIf="isNew" class="flex-row flex-row__start content-wrapper">
+        <input type="text" [formControl]="newOptionFormControl" >
+        <button class="btn btn-success insert-option" aria-label="Insert control" (click)="insertOption()">
+          Save
+        </button>
+      </div>
+
+      <button mat-button class="add-option" (click)="addOption()">Add another option</button>
+    </div>
+  </div>
+  <div class="flex-row flex-row__end w-100">
+    <button mat-button mat-dialog-close class="btn-large"  [mat-dialog-close]="'cancel'">Cancel</button>
+    <button mat-button class="btn-large btn-green" (click)="saveOptions()">Done</button>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<!-- main heading -->
+<div class="main-heading">
+  <h1>Subscription & Fees</h1>
+  <div class="sub-heading"> <img src="../../assets/images/box-2.png" alt=""> Manage your invoices </div>
+</div>
+
+
+<!-- body content  -->
+<div class="order-section-conatiner row">
+  <div class="orders-container col-12">
+    <div class="orders-container-inner">
+      <nav mat-tab-nav-bar>
+        <a mat-tab-link [active]="activeTab==='subscriptions'" (click)="onTabChange('subscriptions')">Subscription</a>
+        <a mat-tab-link [active]="activeTab==='fees'" (click)="onTabChange('fees')">Fees</a>
+      </nav>
+
+      <ng-container *ngIf="activeTab==='subscriptions'">
+        <app-subscription></app-subscription>
+      </ng-container>
+
+      <ng-container *ngIf="activeTab==='fees'">
+        <app-fee>
+
+        </app-fee>
+      </ng-container>
+    </div>
+
+  </div>
+</div>

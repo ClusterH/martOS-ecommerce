@@ -1,0 +1,48 @@
+<header>
+  <div class="navbar navbar-dark box-shadow d-flex justify-content-between">
+    <div class="" style="display: flex;">
+      <div class="navbar-toggle" (click)="isSmallScreen?'':onToggleSidebar()">
+        <div class="navbar-toggle-line-1"></div>
+        <div class="navbar-toggle-line-2"></div>
+        <div class="navbar-toggle-line-3"></div>
+      </div>
+
+      <div *ngIf="isSidebarOpened$ | async" class="navbar-logo">
+        <img [@fadeInOut]="'in'" src="/assets/images/martlogo.png" alt="">
+      </div>
+
+      <div class="navbar-content">
+        <ng-select [items]="stores$ | async" [searchable]="false" [clearable]="false" bindLabel="name" bindValue="id"
+          [ngModel]="(selectedStore$ | async)?.id" (change)="onStoreChange($event)" [disabled]="comboBoxLocked">
+          <ng-template ng-label-tmp let-item="item">
+            <div class="flex-shop">
+              <img class="online-shop" src="/assets/images/shopicon.png" alt="">
+              <span class="item-name">{{ item.name }}</span>
+              <img class="store-arrw" src="../../../assets/images/store-arrow.png" alt="">
+            </div>
+          </ng-template>
+        </ng-select>
+        <!-- <div class="welcome-message">
+      <span>
+        Hello name, welcome back ! What will be your next step? Let's try one of our services to be visible
+        online
+      </span>
+    </div> -->
+      </div>
+
+    </div>
+    <div class="">
+
+      <nav class="my-2 my-md-0 mr-md-3 header-noti">
+        <!-- <a class="p-2 text-light" routerLink="/register">Signup</a>
+    <a class="p-2 text-light" routerLink="/login">Login</a>
+    <a class="p-2 text-light" (click)="signout()" href="javascript:void(0)">Signout {{name}}</a>
+    <a class="p-2 text-light" routerLink="/topsecret">Top Secret Area</a> -->
+        <p class="notification"><a href="#"> <img src="../../../assets/images/notification-new.png" alt=""> </a></p>
+        <a class="logout" (click)="signout()" href="javascript:void(0)">Logout</a>
+      </nav>
+    </div>
+
+
+  </div>
+</header>

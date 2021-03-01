@@ -1,0 +1,139 @@
+.subsc-wrap {
+    background: #D9D6FF;
+    min-height: calc(100vh - 250px);
+    padding: 40px 20px 0;
+}
+
+.empty-bg-subs {
+    background: #695EFC;
+    width: 100%;
+    height: 162px;
+    display: inline-block;
+}
+
+.subsc-wrap h2 {
+    margin: 0 0 30px 0;
+    text-align: center;
+    font-family: 'Futura Md BT';
+}
+
+.subsc-wrap p {
+    text-align: center;
+    font-size: 20px;
+    max-width: 630px;
+    color: #929497;
+    line-height:1.6;
+    font-family: 'Futura Md BT';
+    margin: 0 auto;
+}
+
+.subsc-wrap ul {
+    display: flex;
+    justify-content: center;
+    max-width: 1050px;
+    margin: 0 auto 0px;
+    padding: 70px 0 90px;
+    font-family: 'Avenir Next';
+}
+
+.subsc-wrap ul li {
+    list-style: none;
+    width: 33.33%;
+}
+
+.subsc-inner-wrap {
+    margin: 0 0;
+    background: #fff;
+    padding: 40px 40px;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+}
+
+.subsc-inner-wrap h3 {
+    margin: 0;
+    font-size: 32px;
+    color: #000000;
+    font-family: 'Avenir Next';
+}
+
+.subsc-inner-wrap p {
+    text-align: left;
+    font-family: 'Avenir Next';
+}
+
+.subsc-inner-wrap p span {
+    color: #695EFC;
+    font-size: 40px;
+}
+
+.subsc-inner-wrap p {
+    font-size: 16px;
+    color: #929497;
+    line-height: 1.5;
+    padding: 10px 0 0 0;
+}
+
+.subsc-inner-wrap ul {
+    flex-wrap: wrap;
+    padding: 40px 0 0 0;
+    border-top: 2px solid #695EFC;
+    margin: 20px 0 0 0;
+}
+
+.subsc-inner-wrap ul li {
+    width: 100%;
+    font-size: 14px;
+    padding-bottom: 15px;
+    color: #929497;
+    padding-left: 25px;
+    position: relative;
+}
+
+.subsc-inner-wrap ul li:before {
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 20px;
+    left: -5px;
+    background-size: 19px;
+    background-repeat: no-repeat;
+    background-image: url(../../../assets/images/subsc-tick.svg);
+}
+
+.subsc-inner-wrap button {
+    background: #695EFC;
+    border: 0;
+    padding: 15px 65px 15px 45px;
+    margin: 20px auto 0;
+    display: table;
+    color: #fff;
+    font-weight: bold;
+    position: relative;
+    font-size: 18px;
+}
+
+.subsc-inner-wrap p.planss
+{
+    font-family: 'Futura Md BT';    
+    color: #000000C9;
+}
+
+li.pro .subsc-inner-wrap {
+    position: relative;
+    z-index: 9;
+    top: -16px;
+    padding-bottom: 60px;
+}
+
+
+.subsc-inner-wrap button:before {
+    position: absolute;
+    content: "";
+    width: 17px;
+    height: 17px;
+    background-repeat: no-repeat;
+    right: 40px;
+    top:18px;
+    background-size: 14px;
+    background-image: url(../../../assets/images/subsc-arrow.svg);
+}

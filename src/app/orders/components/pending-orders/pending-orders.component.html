@@ -1,0 +1,148 @@
+<div class="flex-row flex-row__btw align-start">
+  <div class="flex-col order-management-wrapper">
+    <div class="flex-row flex-row__btw align-end t__header">
+      <div class="flex-col flex-col__start">
+        <h1>Order Management</h1>
+        <div class="flex-row">
+          <span class="t__header-subtitle">Manage your orders</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="t__content page-content">
+      <nav mat-tab-nav-bar>
+        <a
+          mat-tab-link
+          (click)="onShowPendingOrder()"
+          [active]="activeLink === 'pending'"
+        >
+          Pending Orders <span class="order-number" > ({{pendingOrderNum }})</span>
+        </a>
+        <a
+          mat-tab-link
+          (click)="onShowOngoingOrder()"
+          [active]="activeLink === 'ongoing'"
+        >
+          Ongoing Orders  <span class="order-number" > (0)</span>
+        </a>
+      </nav>
+
+      <table mat-table [dataSource]="dataSource" matSort matSortActive="Elapsed Time" matSortDisableClear matSortDirection="desc">
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="Articles">
+          <th mat-header-cell *matHeaderCellDef>Articles</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="table-item-article">
+              <div class="flex-row flex-row__left">
+                <div class="flex-col flex-col__start order-list">
+                  <span class="order-id">ORDER: {{ element.id }}</span>
+                  <div class="flex-row flex-row__left order-list-item" *ngFor="let article of element.articles; let i = index">
+                    <div class="flex-col flex-col__start name-article">
+                      {{i + 1}}. {{article.name}}
+                      <div class="article-options">
+                        <span  *ngFor="let option of article.options">
+                          {{option.value}}
+                        </span>
+                      </div>
+                    </div>
+                    <div class="flex-col custom-item-price">
+                      {{article.price}}€ HT
+                    </div>
+                    <div class="flex-col flex-col__end custom-col">
+                      <span class="material-icons delete-item" (click)="removeAticle(element, article)"> cancel </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-row flex-row__left price-box">
+                <div class="flex-col flex-col__start ">
+                </div>
+                <div class="flex-col flex-col__end order-total-price">
+                  <div class="total-price price-row">
+                    <div class="price-left">
+                      Total:
+                    </div>
+                    <div class="price-right">
+                      {{element.totalPrice}}€ HT
+                    </div>
+                  </div>
+                  <div class="price-row">
+                    <div class="price-left">
+                      VAT:
+                    </div>
+                    <div class="price-right">
+                      {{element.vat}}€ HT
+                    </div>
+                  </div>
+                  <div class=" price-row">
+                    <div class="price-left">
+                      Delivery:
+                    </div>
+                    <div class="price-right">
+                      {{element.price}}€ HT
+                    </div>
+                  </div>
+                </div>
+                <div class="flex-col flex-col__end custom-col">
+                </div>
+              </div>
+            </div>
+
+          </td>
+        </ng-container>
+
+        <!-- Store Column -->
+        <ng-container matColumnDef="Elapsed Time">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Elapsed Time</th>
+          <td mat-cell *matCellDef="let element">
+            <!--            {{ element.stores[0].name }}-->
+            <span class="time-box box-grey"> 0h 00m</span>
+          </td>
+        </ng-container>
+
+        <!-- Rights Column -->
+        <ng-container matColumnDef="Delivery">
+          <th mat-header-cell *matHeaderCellDef>Delivery</th>
+          <td mat-cell *matCellDef="let element">
+<!--            <span class="box-grey"> {{element.storeOrderType}}</span>-->
+            <div [ngSwitch]="getType(element.storeOrderType)">
+              <div *ngSwitchCase="'PickUpInStore'">
+                <span class="box-grey"> {{'Pickup in Store'}}</span>
+              </div>
+              <div *ngSwitchCase="'StoreDelivery'">
+                <span class="box-grey"> {{'Fast Delivery'}}</span>
+                <button class="delegate-delivery">
+                  Delegate to MartOS
+                </button>
+              </div>
+              <div *ngSwitchCase="'MartOsDelivery'">
+                <span class="box-grey box-blue"> {{'MardOS'}}</span>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="flex-row flex-row__center box-btn">
+              <button mat-flat-button  class="custom-btn-deliver" (click)="deliver()">
+                <span class="material-icons">upgrade</span>Deliver
+              </button>
+              <button mat-flat-button class="custom-btn-cancel" (click)="cancelOrder(element)">
+                Cancel
+              </button>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #other_content>other content here...</ng-template>

@@ -1,0 +1,78 @@
+@import "../../../../styles/variables.scss";
+
+.dialog-wrapper {
+  margin-left: -24px;
+  margin-right: -24px;
+}
+
+.mat-dialog-title {
+  margin: 0;
+}
+
+.dialog-header {
+  width: 100%;
+  align-items: center;
+  padding: 10px 10px 10px 30px;
+  color: $colorPrimaryDarkGray;
+
+
+  .btn-close {
+    margin-right: 20px;
+    border: none;
+    outline: 0;
+  }
+
+  mat-icon {
+    color: $colorSecondaryBorder;
+    width: 36px;
+    height: 36px;
+    font-size: 36px;
+  }
+
+  h1 {
+    font-size: 36px;
+    font-weight: 500;
+  }
+}
+
+.dialog-content {
+  .btn-add-contract {
+    width: 205px;
+    height: 70px;
+    margin-top: 46px;
+    margin-bottom: 22px;
+    color: $colorPrimaryDarkGray;
+    background-color: $colorSecondaryLightGreen;
+    border: solid 2px $colorSecondaryBorderLight;
+    border-radius: 2px;
+  }
+
+  label {
+    font-size: 25px;
+    font-weight: 500;
+    color: $colorPrimaryDarkGray;
+  }
+
+  span {
+    font-size: 25px;
+    font-weight: 400;
+    color: $colorSecondaryBorder;
+  }
+}
+
+.dialog-control-btns-wrapper {
+  padding: 0 30px;
+}
+
+.dialog-control-btns {
+  min-width: 113px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.mat-divider {
+  &.mat-divider-horizontal {
+    margin: 25px 0 25px 0;
+    width: 100%;
+  }
+}

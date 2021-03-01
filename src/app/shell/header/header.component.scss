@@ -1,0 +1,149 @@
+@import '../../../styles/variables.scss';
+
+header {
+  height: 100%;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $colorPrimaryBlue;
+  width: 100%;
+  height: 100%;
+  padding: 17px 30px;
+}
+
+.navbar-toggle {
+  margin-right: 30px;
+  cursor: pointer;
+
+  .navbar-toggle-line-1,
+  .navbar-toggle-line-2,
+  .navbar-toggle-line-3 {
+    width: 27px;
+    height: 3px;
+    border-radius: 3px;
+    background-color: $colorPrimaryWhite;
+    margin: 8px 0;
+    transition: opacity 0.4s, transform 0.4s;
+  }
+
+  .navbar-toggle-line-3 {
+    width: 17px;
+    transition: width 0.4s;
+  }
+}
+
+.navbar-logo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 260px;
+
+  img {
+    height: 40px;
+    object-fit: contain;
+  }
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 260px - 40px);
+  height: 100%;
+
+  ::ng-deep ng-select.ng-select.ng-select-single {
+    height: 100%;
+
+    .ng-arrow-wrapper {
+      display: none;
+    }
+
+    .ng-select-container {
+      background-color: $colorSecondaryAqua;
+      min-width: 170px;
+      height: 100%;
+
+      img {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .welcome-message {
+    width: 100%;
+    height: 100%;
+    margin: 0 60px;
+    background-color: $colorSecondaryAqua;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+
+    span {
+      font-size: 18px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: 0 20px;
+      opacity: .4;
+    }
+  }
+}
+
+a.logout {
+  background: #FD6D7A;
+  color: #fff;
+  height: 45px;
+  display: inline-block;
+  line-height: 45px;
+  padding: 0 25px;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Avenir Next';
+  text-transform: uppercase;
+  font-size: 15px;
+  border-radius: 2px;
+}
+
+.header-noti {
+  display: flex;
+  align-items: center;
+}
+
+p.notification {
+  margin: 0;
+  padding-right: 30px;
+  border-right: 1px solid #fff;
+  margin-right: 30px;
+}
+
+p.notification a {
+  display: inline-block;
+}
+
+p.notification a img {
+  max-width: 20px;
+  position: relative;
+  top: 3px;
+}
+
+.online-shop {
+  max-width: 24px;
+}
+.store-arrw{
+  max-width:18px;
+  position: relative;
+  top: 2px;
+}
+.flex-shop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+span.item-name {
+  font-family: 'Source Sans Pro';
+  font-weight: 600;
+}

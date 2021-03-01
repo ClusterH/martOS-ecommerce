@@ -1,0 +1,37 @@
+<!-- main heading -->
+<div class="main-heading">
+  <h1>Datas</h1>
+  <div class="sub-heading"> <img src="../../assets/images/box-2.png" alt=""> Manage your orders </div>
+</div>
+
+
+<!-- body content  -->
+<div class="order-section-conatiner row">
+  <div class="orders-container col-12">
+    <div class="orders-container-inner">
+      <nav mat-tab-nav-bar>
+        <a mat-tab-link [active]="activeTab==='orders'" (click)="onTabChange('orders')">Sales per orders</a>
+        <a mat-tab-link [active]="activeTab==='product'" (click)="onTabChange('product')">Sales per product</a>
+        <a mat-tab-link [active]="activeTab==='sales'" (click)="onTabChange('sales')">Best sales</a>
+      </nav>
+
+      <ng-container *ngIf="activeTab==='orders'">
+        <app-data-orders></app-data-orders>
+      </ng-container>
+
+      <ng-container *ngIf="activeTab==='product'">
+        <app-data-product>
+
+        </app-data-product>
+      </ng-container>
+
+      <ng-container *ngIf="activeTab==='sales'">
+        <app-data-sales>
+
+        </app-data-sales>
+      </ng-container>
+
+    </div>
+
+  </div>
+</div>

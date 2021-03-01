@@ -1,0 +1,121 @@
+@import '../../../../styles/variables.scss';
+
+.pop-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background: #fff;
+  width: 650px;
+  transform: translate(-50%, -50%);
+  border-radius: 6px;
+  overflow-y: auto;
+
+  form {
+    padding-left: 180px;
+    padding-right: 180px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+    .single-input-block {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dual-input-block {
+      display: flex;
+
+      .single-input-block {
+        width: calc(50% - 25px);
+
+        &:first-child {
+          margin-right: 25px;
+        }
+
+        &:nth-child(2) {
+          margin-left: 25px;
+        }
+      }
+
+    }
+
+    .label {
+      font-family: $FuturaLT;
+      font-size: 18px;
+      margin-bottom: 7px;
+      color: $colorPrimaryBlack;
+    }
+
+    input {
+      font-family: Futura LT;
+      font-size: 15px;
+      width: 100%;
+      height: 40px;
+      border: 1px solid #C4CDD5;
+      padding: 10px 10px;
+      border-radius: 5px;
+      // color: #919EAB;
+
+      &[type=password] {
+        &::placeholder {
+          transform: translate3d(0, 5px, 0)
+        }
+      }
+
+      &.ng-invalid.ng-touched {
+        border: 1px solid #f34335 !important;
+      }
+
+      &::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: #919EAB;
+        opacity: 1;
+        /* Firefox */
+      }
+
+      &:-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: #919EAB;
+      }
+
+      &::-ms-input-placeholder {
+        /* Microsoft Edge */
+        color: #919EAB;
+      }
+
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus,
+      &:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px white inset !important;
+        color: #919EAB !important;
+      }
+    }
+  }
+
+  .inner-title {
+    margin: 0;
+    color: #277AFC;
+    font-size: 18px;
+    font-weight: normal;
+    padding: 0px 0;
+    margin-bottom: 28px;
+  }
+}
+
+h2.modal-title {
+  margin: 0;
+  padding: 20px 30px;
+  color: #212B37;
+  font-size: 23px;
+  font-family: 'Source Sans Pro', ;
+  border-bottom: 2px solid #DFE3E8;
+  font-weight: 600;
+}
+
+.button-primary {
+  margin: 0 auto;
+  margin-top: 30px;
+  font-size: 14px;
+  font-weight: 500;
+}

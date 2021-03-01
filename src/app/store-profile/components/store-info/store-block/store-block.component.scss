@@ -1,0 +1,178 @@
+.store-listing-names {
+  background: #fff;
+  border: 1px solid #DFE3E8;
+  border-radius: 6px;
+  margin-bottom: 20px;
+
+  ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    padding: 20px;
+    align-items: center;
+
+    @media screen and (max-width: 992px) {
+
+      padding: 10px;
+    }
+
+    li {
+      list-style: none;
+    }
+
+  }
+
+  p {
+    &.logo {
+      margin: 0;
+      width: 45px;
+      height: 45px;
+      background: #DFE6F2;
+      border-radius: 50%;
+      text-align: center;
+      color: #535E7A;
+      font-weight: 500;
+      line-height: 45px;
+      margin: 0 auto;
+
+      @media screen and (max-width: 992px) {
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+      }
+
+    }
+  }
+}
+
+
+
+
+li {
+  &.first-td {
+    width: 7%;
+  }
+
+  &.second-td {
+    width: 25%;
+  }
+
+  &.third-td {
+    width: 23%;
+  }
+
+  &.fourth-td {
+    width: 20%;
+  }
+
+  &.five-td {
+    width: 15%;
+  }
+
+  &.six-td {
+    width: 10%;
+  }
+}
+
+h2 {
+  &.name {
+    margin: 0;
+    color: #212B37;
+    font-size: 20px;
+    font-family: 'Futura LT';
+    font-weight: 500;
+
+    // @media screen and (max-width: 992px) {
+    //   font-size: 15px;
+    // }
+  }
+}
+
+p {
+  &.address {
+    color: #707070;
+    margin: 0;
+    font-size: 14px;
+    padding: 5px 0 0 0;
+    font-family: 'Futura LT';
+    font-weight: normal;
+
+    // @media screen and (max-width: 992px) {
+    //   font-size: 9px;
+    // }
+  }
+}
+
+span {
+  &.upgrade {
+    color: #000000;
+    font-size: 17px;
+    display: inline-block;
+    font-family: 'Futura LT';
+    font-weight: normal;
+
+    img {
+      max-width: 15px;
+    }
+
+    @media screen and (max-width: 992px) {
+      display: flex;
+      font-size: 10px;
+    }
+  }
+
+  &.valid {
+    display: block;
+    color: #707070;
+    font-size: 13px;
+    padding: 8px 0 0;
+    max-width: 112px;
+    text-align: center;
+  }
+
+  &.subsc {
+    background: #26D08688;
+    color: #000000;
+    padding: 10px 40px;
+    border-radius: 50px;
+    display: inline-block;
+    font-family: 'Futura LT';
+    font-weight: normal;
+
+    @media screen and (max-width: 992px) {
+      padding: 8px;
+    }
+  }
+
+  &.chain-name {
+    background: #EFF6FF;
+    color: #000000;
+    font-size: 16px;
+    border-radius: 50px;
+    padding: 8px 30px;
+    font-family: 'Futura LT';
+    font-weight: normal;
+
+    @media screen and (max-width: 992px) {
+      padding: 8px;
+    }
+  }
+
+}
+
+.eye-edit {
+  img {
+    margin-right: 45px;
+    max-width: 17px;
+    cursor: pointer;
+
+    @media screen and (max-width: 992px) {
+      margin-right: 10px;
+    }
+
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+
+}

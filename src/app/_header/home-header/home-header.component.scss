@@ -1,0 +1,30 @@
+@import '../leading-header/leading-header.component.scss';
+
+header.home-header {
+    width: 100%;
+    background: #EFF6FF;
+}
+
+header.home-header .header-wrapper {
+    justify-content: space-between;
+}
+
+header.home-header nav {
+    justify-content: flex-end;
+}
+
+header.home-header ul li {
+    font-family: 'Futura Md BT';
+    font-weight: normal;
+    font-size: 20px;
+}
+
+header.home-header ul li span {
+    font-weight: normal;
+    color: #929497;
+}
+
+header.home-header ul li span a {
+    color: #695EFC;
+    font-weight: bold;
+}

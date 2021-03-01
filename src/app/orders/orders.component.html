@@ -1,0 +1,61 @@
+<!-- main heading -->
+<div class="main-heading">
+  <h1>Orders management</h1>
+  <div class="sub-heading"> <img src="../../assets/images/box-2.png" alt=""> Manage your orders </div>
+</div>
+
+<!-- filters section  -->
+<div class="t__content-filter">
+  <ng-select #selectFiltersDropdown [searchable]="false" [clearable]="false" placeholder="Filter"
+    class="custom-selects">
+    <ng-template ng-label-tmp let-item="item">
+      <div class="flex-row">
+        <mat-icon>search</mat-icon>
+        <span class="item-name">{{ item.value | titlecase }}</span>
+      </div>
+    </ng-template>
+
+    <ng-template ng-option-tmp let-item="item">
+      {{ item.value | titlecase }}
+    </ng-template>
+  </ng-select>
+
+  <ng-select #selectFilterValuesDropdown [searchable]="false" [clearable]="false" placeholder="Value"
+    class="custom-selects">
+    <ng-template ng-label-tmp let-item="item">
+      {{ item | titlecase }}
+    </ng-template>
+
+    <ng-template ng-option-tmp let-item="item">
+      {{ item | titlecase }}
+    </ng-template>
+  </ng-select>
+
+</div>
+
+<!-- body content  -->
+<div class="order-section-conatiner row">
+  <div class="orders-container col-12 col-lg-5">
+    <div class="orders-container-inner">
+      <nav mat-tab-nav-bar>
+        <a mat-tab-link [active]="activeTab==='pending'" (click)="onTabChange('pending')">Pending Orders (4)</a>
+        <a mat-tab-link [active]="activeTab==='ongoing'" (click)="onTabChange('ongoing')">Ongoing Orders (5)</a>
+      </nav>
+
+      <ng-container *ngIf="activeTab==='pending'">
+        <app-orders-listing [type]="OrderStatus.Pending" [selectedItem]="selectedOrder"
+          (selectedOrder)="selectOrder($event)" [orderList]="pendingOrders"></app-orders-listing>
+      </ng-container>
+
+      <ng-container *ngIf="activeTab==='ongoing'">
+        <app-orders-listing [type]="OrderStatus.OnGoing" [selectedItem]="selectedOrder"
+          (selectedOrder)="selectOrder($event)" [orderList]="ongoingOrders"></app-orders-listing>
+      </ng-container>
+
+    </div>
+
+  </div>
+  <div class="order-detail-container col-12 col-lg-7" *ngIf="selectedOrder">
+    <app-order-details [item]="selectedOrder"></app-order-details>
+  </div>
+</div>

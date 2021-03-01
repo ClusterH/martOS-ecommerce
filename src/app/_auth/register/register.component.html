@@ -1,0 +1,257 @@
+<app-home-header></app-home-header>
+<!-- register-page -->
+<div class="main-body">
+    <div class="regs-wrapp">
+        <div class="register-form">
+            <div class="setpform">
+
+                <!-- Step 1  -->
+                <div class="step-header" *ngIf="!formSubmitted">
+                    <ul *ngIf="stepValue == 1 || stepValue == 2 || stepValue == 3 || stepValue == 4">
+                        <li [ngClass] = "stepValue == 1 ? 'color-light' : 'color-green'">
+                            <a href="javascript:void(0);">STEP 1 <span>
+                                Personal details
+                            </span></a>
+                        </li>
+                        <li [ngClass] = "stepValue == 3 ? 'color-light' : 'color-transparent'">
+                            <a href="javascript:void(0);">STEP 2 <span>
+                                Business details
+                            </span></a>
+                        </li>
+                    </ul>
+                    <ul class="step4" *ngIf="stepValue == 5 || stepValue == 6 || stepValue == 7 || stepValue == 8">
+                        <li [ngClass] = "stepValue == 5 ? 'color-light' : 'color-green'">
+                            <a href="javascript:void(0);">STEP 3 <span>
+                                Store details
+                            </span></a>
+                        </li>
+
+                        <li [ngClass] = "stepValue == 7 ? 'color-light' : 'color-transparent'">
+                            <a href="javascript:void(0);">STEP 4 <span>
+                                Payment details
+                            </span></a>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="step-one-form" *ngIf="!formSubmitted">
+                    <form [formGroup] = "registerForm" >
+                        <!-- Step 1  -->
+                        <div *ngIf="stepValue == 1 || stepValue == 2">
+                            <h2>Personal details</h2>
+                            <p>We need information about you to create your account, you will be able to modify those in your account</p>
+                            <div class="step-input-wrapp" formGroupName="step1">
+                                <div class="step-input-form">
+                                    <input type="text" placeholder="First Name" formControlName="first_name" 
+                                        [ngClass]="{'is-invalid': firstName.invalid && (form1Submitted || firstName.dirty || firstName.touched)}">
+                                    <div *ngIf="firstName.invalid && (form1Submitted || firstName.dirty || firstName.touched)" class="invalid-feedback">
+                                        <div class="error" *ngIf="firstName.errors.required">First name is required</div>
+                                        <div class="error" *ngIf="firstName.errors.minlength">First name must be atleast 2 Char.</div>
+                                    </div>
+                                </div>
+                                <div class="step-input-form">
+                                    <input type="text" placeholder="Last Name" formControlName="last_name"
+                                        [ngClass]="{'is-invalid': lastName.invalid && (form1Submitted || lastName.dirty || lastName.touched)}">
+                                    <div *ngIf="lastName.invalid && (form1Submitted || lastName.dirty || lastName.touched)" class="invalid-feedback">
+                                        <div class="error" *ngIf="lastName.errors.required">Last name is required</div>
+                                        <div class="error" *ngIf="lastName.errors.minlength">Last name must be atleast 2 Char.</div>
+                                    </div>
+                                </div>
+                                <div class="step-input-form full">
+                                    <input type="email" placeholder="Email" readonly formControlName="email"
+                                        [ngClass]="{'is-invalid': email.invalid && (form1Submitted || email.dirty || email.touched)}">
+                                    <div *ngIf="email.invalid && (form1Submitted || email.dirty || email.touched)" class="invalid-feedback">
+                                        <div class="error" *ngIf="email.errors.required">Email is required</div>
+                                        <div class="error" *ngIf="email.errors.email">Email must be a valid email address</div>
+                                    </div>
+                                </div>
+                                <div class="step-input-form full">
+                                    <input type="number" placeholder="Phone" formControlName="phone"
+                                        [ngClass]="{'is-invalid': phone.invalid && (form1Submitted || phone.dirty || phone.touched)}">
+                                    <div *ngIf="phone.invalid && (form1Submitted || phone.dirty || phone.touched)" class="invalid-feedback">
+                                        <div class="error" *ngIf="phone.errors.required">Phone number is required</div>
+                                        <div class="error" *ngIf="phone.errors.pattern">Phone number must be atleast 10 Char.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- {{ registerGet.step1.value | json}} -->
+                            <div class="step-next-btn">
+                                <button (click)="changeNextPage(stepValue)">Next</button>
+                            </div>
+                        </div>
+
+                         <!-- Step 2  -->
+                        <div *ngIf="stepValue == 3 || stepValue == 4">
+                            <h2>Business details</h2>
+                            <p>We need information about you to create your account, you will be able to modify those in your account</p>
+                            <div class="step-input-wrapp" formGroupName="step2">
+                                <div class="step-input-form">
+                                    <input type="text" placeholder="Company name" formControlName="company_name"
+                                        [ngClass]="{'is-invalid': companyName.invalid && (form2Submitted || companyName.dirty || companyName.touched)}">
+                                    <div *ngIf="companyName.invalid && (form2Submitted || companyName.dirty || companyName.touched)" class="invalid-feedback">
+                                        <div class="error" *ngIf="companyName.errors.required">Company name is required</div>
+                                        <div class="error" *ngIf="companyName.errors.minlength">Company name must be atleast 2 Char.</div>
+                                    </div>
+                                </div>
+                                <div class="step-input-form">
+                                    <input type="text" placeholder="N SIREN" formControlName="n_siren"
+                                        [ngClass]="{'is-invalid': siren.invalid && (form2Submitted || siren.dirty || siren.touched)}">
+                                    <div *ngIf="siren.invalid && (form2Submitted || siren.dirty || siren.touched)" class="invalid-feedback">
+                                        <div class="error" *ngIf="siren.errors.required">N SIREN is required</div>
+                                        <div class="error" *ngIf="siren.errors.minlength">N SIREN must be atleast 2 Char.</div>
+                                    </div>
+                                </div>
+                                <div class="step-input-form full">
+                                    <input type="text" placeholder="Address" formControlName="address"
+                                        [ngClass]="{'is-invalid': address.invalid && (form2Submitted || address.dirty || address.touched)}">
+                                    <div *ngIf="address.invalid && (form2Submitted || address.dirty || address.touched)" class="invalid-feedback">
+                                        <div class="error" *ngIf="address.errors.required">Address is required</div>
+                                        <div class="error" *ngIf="address.errors.minlength">Address must be atleast 2 Char.</div>
+                                    </div>
+                                </div>
+                                <div class="step-input-form">
+                                    <select type="text" placeholder="Country Name" formControlName="city">
+                                      <option selected value="France">France</option>
+                                    </select>
+                                    <div *ngIf="city.invalid && (form2Submitted || city.dirty || city.touched)" class="invalid-feedback">
+                                        <div class="error" *ngIf="city.errors.required">Country name is required</div>
+                                    </div>
+                                </div>
+                                <div class="step-input-form">
+                                    <input type="number" placeholder="Postal Code" formControlName="postal_code"
+                                        [ngClass]="{'is-invalid': postalCode.invalid && (form2Submitted || postalCode.dirty || postalCode.touched)}">
+                                    <div *ngIf="postalCode.invalid && (form2Submitted || postalCode.dirty || postalCode.touched)" class="invalid-feedback">
+                                        <div class="error" *ngIf="postalCode.errors.required">Postal code is required</div>
+                                        <div class="error" *ngIf="postalCode.errors.pattern">Postal code must be 5 char.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="step-next-btn">
+                                <button (click)="changeNextPage(stepValue)">Next</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3  -->
+                        <div *ngIf="stepValue == 5 || stepValue == 6">
+                            <h2>Store details</h2>
+                            <p>We need information about you to create your account, you will be able to modify those in your account</p>
+                            <div class="step-input-wrapp" formGroupName="step3">
+                                <div class="step-input-form full">
+                                    <p class="add-image-text">Please take a picture of the front of your Store:</p>
+                                    <div class="store-add-image">
+                                        <ng-template #emptyImage>
+                                          <h3 (click)="inputLogo.click()"> <span> + </span></h3>
+                                        </ng-template>
+                                        <div class="image-add">
+                                            <img [src]="mainImage " alt="" class="main-image" *ngIf="mainImage;else emptyImage">
+                                            <input #inputLogo type="file" id="main-image" accept='image/*' (change)="showPreview($event)" name="main-image"
+                                            style="display: none;">
+                                            <button class="button button-secondary replace-btn" *ngIf="mainImage && hideImageCrop;else emptyimagelabel">
+                                                Replace
+                                            </button>
+                                            <ng-template #emptyimagelabel>
+                                            <label for="main-image" >Add a picture </label>
+                                            </ng-template>
+                                        </div>
+                                        <div class="text-center" *ngIf="!hideImageCrop">
+                                            <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 4"
+                                                [resizeToWidth]="150" [resizeToHeight]="150" format="jpeg" (imageCropped)="imageCropped($event)"></image-cropper>
+                                            <div class="button button-primary check-icon" *ngIf="imageChangedEvent" (click)="hideImageCrop=true">
+                                                <i class="fas fa-check"></i>
+                                            </div>                                  
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="step-input-form full">
+                                    <input type="text" placeholder="Store name" formControlName="store_name"
+                                        [ngClass]="{'is-invalid': storeName.invalid && (form3Submitted || storeName.dirty || storeName.touched)}">
+                                    <div *ngIf="storeName.invalid && (form3Submitted || storeName.dirty || storeName.touched)" class="invalid-feedback">
+                                        <div class="error" *ngIf="storeName.errors.required">Store name is required</div>
+                                        <div class="error" *ngIf="storeName.errors.minlength">Store name must be atleast 2 Char.</div>
+                                    </div>
+                                </div>
+                                <div class="step-input-form full">
+                                    <input type="text" placeholder="Address" formControlName="address"
+                                        [ngClass]="{'is-invalid': storeAddress.invalid && (form3Submitted || storeAddress.dirty || storeAddress.touched)}">
+                                    <div *ngIf="storeAddress.invalid && (form3Submitted || storeAddress.dirty || storeAddress.touched)" class="invalid-feedback">
+                                        <div class="error" *ngIf="storeAddress.errors.required">Address is required</div>
+                                        <div class="error" *ngIf="storeAddress.errors.minlength">Address must be atleast 2 Char.</div>
+                                    </div>
+                                </div>
+                                <div class="step-input-form full">
+                                    <input type="number" placeholder="Postal Code" formControlName="postal_code"
+                                        [ngClass]="{'is-invalid': storePostalCode.invalid && (form3Submitted || storePostalCode.dirty || storePostalCode.touched)}">
+                                    <div *ngIf="storePostalCode.invalid && (form3Submitted || storePostalCode.dirty || storePostalCode.touched)" class="invalid-feedback">
+                                        <div class="error" *ngIf="storePostalCode.errors.required">Postal code is required</div>
+                                        <div class="error" *ngIf="storePostalCode.errors.pattern">Postal code must be 5 char.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="step-next-btn">
+                                <button (click)="changeNextPage(stepValue)">Next</button>
+                            </div>
+                        </div>
+
+                         <!-- Step 4  -->
+                        <div *ngIf="stepValue == 7 || stepValue == 8">
+                            <h2>Payment Details</h2>
+                            <p>Your offer: {{ landingData?.plan_detail?.plan_name }} {{ landingData?.plan_detail?.price }}{{ landingData?.plan_detail?.currency }} per {{ landingData?.plan_detail?.time }} </p>
+                            <div class="step-input-wrapp" formGroupName="step4">
+                                <div class="step-input-form full">
+                                    <input type="text" placeholder="Card holder name" formControlName="card_holder_name"
+                                        [ngClass]="{'is-invalid': cardHolderName.invalid && (form4Submitted || cardHolderName.dirty || cardHolderName.touched)}">
+                                    <div *ngIf="cardHolderName.invalid && (form4Submitted || cardHolderName.dirty || cardHolderName.touched)" class="invalid-feedback">
+                                        <div class="error" *ngIf="cardHolderName.errors.required">Card holder name is required</div>
+                                        <div class="error" *ngIf="cardHolderName.errors.minlength">Card holder name must be atleast 2 Char.</div>
+                                    </div>
+                                </div>
+                                <div class="step-input-form full">
+                                    <input type="number" placeholder="Card number" formControlName="card_number"
+                                        [ngClass]="{'is-invalid': cardNumber.invalid && (form4Submitted || cardNumber.dirty || cardNumber.touched)}">
+                                    <div *ngIf="cardNumber.invalid && (form4Submitted || cardNumber.dirty || cardNumber.touched)" class="invalid-feedback">
+                                        <div class="error" *ngIf="cardNumber.errors.required">Card number is required</div>
+                                        <div class="error" *ngIf="cardNumber.errors.pattern">Card number must be equal to 16 Char.</div>
+                                    </div>
+                                </div>
+                                <div class="step-input-form">
+                                    <input type="text" placeholder="Exp. date" formControlName="exp_date"
+                                        [ngClass]="{'is-invalid': expDate.invalid && (form4Submitted || expDate.dirty || expDate.touched)}">
+                                    <div *ngIf="expDate.invalid && (form4Submitted || expDate.dirty || expDate.touched)" class="invalid-feedback">
+                                        <div class="error" *ngIf="expDate.errors.required">Exp date is required</div>
+                                        <div class="error" *ngIf="expDate.errors.minlength">Exp date must be atleast 4 Char.</div>
+                                    </div>
+                                </div>
+                                <div class="step-input-form">
+                                    <input type="number" placeholder="CVV" formControlName="CVV"
+                                        [ngClass]="{'is-invalid': cvv.invalid && (form4Submitted || cvv.dirty || cvv.touched)}">
+                                    <div *ngIf="cvv.invalid && (form4Submitted || cvv.dirty || cvv.touched)" class="invalid-feedback">
+                                        <div class="error" *ngIf="cvv.errors.required">CVV number is required</div>
+                                        <div class="error" *ngIf="cvv.errors.pattern">CVV number must be equal to 3 char.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="payment-amt"> <span> Payment amount: {{ landingData?.plan_detail?.price }}{{ landingData?.plan_detail?.currency }} </span></div>
+                            <div class="step-next-btn">
+                                <button (click)="changeNextPage(stepValue)"> Pay </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <app-register-success *ngIf="formSubmitted && accountCreatedSuccess"></app-register-success>
+
+                <app-register-failure *ngIf="formSubmitted && accountCreatedFailure" (returnPayment)="returnPayment()"></app-register-failure>
+            </div>
+        </div>
+          <!-- register-page -->
+    </div>
+</div>
+  <!-- progress-bar -->
+<div class="progress-bar">
+    <p class="progress-wrap" [ngClass] = "stepValue == 1 ? 'prog-a' : stepValue == 2 ? 'prog-b' : stepValue == 3 ? 'prog-c' : stepValue == 4 ? 'prog-d' : stepValue == 5 ? 'prog-e': stepValue == 6 ? 'prog-f': stepValue == 7 ? 'prog-g': 'prog-h'">
+        <span></span>
+    </p>
+</div>
+  <!-- progress-bar -->

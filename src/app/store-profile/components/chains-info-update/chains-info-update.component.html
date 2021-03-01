@@ -1,0 +1,50 @@
+<div class="chain-info-page">
+    <div class="chain-info-top">
+        <div class="chain-info-profile-img">
+            <img [src]="chainEditForm.get('image_data').value" alt="" />
+        </div>
+        <h3>Fnac</h3>
+    </div>
+    <p class="chain-information">
+        Chain information
+    </p>
+    <form [formGroup]="chainEditForm">
+        <fieldset [disabled]="calledFor !== 'update'">
+            <div class="main-inform-chain">
+                <div class="left-main-inform-chain">
+                    <div class="left-chain-fields">
+                        <label for="">Display name</label>
+                        <input type="text" placeholder = "Fnac" formControlName="display_name">
+                    </div>
+                    <div class="left-chain-fields">
+                        <label for="">Company name</label>
+                        <input type="text" placeholder = "XYZ" formControlName="company_name" disabled>
+                    </div>
+                    <div class="left-chain-fields">
+                        <label for="">SIREN N°</label>
+                        <input type="text" placeholder = "123 333 393" formControlName="siren_n" disabled>
+                    </div>
+                </div>
+                <div class="right-main-inform-chain">
+                    <div class="right-chain-fields full">
+                        <label for="">Address</label>
+                        <input type="text" placeholder = "11 rue de la liberté" formControlName="address" disabled>
+                    </div>
+                    <div class="right-chain-fields">
+                        <label for="">City</label>
+                        <input type="text" placeholder = "Paris" formControlName="city" disabled>
+                    </div>
+                    <div class="right-chain-fields">
+                        <label for="">Postal code</label>
+                        <input type="text" placeholder = "75001" formControlName="postal_code" disabled>
+                    </div>
+                    <div class="right-chain-fields">
+                        <label for="">Country</label>
+                        <input type="text" placeholder = "France" formControlName="country" disabled>
+                    </div>
+                </div>
+            </div>
+            <button class="chain-info-btn" *ngIf="calledFor == 'update'" (click) = "updateChainAction()"> Save </button>
+        </fieldset>
+    </form>
+</div>

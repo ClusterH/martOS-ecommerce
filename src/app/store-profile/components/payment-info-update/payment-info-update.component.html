@@ -1,0 +1,54 @@
+<div mat-dialog-content>
+  <div class="card-payment-popup">
+    <h2>
+      <span *ngIf="calledFor == 'add'"> Add a</span>
+      <span *ngIf="calledFor == 'update'"> Edit </span>
+      credit card
+    </h2>
+    <form [formGroup]="paymentForm">
+      <div class="popup-body">
+        <div class="second-card-wrapp-padd">
+          <h3>Credit card</h3>
+          <ng-container formGroupName="cardDetails">
+            <div class="second-card-wrapp" formGroupName="card">
+              <span class="card-first">
+                <h4>Credit card name</h4>
+                <input type="text" placeholder="Credit card 3" formControlName="cardName">
+              </span>
+              <div class="card-second">
+                <div class="card-second-left">
+                  <img src="../../../../assets/images/creditcard-big.png" alt="">
+                </div>
+                <div class="card-right">
+                  <div class="card-second-fields">
+                    <label for="">Card number</label>
+                    <input type="text" placeholder="xxxx xxxx xxxx xxxx" formControlName="number">
+                  </div>
+                  <div class="card-second-fields margin-minus">
+                    <div class="card-second-inner-flex">
+                      <label for="">Exp. date</label>
+                      <input type="text" placeholder="00/00" formControlName="expiryMonth">
+                    </div>
+                    <div class="card-second-inner-flex">
+                      <label for="">CVV</label>
+                      <input type="text" placeholder="xxx" formControlName="cvc">
+                    </div>
+                  </div>
+                  <div class="card-second-fields">
+                    <label for="">Card holder</label>
+                    <input type="text" placeholder="John Doe" formControlName="holderName">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+
+        </div>
+        <div class="card-third-btns">
+          <button *ngIf="calledFor == 'add'" (click)="onSubmit()"> Add </button>
+          <button *ngIf="calledFor == 'update'" (click)="onSubmit()"> Save </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

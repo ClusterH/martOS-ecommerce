@@ -1,0 +1,83 @@
+@import '../../../../../styles/variables.scss';
+
+.mat-dialog-title {
+  font-family: $SourceSansPro;
+  margin: 0;
+  padding: 15px 0px;
+  padding-top: 0px;
+  color: #212B37;
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.cdk-overlay-pane {}
+
+mat-dialog-content {
+  text-align: center;
+  max-width: 580px;
+
+
+}
+
+.mat-typography {
+  display: flex;
+  flex-direction: column;
+
+  .text-1 {
+    font-family: $FuturaMD;
+    font-weight: 500;
+    margin-top: 20px;
+    font-size: 17px;
+  }
+
+  .text-2 {
+    margin-top: 20px;
+    font-size: 15px;
+    font-family: $FuturaLT;
+    margin-bottom: 20px;
+  }
+
+  .text-3 {
+    font-family: $FuturaLT;
+    color: #FF0000;
+    margin-bottom: 20px;
+    font-size: 15px;
+  }
+
+}
+
+.border-bottom {
+  border-bottom: 2px solid #DFE3E8;
+  margin-left: -23px;
+  margin-right: -23px;
+  margin-bottom: 10px;
+
+}
+
+
+h5 {
+  font-size: 22px;
+}
+
+.close-btn {
+  cursor: pointer;
+}
+
+.mat-dialog-actions {
+  margin-bottom: 0px;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    margin-left: 60px;
+    border-radius: 2px;
+    width: 80px;
+    font-family: $Avenir;
+    font-weight: bold;
+    font-size: 15px;
+    &:first-child {
+      margin-left: 0px;
+    }
+  }
+
+}

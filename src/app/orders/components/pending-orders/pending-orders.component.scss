@@ -1,0 +1,365 @@
+@import "../../../../styles/variables.scss";
+
+.order-management-wrapper {
+  &:first-child {
+    width: 100%;
+    min-width: 738px;
+  }
+  .flex-col__start {
+    flex-grow: 9;
+  }
+  .flex-col__end {
+    flex-grow: 2;
+  }
+  .custom-col {
+    flex-grow: 1;
+    align-items: flex-end;
+  }
+  .order-id {
+    color: #707070;
+    font-size: 13px;
+    text-transform: uppercase;
+  }
+}
+.order-number {
+  font-size: 12px;
+  margin-left: 6px;
+}
+::ng-deep .order-management-wrapper .mat-sort-header-container {
+  justify-content: center;
+}
+.table-item-article {
+  padding: 10px 0;
+}
+.delete-item {
+  color: #FE4F60;
+  cursor: pointer;
+  font-size: 20px;
+}
+.price-box {
+  display: grid;
+  grid-template-columns: 6fr 4fr 2fr;
+}
+.box-grey {
+  background: #f4f6f8;
+  min-width: 100px;
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-size: 18px;
+  font-weight: bold;
+  height: 34px;
+  line-height: 27px;
+  &.box-blue {
+    background: #277AFC;
+    color: #fff;
+  }
+}
+.delegate-delivery {
+  background: #277AFC;
+  width: 110px;
+  height: 51px;
+  color: #fff;
+  display: block;
+  margin: 10px auto;
+  border-radius: 0;
+  border: none;
+  font-size: 16px;
+}
+.staff-info-view {
+  margin-top: 112px;
+}
+.order-list {
+  width: 100%;
+  >div {
+    font-size: 16px;
+  }
+  .order-list-item{
+    width: 100%;
+    margin: 5px 0;
+    display: grid;
+    grid-template-columns: 6fr 4fr 2fr;
+    .name-article {
+      font-size: 19px;
+    }
+    .article-options {
+      padding-left: 30px;
+      font-size: 15px;
+    }
+    div div{
+
+      font-size: 15px;
+    }
+    .custom-item-price {
+      align-items: flex-end;
+      justify-content: center;
+      flex-grow: 2;
+      font-size: 16px;
+    }
+  }
+}
+.order-total-price{
+  font-size: 13px;
+  .total-price {
+    font-size: 16px;
+  }
+  .price-left {
+    text-align: left;
+  }
+}
+.price-row {
+  min-width: 125px;
+  div {
+    display: inline-block;
+    width: 50%;
+  }
+  .price-right {
+    text-align: right;
+  }
+}
+.box-btn {
+  justify-content: space-evenly;
+
+  .custom-btn-deliver {
+    background-color: #8BE6BE;
+    border: 1px solid #515151;
+    .mat-button-wrapper {
+      padding-right: 14px;
+      font-size: 18px;
+      .material-icons {
+        width: 20px;
+        text-align: center;
+      }
+    }
+  }
+  .custom-btn-cancel{
+    background-color: #FD6D7A;
+    color: #fff;
+    font-size: 18px;
+  }
+}
+.page-content {
+  background: transparent;
+  box-shadow: none;
+}
+.mat-table {
+  background: transparent;
+}
+tr.mat-footer-row, tr.mat-row {
+  background: #fff;
+}
+.t {
+  &__header {
+    width: 100%;
+    margin: 0 0 25px 0;
+
+    h1 {
+      font-size: 41px;
+      font-family: 'Source Sans Pro';
+      font-weight: 600;
+      margin: 0;
+      margin-bottom: 10px;
+    }
+
+    &-subtitle {
+      color: $colorSecondaryBorder;
+      font-size: 23px;
+    }
+  }
+
+  &__content {
+    &-filter {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin: 25px 0 30px 25px;
+
+      mat-chip-list {
+        margin-left: 20px;
+      }
+
+      mat-chip {
+        border-radius: 4px;
+      }
+
+      mat-icon {
+        width: 20px;
+        height: 20px;
+        font-size: 20px;
+        margin-right: 5px;
+        color: #919eab;
+      }
+    }
+
+    table.mat-table {
+      font-family: Futura LT;
+      width: 100%;
+
+      .mat-column-name {
+        padding: 15px 0;
+
+        &:first-child {
+          padding-left: 40px;
+        }
+
+        text-align: center;
+      }
+
+      .mat-column-quantity {
+        span {
+          padding: 5px 15px;
+          background-color: #eff6ff;
+          border-radius: 14px;
+        }
+      }
+
+      .mat-column-actions {
+        width: 100px;
+
+        mat-icon {
+          width: 20px;
+          height: 20px;
+          font-size: 20px;
+          cursor: pointer;
+
+          &:not(:last-child) {
+            margin-right: 30px;
+          }
+        }
+      }
+
+      th.mat-header-cell,
+      td.mat-cell {
+        font-size: 19px;
+        text-align: center;
+        &:not(:first-child) {
+          text-align: center;
+        }
+      }
+
+      th.mat-header-cell {
+        font-weight: bold;
+        color: $colorPrimaryBlack;
+      }
+
+    }
+  }
+}
+
+// ::ng-deep {
+  .ng-select {
+    width: 100%;
+
+    .ng-select-container {
+      height: 52px;
+
+      .ng-value-container .ng-placeholder {
+        top: 15px;
+        color: #919eab;
+        font-size: 20px;
+      }
+    }
+  }
+// }
+
+.mat-column-select {
+  overflow: initial;
+}
+
+:host ::ng-deep {
+  .mat-tab-links mat-tab-link.mat-tab-label-active {
+    padding-bottom: 40px;
+  }
+
+  .mat-tab-link {
+    margin-bottom: 18px;
+    font-size: 19px;
+    font-weight: bold;
+    color: $colorPrimaryDarkGray;
+    min-width: 200px;
+    padding-left: 0;
+    justify-content: flex-start;
+    margin-right: 20px;
+  }
+
+  .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: $colorPrimaryGreen;
+    height: 3px;
+  }
+}
+
+
+.btn-large.add-stuff-btn {
+  font-weight: bold;
+  min-width: 125px;
+}
+
+.staff-details-wrapper {
+  padding: 25px 0;
+}
+
+.staff-details-title {
+  span {
+    font-size: 20px;
+  }
+
+  &-subtitle {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 25px;
+    color: $colorSecondaryBlue;
+  }
+}
+
+  .add-new-store-input {
+    margin-top: 15px;
+  }
+
+  .btn-custom-white {
+    border: 1px solid $colorSecondaryBorder;
+    color: $colorSecondaryBorder;
+  }
+
+  .btn-see-contract {
+    width: 190px;
+    margin: 0;
+  }
+
+  .actions-contract-section {
+    height: 40px;
+  }
+
+  .btn-contract {
+    position: relative;
+    width: 93px;
+    margin: 0 2px;
+    font-size: 13px;
+    font-weight: 500;
+
+    mat-icon {
+      position: absolute;
+    }
+
+    span {
+      position: absolute;
+      left: 38px;
+      top: 3px;
+    }
+  }
+
+  div .btn-actions {
+    margin-top: 25px;
+  }
+
+  .btn-actions {
+    font-size: 17px;
+    font-weight: bold;
+  }
+
+
+.mat-divider {
+  &.mat-divider-horizontal {
+    margin: 25px 0 25px 0;
+    width: 100%;
+  }
+}

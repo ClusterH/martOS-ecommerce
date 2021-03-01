@@ -1,0 +1,92 @@
+.mat-dialog-title {
+  margin: 0;
+}
+
+.dialog-header {
+  border-bottom: 1px solid #DFE3E8;
+  width: 100%;
+  margin: -24px;
+  margin-bottom: 24px;
+  align-items: center;
+  padding: 10px 40px;
+  width: calc(100% + 48px);
+
+  mat-icon {
+    color: #707070;
+  }
+}
+
+.dialog-content {
+  padding: 20px 16px;
+  width: 100%;
+  margin-bottom: 20px;
+  max-height: 65vh;
+  overflow: auto;
+
+  ::ng-deep {
+    .ng-select {
+      .ng-select-container {
+        height: 52px;
+        font-size: 18px;
+
+        .ng-value-container .ng-placeholder {
+          top: 15px;
+          color: #919EAB;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+
+span {
+  font-size: 19px;
+  margin-bottom: 10px;
+}
+
+input[type="text"] {
+  font-family: Futura LT;
+  font-size: 20px;
+  width: 200px;
+  height: 52px;
+  border: 1px solid #C4CDD5;
+  padding: 12px 22px;
+  border-radius: 5px;
+
+  &::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #919EAB;
+    opacity: 1;
+    /* Firefox */
+  }
+
+  &:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #919EAB;
+  }
+
+  &::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #919EAB;
+  }
+}
+
+.content-wrapper {
+  margin-bottom: 20px;
+
+  ng-select {
+    width: 200px;
+    margin-right: 20px;
+  }
+}
+
+.add-option {
+  width: 200px;
+  border-radius: 4px;
+  border: 1px solid #C4CDD5;
+  background-color: #F7F8F9;
+  margin: 0;
+  height: 52px;
+  font-family: Futura LT;
+  font-size: 17px;
+}

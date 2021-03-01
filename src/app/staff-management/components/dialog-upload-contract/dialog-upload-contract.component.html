@@ -1,0 +1,29 @@
+<div class="flex-col flex-col__btw dialog-wrapper">
+  <div class="flex-col flex-col__start w-100">
+    <div class="flex-row flex-row__btw dialog-header w-100">
+      <h1 mat-dialog-title>Upload contract</h1>
+      <button mat-dialog-close aria-label="Close Dialog" class="btn-close">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <mat-divider></mat-divider>
+  </div>
+  <div class="flex-col flex-col__center dialog-content">
+    <img src="/assets/images/contract.svg" alt="contract_img" />
+    <input type="file" id="add_contract" accept='application/pdf,image/jpeg,image/png' (change)="onContractUpload($event)" name="add-contract"
+      style="display: none;">
+    <button mat-button type="button" class="btn-add-contract">
+      <label for="add_contract">Add contract</label> 
+    </button>
+    <span>pdf, jpeg, png files only</span>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="flex-row flex-row__end w-100 dialog-control-btns-wrapper">
+    <button mat-button mat-dialog-close class="btn-large dialog-control-btns">
+      Cancel
+    </button>
+    <button mat-button class="btn-large btn-green dialog-control-btns">
+      Done
+    </button>
+  </div>
+</div>

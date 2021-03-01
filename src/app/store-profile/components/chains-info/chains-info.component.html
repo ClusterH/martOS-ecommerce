@@ -1,0 +1,47 @@
+<div class="chains-page">
+    <div class="chains-top-header">
+        <div class="chain-toggle">
+            <span class="arrowss">
+                <img *ngIf="isTabOpen == false" src="../../../../assets/images/right-arrow.svg" alt="" (click) = "tabAction(true)">
+                <img *ngIf="isTabOpen == true"  src="../../../../assets/images/downarrow.svg" alt="" (click) = "tabAction(false)">
+            </span>
+            <h3>Chains <span>({{chainStores?.length}})</span></h3>
+        </div>
+        <button (click) = "addAction()"> Add a chain</button>
+    </div>
+    <div *ngIf="isTabOpen" class="chain-listing">
+        <ul class="left-ul">
+
+          <div *ngFor="let chain of chainStores">
+            <li [ngClass]="(calledFor == 'update' || calledFor == 'detail') ? 'chain-detail-box-tab': ''">
+                <div class="left-chain-listing" (click) = "detailAction(chain)">
+                    <img [src]="chain.image_data?chain.image_data:'../../../../assets/images/add-image.svg'" alt="" />
+                </div>
+                <div class="right-chain-listing">
+                    <span class="edit-del-icon">
+                        <img src="../../../../assets/images/edit_icon2x.png" alt="" (click) = "editAction(chain)">
+                        <img src="../../../../assets/images/bin_icon2x.png" (click) = "deleteAction(chain)">
+                    </span>
+
+                    <h4 (click) = "detailAction(chain)">{{chain.name}}</h4>
+                    <p>SIREN : 123 333 393</p>
+
+                    <select>
+                        <option value="0">{{storeCount}}</option>
+                        <option *ngFor="let store of stores"
+                                  value={{store.id}}>
+                                  {{store.name}}
+                          </option>
+                        </select>
+                </div>
+            </li>
+        </div>
+        </ul>
+        <ul class="right-ul">
+            <app-chains-info-update *ngIf="calledFor == 'update' || calledFor == 'detail'" [calledFor] = "calledFor"> </app-chains-info-update>
+        </ul>
+    </div>
+</div>
+
+<!-- <app-chains-info-add *ngIf="calledFor == 'add'" [calledFor] = "calledFor"> </app-chains-info-add> -->
+

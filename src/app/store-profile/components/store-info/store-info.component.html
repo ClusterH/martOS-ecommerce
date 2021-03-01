@@ -1,0 +1,33 @@
+<div class="store-page">
+  <div class="store-top-header">
+    <div class="chain-toggle">
+      <span class="arrowss">
+        <img *ngIf="isTabOpen == false" src="../../../../assets/images/right-arrow.svg" alt=""
+          (click)="tabAction(true)">
+        <img *ngIf="isTabOpen == true" src="../../../../assets/images/downarrow.svg" alt="" (click)="tabAction(false)">
+      </span>
+      <h3>Stores <span>({{stores?.length}})</span></h3>
+    </div>
+    <button (click)="addAction()"> Add a store</button>
+  </div>
+
+  <div *ngIf="isTabOpen">
+
+    <div class="store-listing-header">
+      <ul>
+        <li class="first-td"></li>
+        <li class="second-td">Name</li>
+        <li class="third-td">Chain Store</li>
+        <li class="fourth-td">Subscription</li>
+        <li class="five-td"></li>
+        <li class="six-td"></li>
+      </ul>
+    </div>
+
+    <div *ngFor="let store of stores">
+      <!-- User for loop below div.  -->
+      <app-store-block [store]="store"></app-store-block>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,188 @@
+<!-- <div class="flex-row flex-row__btw t__header">
+  <div class="flex-col flex-col__start">
+    <h1>Products</h1>
+
+  </div>
+
+
+</div> -->
+<div class="main-heading">
+  <h1>Products</h1>
+  <div class="sub-heading">
+    <div class="sub-heading-inner">
+      <mat-icon>storefront</mat-icon> Products
+    </div>
+    <div> <button mat-button class="btn-large btn-green" [routerLink]="['/products/new']">Add Product</button></div>
+  </div>
+
+</div>
+
+<div class="t__content page-content">
+  <app-products-navigation></app-products-navigation>
+
+  <div class="t__content-filter">
+    <ng-select #selectFiltersDropdown [loading]="(isLoading$ | async).filters" [searchable]="false" [clearable]="false"
+      placeholder="Filter" [items]='filters$ | async' (change)="filter($event)">
+      <ng-template ng-label-tmp let-item="item">
+        <div class="flex-row">
+          <mat-icon>search</mat-icon>
+          <span class="item-name">{{ item.value | titlecase }}</span>
+        </div>
+      </ng-template>
+
+      <ng-template ng-option-tmp let-item="item">
+        {{ item.value | titlecase }}
+      </ng-template>
+    </ng-select>
+
+    <ng-select #selectFilterValuesDropdown [loading]="(isLoading$ | async).filterValues" [searchable]="false"
+      [clearable]="false" placeholder="Value" [items]='filterValues$ | async'
+      (change)="filterValues($event); selectFiltersDropdown.handleClearClick(); selectFilterValuesDropdown.handleClearClick()">
+      <ng-template ng-label-tmp let-item="item">
+        {{ item | titlecase }}
+      </ng-template>
+
+      <ng-template ng-option-tmp let-item="item">
+        {{ item | titlecase }}
+      </ng-template>
+    </ng-select>
+
+    <mat-chip-list>
+      <ng-container *ngFor="let item of searchAnyRequest | keyvalue">
+        <ng-container *ngIf="chipColumns.includes(item.key)">
+
+          <ng-container *ngIf="item.key === 'optionsAttributes'; else directShow">
+            <ng-container *ngFor="let option of item.value">
+              <mat-chip (removed)="removeOption(option)">
+                {{option.name}}: {{option.value}}
+                <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+
+        <ng-template #directShow>
+          <ng-container *ngIf="item.key === 'categoryAttribute'">
+            <mat-chip (removed)="removeCategory()">
+              {{item.value.name}}: {{item.value.value}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+          </ng-container>
+
+          <ng-container *ngIf="item.key === 'brand' || item.key === 'name'">
+            <mat-chip (removed)="removeFilter(item.key)">
+              {{item.key}}: {{item.value}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+          </ng-container>
+        </ng-template>
+      </ng-container>
+    </mat-chip-list>
+  </div>
+  <div class="table-wrapper" *ngIf="dataSource">
+
+
+    <table mat-table [dataSource]="dataSource">
+
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let row;let element">
+          <div class="flex-row flex-row__btw">
+            <mat-checkbox (change)="onStatusChange(row,$event)" [checked]="row.liveStatus">
+            </mat-checkbox>
+            <div *ngIf="!element.presImage; else productImage" class="product-image"></div>
+            <ng-template #productImage>
+              <div class="square-img" [style.backgroundImage]="'url('+element.presImage+')'"></div>
+            </ng-template>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="flex-row">
+            <!-- <div *ngIf="!element.presImage; else productImage" class="product-image"></div>
+          <ng-template #productImage>
+            <img [src]="element.presImage" class="product-image">
+          </ng-template> -->
+            <span>{{element.name}}</span>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef> Category </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="flex-row">
+            <span *ngFor="let tag of element.tags; let i = index">
+              <ng-container *ngIf="tag.tagType === tagType.Category">
+                {{tag.name}}&nbsp;
+              </ng-container>
+            </span>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="subcategory">
+        <th mat-header-cell *matHeaderCellDef> Subcategory </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="flex-row">
+            <span *ngFor="let subcat of element.categoryAttributes; let i = index">
+              {{subcat.value}}&nbsp;
+            </span>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="brand">
+        <th mat-header-cell *matHeaderCellDef> Brand </th>
+        <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="options">
+        <th mat-header-cell *matHeaderCellDef> Options </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="flex-row">
+            <span *ngFor="let tag of element.tags; let i = index">
+              <ng-container *ngIf="tag.tagType === tagType.Option">
+                {{tag.name}}&nbsp;
+              </ng-container>
+            </span>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element">
+          <span>{{element.stock}} in stock</span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Default Price </th>
+        <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <div class="flex-row flex-row__btw ">
+            <mat-icon (click)="view(element)">visibility</mat-icon>
+            <mat-icon (click)="edit(element)">edit</mat-icon>
+            <mat-icon (click)="delete(element)">delete</mat-icon>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="5" #paginator showFirstLastButtons></mat-paginator>
+  </div>
+</div>

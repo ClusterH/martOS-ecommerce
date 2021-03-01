@@ -1,0 +1,512 @@
+<div class="flex-col flex-col__start t__header">
+  <div class="flex-row t__header-subtitle">
+    <mat-icon>chevron_left</mat-icon>
+    <span [routerLink]="['/products']">All products</span>
+  </div>
+
+  <div class="flex-row flex-row__btw w-100">
+    <h1 *ngIf="!isEditProduct; else productTitle">Add Product</h1>
+    <ng-template #productTitle>
+      <h1>{{ (selectedProduct$ | async).item.name }}</h1>
+    </ng-template>
+
+    <div class="flex-row">
+      <button *ngIf="!isEditProduct" [disabled]="(loading$ | async)?.product" mat-button class="btn-large btn-white"
+        [routerLink]="['/products']">Discard</button>
+      <button *ngIf="isEditProduct" [disabled]="(loading$ | async)?.product || itemForm.dirty || variantsForm.dirty" mat-button class="btn-large btn-blue"
+        (click)="onDuplicateProduct()">Duplicate</button>
+      <button [disabled]="(loading$ | async)?.product" mat-button class="btn-large btn-green"
+        (click)="onSaveProduct()">Save</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="grid-view" *ngIf="isEditProduct && isJustSaved">
+  <div class="page-content product-notification">
+    <div class="flex-col flex-col__start">
+      <div class="flex-row flex-row__start">
+        <div class="flex-row flex-row__center product-notification-icon">
+          <mat-icon>check</mat-icon>
+        </div>
+
+        <span>{{ (selectedProduct$ | async)?.item.name }} created</span>
+      </div>
+      <a [routerLink]="['/products']" class="create-another">
+        Create another product
+      </a>
+    </div>
+  </div>
+</div>
+
+<form [formGroup]="productForm">
+  <ng-container formGroupName="Item">
+    <div class="grid-view">
+      <div class="page-content block-left-top">
+        <h2>Name & description</h2>
+
+        <div class="content-wrapper d-flex">
+          <div class="content-wrapper flex-col flex-col__start product-name">
+            <span class="input-label">Name</span>
+            <input type="text" name="name-your-product" placeholder="Name your product" formControlName="name"
+                  [ngClass]="{'form-error': name?.invalid && (itemFormSubmitted || name?.dirty || name?.touched)}">
+          </div>
+          <div class="content-wrapper flex-col flex-col__start gender-list">
+            <span class="input-label">Gender</span>
+            <ng-select class="category-selection" [searchable]="false" [clearable]="false"
+              placeholder="Choose gender" [items]="genderList" [(ngModel)]="selectedGender"
+              formControlName="gender" (change)="onChangeGender($event)"
+              [ngClass]="{'form-error': selectedGender == '' && itemFormSubmitted}">
+            </ng-select>
+          </div>
+        </div>
+
+        <div class="content-wrapper">
+          <div class="flex-col flex-col__start product-description">
+            <span class="input-label">Main Description</span>
+            <angular-editor [ngClass]="{'form-error': description.invalid && (itemFormSubmitted || description.dirty || description.touched)}" formControlName="description" [config]="editorConfig"></angular-editor>
+          </div>
+        </div>
+
+        <div class="content-wrapper">
+          <div class="flex-row">
+            <span class="flex-row flex-row__center add-info-icon">
+              <mat-icon>add</mat-icon>
+            </span>
+            <span class="add-info-text">Add additional Information</span>
+          </div>
+        </div>
+      </div>
+      <div class="page-content block-right-top image-block">
+        <h2>Main Picture</h2>
+        <div class="flex-col flex-col__center">
+          <img [src]="mainImage ? mainImage : '/assets/images/add-image.svg'" alt="" class="main-image">
+          <!-- <angular-file-uploader [config]="afuConfig"></angular-file-uploader> -->
+          <input type="file" id="main-image" accept='image/*' (change)="onMainImageUpload($event)" name="main-image"
+            style="display: none;">
+          <button>
+            <label for="main-image">{{ mainImage ? 'Replace' : 'Add Image' }}</label>
+          </button>
+          <div class="row" style="margin-top: 5%;">
+            <div class="center-align col-md-8" *ngIf="!hideImageCrop">
+
+              <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 4"
+                [resizeToWidth]="256" format="jpeg" (imageCropped)="imageCropped($event)"></image-cropper>
+              <!-- <span class="drag-text">Crop Image</span> -->
+              <div class="button button-primary check-icon" *ngIf="imageChangedEvent" (click)="hideImageCrop=true">
+                <i class="fas fa-check"></i>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- <span class="drag-text" *ngIf="!imageChangedEvent">or drop image to upload</span> -->
+        </div>
+      </div>
+      <div class="page-content block-left-bottom">
+        <div class="flex-row flex-row__btw align-start w-100">
+          <div>
+            <h2>Pricing</h2>
+            <div class="flex-col flex-col__start">
+              <div class="content-wrapper flex-col flex-col__start">
+                <span class="input-label">Default price Excl. taxes</span>
+                <input numeric decimals="2" type="text"  name="excl-taxes" placeholder="$ 0.00" formControlName="price"
+                      [ngClass]="{'form-error': price.invalid && (itemFormSubmitted || price.dirty || price.touched)}">
+              </div>
+              <div class="content-wrapper flex-col flex-col__start">
+                <span class="input-label">Default price Incl. taxes</span>
+                <input type="text" name="excl-taxes" placeholder="$ 0.00" formControlName="taxedPrice" readonly>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h2>Deliverability</h2>
+            <div class="flex-row flex-row__btw align-start w-100">
+              <div *ngIf="itemForm.get('haveDimension').value === false" class="content-wrapper flex-col flex-col__start">
+                <span class="input-label">Height and weight ?</span>
+                <div class="switch-button">
+                  <button (click)="switchHaveDimension(true)" mat-button class="btn-medium btn-white" 
+                    [ngClass]="{'btn-blue': itemForm.get('haveDimension').value, 'btn-border': !itemForm.get('haveDimension').value}">Yes</button>
+                  <button (click)="switchHaveDimension(false)" mat-button class="btn-medium btn-white" 
+                    [ngClass]="{'btn-red': !itemForm.get('haveDimension').value, 'btn-border': itemForm.get('haveDimension').value }">No</button>  
+                </div>
+                <p class="delivery-info">If your product is big or might hinder bicycle delivery, please specify.</p>
+              </div>
+              <div *ngIf="itemForm.get('haveDimension').value === true" class="content-wrapper flex-col flex-col__start">
+                <div class="flex-col flex-col__start">
+                  <div class="content-wrapper flex-col flex-col__start product-dimension">
+                    <span class="input-label">Item weight (kg)</span>
+                    <input type="text" numeric decimals="2" name="weight" placeholder="" formControlName="weight">
+                  </div>
+                </div>
+              </div>
+              <div class="content-wrapper flex-col flex-col__start">
+                <span class="input-label">Item can be delivered ?</span>
+                <div class="switch-button">
+                  <button (click)="switchCanDelivery(true)" mat-button class="btn-medium btn-white" 
+                    [ngClass]="{'btn-blue': itemForm.get('canDelivery').value, 'btn-border': !itemForm.get('canDelivery').value}">Yes</button>
+                  <button (click)="switchCanDelivery(false)" mat-button class="btn-medium btn-white" 
+                    [ngClass]="{'btn-red': !itemForm.get('canDelivery').value, 'btn-border': itemForm.get('canDelivery').value }">No</button>  
+                </div>
+              </div>
+            </div>
+            <div *ngIf="itemForm.get('haveDimension').value === true" class="content-wrapper flex-row flex-row__btw align-start w-100">
+              <div class="content-wrapper flex-col flex-col__start">
+                <span class="input-label">Dimensions (cm)</span>
+                <div class="flex-row">
+                  <div class="flex-col product-dimension">
+                    <input type="text" numeric decimals="2" name="height" placeholder="" formControlName="height">
+                    <span>H</span>
+                  </div>
+                  <div class="flex-col product-dimension">
+                    <input type="text" numeric decimals="2" name="height" placeholder="" formControlName="long">
+                    <span>L</span>
+                  </div>
+                  <div class="flex-col product-dimension">
+                    <input type="text" numeric decimals="2" name="height" placeholder="" formControlName="width">
+                    <span>W</span>
+                  </div>
+                  <button (click)="switchHaveDimension(false)" mat-button class="btn-medium btn-red">Cancel</button>  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+        <h2>Sales & promotions on all products</h2>
+        <div class="content-wrapper flex-row flex-row__btw w-100 product-promotion">
+          <div class="flex-col flex-col__start">
+            <div class="content-wrapper flex-col flex-col__start w-100">
+              <span class="input-label">Percentage</span>
+              <input type="text" numeric decimals="2" name="promotion" placeholder="10 %" formControlName="promotion">
+            </div>
+            <div class="flex-col flex-col__start w-100 promotion-date">
+              <span class="input-label">End day of the promotion (day included)</span>
+              <input type="text" name="promotionEndDate" placeholder="DD / MM / YYYY" readonly [min]="minPromotionDate"
+                  [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" formControlName="promotionEndDate">
+              <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+            </div>
+          </div>
+          <div class="flex-col flex-col__start">
+            <div class="content-wrapper flex-col flex-col__start w-100">
+              <span class="input-label">Price Excl. taxes</span>
+              <input type="text" numeric decimals="2" name="promotion-price" placeholder="$ 0.00" formControlName="promotionPrice">
+            </div>
+            <div class="flex-col flex-col__start w-100">
+              <span class="input-label">Price Incl. taxes</span>
+              <input type="text" numeric decimals="2" name="promotion-taxed-price" placeholder="$ 0.00" formControlName="promotionTaxedPrice">
+            </div>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="content-wrapper flex-col flex-col__start">
+          <span class="input-label">Reference</span>
+          <input type="text" name="reference" formControlName="reference">
+        </div>
+      </div>
+      <div class="page-content block-right-bottom organization-block">
+        <h2>Organization</h2>
+        <div class="content-wrapper flex-col flex-col__start">
+          <span class="input-label">Categories</span>
+          <ng-select class="category-selection" (click)="categoryClick()" [searchable]="false" [clearable]="false" [multiple]="true"
+            [maxSelectedItems]="3" placeholder="Choose 3 categories" [items]="categories$ | async" bindLabel="name"
+            formControlName="categories" (change)="onChangeCategory($event)"
+            [ngClass]="{'form-error': (!categories || categories.length < 1) && (itemFormSubmitted || categoryClicked)}">
+          </ng-select>
+        </div>
+        <div class="content-wrapper flex-col flex-col__start">
+          <span class="input-label">Subcategories</span>
+          <ng-select class="category-selection" (click)="subcategoryClick()" [searchable]="false" [clearable]="false" [multiple]="true"
+            [maxSelectedItems]="3" [items]="subcategories" placeholder="Choose 3 subgactegories" bindLabel="value"
+            formControlName="categoryAttributes" (change)="onChangeSubcategory($event)"
+            [ngClass]="{'form-error': (!productTypes ||productTypes.length < 1) && (itemFormSubmitted || subcategoryClicked)}">
+          </ng-select>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="content-wrapper flex-col flex-col__start">
+          <span class="input-label">Brand</span>
+          <input type="text" name="brand" placeholder="Add a brand" formControlName="brand"
+                [ngClass]="{'form-error': brand.invalid && (itemFormSubmitted || brand.dirty || brand.touched)}">
+        </div>
+        <mat-divider></mat-divider>
+        <div class="content-wrapper flex-col flex-col__start">
+          <span class="input-label">Tags</span>
+          <input type="text" name="tags" placeholder="Add Tags">
+        </div>
+      </div>
+
+      <div class="page-content block-center-bottom variant-block">
+        <p  class="variant-error" *ngIf="!variantFormsValid && itemFormSubmitted">* A product must have atleast one variant</p>
+        <ng-container *ngIf="!isAddingVariant; else addVariantView">
+          <ng-container *ngIf="variantsForm.length; else addVariantButton">
+            <div class="flex-row flex-row__btw">
+              <h2 class="w-auto">Variants</h2>
+              <div class="flex-row flex-row__btw">
+                <div class="flex-row" (click)="addVariant()">
+                  <span class="flex-row flex-row__center add-variant-icon table-variant-action">
+                    <mat-icon>add</mat-icon>
+                  </span>
+                  <span class="add-variant-text table-variant-action">Add variant</span>
+                </div>
+                <span class="edit-variant table-variant-action" (click)="editOptions()">Edit Option</span>
+              </div>
+            </div>
+
+            <div class="variants-table">
+              <table mat-table [dataSource]="dataSource" formArrayName="articles" class="">
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; let selectedVariantIndex = index; columns: displayedColumns;"></tr>
+
+                <ng-container *ngFor="let column of additionalColumns | keyvalue">
+                  <ng-container [matColumnDef]="column.key">
+                    <th mat-header-cell *matHeaderCellDef> {{ column.key | titlecase }} </th>
+                    <td mat-cell *matCellDef="let row; let index = index" [formGroupName]="index">
+                      {{ additionalColumns[column.key][index] | titlecase }}
+                    </td>
+                  </ng-container>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Name </th>
+                  <td mat-cell *matCellDef="let row; let index = index" [formGroupName]="index">
+                    {{ row.value.name }}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="brand">
+                  <th mat-header-cell *matHeaderCellDef> Brand </th>
+                  <td mat-cell *matCellDef="let row; let index = index" [formGroupName]="index">
+                    {{ row.value.brand }}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="price">
+                  <th mat-header-cell *matHeaderCellDef> Price </th>
+                  <td mat-cell *matCellDef="let row; let index = index" [formGroupName]="index">
+                    {{ row.value.price }}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Stock">
+                  <th mat-header-cell *matHeaderCellDef> Stock </th>
+                  <td mat-cell *matCellDef="let row; let index = index" [formGroupName]="index">
+                    {{ row.value.stock }}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="actions" stickyEnd>
+                  <th mat-header-cell *matHeaderCellDef></th>
+                  <td mat-cell *matCellDef="let row; let index = index">
+
+                    <button mat-icon-button aria-label="Edit options" (click)="editVariant(row, index)">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button aria-label="Delete options" (click)="deleteVariant(row, index)">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </td>
+                </ng-container>
+              </table>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+
+    <ng-template #addVariantButton>
+      <h2>Variants</h2>
+      <div class="flex-row" (click)="addVariant()">
+        <span class="flex-row flex-row__center add-variant-icon">
+          <mat-icon>add</mat-icon>
+        </span>
+        <span class="add-variant-text">Add variant</span>
+      </div>
+    </ng-template>
+
+    <ng-template #addVariantView>
+      <div class="variant-view-block">
+        <ng-container formArrayName="articles">
+          <ng-container [formGroupName]="selectedVariantIndex">
+            <div class="flex-row variant-view-wrapper">
+              <h2>New variant</h2>
+              <mat-divider></mat-divider>
+              <div class="flex-row flex-row__btw w-100 align-start variant-options">
+                <div class="flex-col flex-col__start">
+                  <h3>Options</h3>
+                  <p class="variant-error" *ngIf="isVariantOptionInvalid && variantFormSubmitted">* Variant must have atleast one option and each of the options must have a name</p>
+                  <ng-container formArrayName="tagAttributes">
+                    <div *ngFor="let option of selectedVariantOptionsForm?.controls; let i = index"
+                      class="content-wrapper flex-col flex-col__start">
+                      <ng-container [formGroupName]="i">
+
+                        <ng-select *ngIf="!option.value.name || (option.value.name && (option.value.name ==='Edit option' || 
+                        option.value.name ==='Edit options' || option.value.name ==='edit option' || option.value.name ==='edit options')); else selectedOption"
+                         [searchable]="false"
+                          [clearable]="false" (change)="onChangeOption($event, i)" placeholder="Select Option"
+                          [items]="(options$ | async) | filterOptions: selectedVariantOptionsForm.value"
+                          bindLabel="name">
+                        </ng-select>
+                        <ng-template #selectedOption>
+                          <span class="input-label">{{ option.value.name }}</span>
+                        </ng-template>
+                        <ng-container
+                          *ngIf="option.value.name && (option.value.name==='color'||option.value.name==='Color');else simpleValue">
+                          <div class="content-wrapper" style="position:relative;flex-direction: column;display: flex;">
+                            <input type="text" placeholder="Color Name" formControlName="value" style="margin-bottom:10px">
+                            <input type="text" [value]=" color"  [style.background]="color"
+                              [cpPresetColors]="['#fff', '#000', '#2889e9', '#e920e9', '#fff500']"
+                              [(colorPicker)]="color" [cpCancelButton]="true" [cpAlphaChannel]="'disabled'"
+                              [cpCancelButtonClass]="'btn btn-primary btn-xs'" />
+                          </div>
+                        </ng-container>
+                        <ng-template #simpleValue>
+                          <input type="text" name="option-value" placeholder="Value" formControlName="value">
+                        </ng-template>
+
+                      </ng-container>
+                    </div>
+                  </ng-container>
+
+                  <div *ngIf="((options$ | async) | filterOptions: selectedVariantOptionsForm.value).length"
+                    class="flex-row" (click)="addOption()">
+                    <span class="flex-row flex-row__center add-option-icon">
+                      <mat-icon>add</mat-icon>
+                    </span>
+                    <span class="add-option-text">Add an option</span>
+                  </div>
+                </div>
+                <div class="flex-col flex-col__start">
+                  <h3>Pricing</h3>
+                  <div class="content-wrapper flex-col flex-col__start">
+                    <span class="input-label">Default price Excl. taxes</span>
+                    <input type="text" numeric decimals="2" name="variant-default-excl" placeholder="$ 0.00" formControlName="price"
+                      [ngClass]="{'form-error': variantPrice?.invalid && (variantFormSubmitted || variantPrice?.dirty || variantPrice?.touched)}">
+                  </div>
+                  <div class="content-wrapper flex-col flex-col__start">
+                    <span class="input-label">Default price Incl. taxes</span>
+                    <h3>$
+                      {{+productForm.get('Item.articles').value[selectedVariantIndex].price  + +productForm.get('Item.articles').value[selectedVariantIndex].price * (selectedStore.vat / 100)}}
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              <mat-divider></mat-divider>
+              <h3>Promotion for this variant</h3>
+              <div class="flex-row flex-row__btw w-100 align-start variant-options">
+                <div class="flex-col flex-col__start">
+                  <div class="content-wrapper flex-col flex-col__start w-100">
+                    <span class="input-label">Percentage</span>
+                    <input type="text" name="promotion" placeholder="10 %" formControlName="promotion">
+                  </div>
+                  <div class="content-wrapper flex-col flex-col__start w-100  promotion-date">
+                    <span class="input-label">End day of the promotion (day included)</span>
+                    <input type="text" name="promotionEndDate" placeholder="DD / MM / YYYY" readonly [min]="minPromotionDate"
+                        [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" formControlName="promotionEndDate">
+                    <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+                  </div>
+                </div>
+                <div class="flex-col flex-col__start">
+                  <div class="content-wrapper flex-col flex-col__start w-100">
+                    <span class="input-label">Price Excl. taxes</span>
+                    <input type="text" numeric decimals="2" name="promotion-price" placeholder="$ 0.00" formControlName="promotionPrice">
+                  </div>
+                  <div class="content-wrapper flex-col flex-col__start w-100">
+                    <span class="input-label">Price Incl. taxes</span>
+                    <input type="text" numeric decimals="2" name="promotion-taxed-price" placeholder="$ 0.00" formControlName="promotionTaxedPrice">
+                  </div>
+                </div>
+              </div>
+              <mat-divider></mat-divider>
+              <div class="flex-row flex-row__btw align-end w-100 variant-options">
+                <div class="flex-col flex-col__start">
+                  <h3>Information</h3>
+                  <div class="content-wrapper flex-col flex-col__start">
+                    <span class="input-label">Barcode</span>
+                    <input type="text" name="tags">
+                  </div>
+                </div>
+                <div class="flex-col flex-col__start">
+                  <h3></h3>
+                  <div class="content-wrapper flex-col flex-col__start">
+                    <span class="input-label">Stock</span>
+                    <input type="number" name="stock" formControlName="stock">
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex-row flex-row__btw w-100 variant-actions">
+                <button mat-button class="btn-large btn-green" [disabled]="variantsForm.status == 'INVALID' || saveButtonDisable"
+                  (click)="onSaveVariant()">Save</button>
+                <button mat-button class="btn-large btn-red" (click)="onDiscardVariant()">Discard</button>
+              </div>
+            </div>
+
+            <div class="flex-col flex-col__start variant-view-wrapper">
+              <h3>Pictures</h3>
+              <div class="flex-col flex-col__center image-block">
+                <div class="flex-col flex-col__center">
+                  <div class="flex-row flex-row__center" class="flex-row flex-row__center variant-images"
+                    *ngIf="variantsImages[selectedVariantIndex]?.length; else addVariantImage">
+                    <div class="variant-image" *ngFor="let img of variantsImages[selectedVariantIndex]; let i = index">
+                      <mat-icon class="variant-remove" (click)="onRemoveVariantImage(i)">close</mat-icon>
+                      <img [src]="img.image" alt="">
+                    </div>
+                  </div>
+
+                  <ng-template #addVariantImage>
+                    <img src="/assets/images/add-image.svg" alt="">
+                  </ng-template>
+
+                  <!-- <angular-file-uploader [config]="afuConfig"></angular-file-uploader> -->
+
+                  <input type="file" id="variant-image" accept='image/*' (change)="onVariantImageUpload($event)"
+                    multiple="multiple" name="variant-image" style="display: none;">
+                  <button>
+                    <label for="variant-image">Add Images</label>
+                  </button>
+
+                  <div class="row" style="margin-top: 5%;">
+                    <div class="center-align col-md-8" *ngIf="!hideImageVariantCrop">
+
+                      <image-cropper [imageChangedEvent]="imageVariantChangedEvent" [maintainAspectRatio]="true"
+                        [aspectRatio]="4 / 4" [resizeToWidth]="256" format="jpeg"
+                        (imageCropped)="imageVariantCropped($event)"></image-cropper>
+                      <!-- <span class="drag-text">Crop Image</span> -->
+                      <div class="button button-primary check-icon" *ngIf="imageVariantChangedEvent"
+                        (click)="acceptVariantCrop()">
+                        <i class="fas fa-check"></i>
+                      </div>
+
+                    </div>
+                  </div>
+
+
+                  <!-- <span class="drag-text">or drop images to upload</span> -->
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+    </ng-template>
+  </ng-container>
+</form>
+
+<div class="flex-row flex-row__btw w-100 save-product-button">
+  <div>
+    <button *ngIf="isEditProduct" [disabled]="(loading$ | async)?.product" mat-button class="btn-large btn-red"
+      (click)="onDeleteProduct()">Delete</button>
+  </div>
+  <button [disabled]="(loading$ | async)?.product || saveProductButtonDisable" mat-button class="btn-large btn-green" (click)="onSaveProduct()">
+    <span *ngIf="!isEditProduct; else savedProduct">Save</span>
+
+    <ng-template #savedProduct>
+      <div class="flex-row flex-row__center">
+        <div class="flex-row flex-row__center saved-icon">
+          <mat-icon>check</mat-icon>
+        </div>
+        <span>Saved</span>
+      </div>
+    </ng-template>
+  </button>
+</div>

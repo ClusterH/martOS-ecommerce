@@ -1,0 +1,83 @@
+@import './variables';
+
+/******** Buttons settings **********/
+button,
+button[mat-button] {
+  outline: 0;
+  background: 0;
+  border-radius: 4px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: .3s all ease-in-out;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+button[disabled],
+button[mat-button][disabled] {
+  background: rgba($colorPrimaryWhite, 0.5);
+}
+
+.btn-large,
+.btn-large[mat-button] {
+  min-width: 170px;
+  font-size: 17px;
+  height: 54px;
+}
+
+.btn-medium,
+.btn-medium[mat-button] {
+  height: 34px;
+}
+
+.btn-green,
+.btn-green[mat-button] {
+  color: $colorPrimaryWhite;
+  background: $colorPrimaryGreen;
+
+  &[disabled],
+  &[disabled][disabled] {
+    color: $colorPrimaryWhite;
+    background: rgba($colorPrimaryGreen, 0.5);
+  }
+}
+
+.btn-white,
+.btn-white[mat-button] {
+  color: $colorPrimaryBlack;
+  background: $colorPrimaryWhite;
+}
+
+.btn-blue,
+.btn-blue[mat-button] {
+  color: $colorPrimaryWhite;
+  background: $colorSecondaryBlue;
+}
+
+.btn-gray
+
+.btn-red,
+.btn-red[mat-button] {
+  color: $colorPrimaryWhite;
+  background: $colorPrimaryRed;
+
+  &[disabled],
+  &[disabled][disabled] {
+    color: $colorPrimaryWhite;
+    background: rgba($colorPrimaryRed, 0.5);
+  }
+}
+
+.btn-no-border,
+.btn-no-border[mat-button] {
+  background: transparent;
+  box-shadow: none;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+.btn-border,
+.btn-border[mat-button] {
+  border: 1px solid $colorPrimaryBlack;
+}

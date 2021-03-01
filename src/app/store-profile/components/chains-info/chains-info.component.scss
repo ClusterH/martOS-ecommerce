@@ -1,0 +1,165 @@
+.chains-page {
+  padding: 70px 0 20px;
+}
+
+.chains-top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #DFE3E8;
+  padding-bottom: 15px;
+  margin: 0;
+}
+
+.chains-top-header h3 {
+  color: #212B37;
+  font-size: 24px;
+  font-family: 'Source Sans Pro';
+  font-weight: 600;
+  margin: 0;
+  font-weight: bold;
+}
+
+.chains-top-header button {
+  background: #26D086;
+  border: 0;
+  color: #fff;
+  padding: 13px 19px;
+  font-size: 15px;
+  font-family: 'Avenir Next';
+  font-weight: bold;
+}
+
+.chains-top-header h3 span {
+  font-size: 16px;
+}
+
+.chain-listing ul {
+  padding: 0;
+  margin: 0;
+}
+
+.chain-listing {
+  padding: 35px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.chain-listing ul li {
+  list-style: none;
+  background: #fff;
+  border: 1px solid #DFE3E8;
+  border-radius: 6px;
+  display: flex;
+  margin-bottom: 25px;
+  line-height: 0;
+}
+
+ul.left-ul {
+  max-width: 35%;
+
+  @media screen and (max-width: 992px) {
+    min-width: 300px;
+  }
+}
+
+ul.right-ul {
+  width: 65%;
+  padding-left: 40px !important;
+}
+
+.left-chain-listing {
+  width: 45%;
+  padding-left: 15px
+}
+
+.right-chain-listing {
+  width: 55%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px 10px 20px 10%;
+  justify-content: center;
+}
+
+span.edit-del-icon {
+  width: 100%;
+  border-radius: 50px;
+  max-width: 70px;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.right-chain-listing h4 {
+  display: block;
+  width: 100%;
+  margin: 0;
+  font-size: 24px;
+  text-transform: capitalize;
+  font-family: 'Source Sans Pro';
+  font-weight: 600;
+  padding: 25px 0 10px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.right-chain-listing p {
+  display: block;
+  width: 100%;
+  color: #707070;
+  font-size: 13px;
+  padding: 4px 0;
+}
+
+.right-chain-listing select {
+  appearance: none;
+  background: #EFF6FF;
+  outline: 0;
+  border-radius: 19px;
+  height: 34px;
+  color: #000000;
+  font-family: "Futura LT";
+  padding: 0 20px;
+  display: block;
+  max-width: 80%;
+  width: 100%;
+  margin-right: auto;
+  border: 0;
+  margin-top: 15px;
+}
+
+.chain-detail-box-tab .right-chain-listing select {
+  border: 1px solid;
+}
+
+span.edit-del-icon img {
+  max-width: 13px;
+  margin-left: 14px;
+}
+
+li.chain-detail-box-tab .right-chain-listing {
+  background: #EFF6FF;
+}
+
+.chain-detail-box-tab span.edit-del-icon {
+  padding: 7px 10px 7px 0;
+  text-align: center;
+  background-color: #fff;
+}
+
+.chain-toggle {
+  display: flex;
+  align-items: center;
+}
+
+span.arrowss {
+  display: flex;
+  align-items: center;
+}
+
+span.arrowss img {
+  max-width: 7px;
+  margin-right: 10px;
+  position: relative;
+  top: 3px;
+  cursor: pointer;
+}

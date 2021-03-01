@@ -1,0 +1,40 @@
+<div class="payment-info-wrap">
+  <div class="top-payment-header">
+    <div class="left-top-text">
+      <span>
+        <img *ngIf="isTabOpen == false" src="../../../../assets/images/plus.png" alt="" (click)="tabAction(true)">
+        <!-- Add - img below -->
+        <img *ngIf="isTabOpen == true" src="../../../../assets/images/minus.png" alt="" (click)="tabAction(false)">
+      </span>
+      <h2>Payment information </h2>
+    </div>
+  </div>
+  <form style="display: block;" *ngIf="isTabOpen">
+    <div class="payment-info-form row">
+      <div class="payment-form-fields col-12 col-lg-4" *ngIf="cardInfo;else addCard">
+        <div class="payment-form-fields__inner">
+
+
+          <span class="edit-icon" (click)="deleteAction()">
+            <span class="material-icons">
+              delete
+            </span>
+          </span>
+          <h3>Credit card 1</h3>
+          <div class="payment-card">
+            <span class="payment-card-img">
+              <img src="../../../../assets/images/creditcard.png" alt="">
+            </span>
+            <span class="payment-card-text">
+              <p placeholder="VISA 4423">{{cardInfo.number}}</p>
+              <p placeholder="Exp. date 17/11">{{cardInfo.expiry}}</p>
+            </span>
+          </div>
+        </div>
+      </div>
+      <ng-template #addCard>
+        <button class="custom-btn" (click)="addAction()">Add</button>
+      </ng-template>
+    </div>
+  </form>
+</div>

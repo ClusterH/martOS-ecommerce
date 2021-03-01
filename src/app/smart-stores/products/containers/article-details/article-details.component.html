@@ -1,0 +1,61 @@
+<div class="flex-row flex-row__btw t__header">
+  <div class="flex-col flex-col__start">
+    <h1>Article Details #{{ itemId }}</h1>
+  </div>
+</div>
+
+<div class="t__content page-content">
+  <app-products-navigation></app-products-navigation>
+
+  <table mat-table [dataSource]="articles$">
+
+    <!-- Reference Column -->
+    <ng-container matColumnDef="reference">
+      <th mat-header-cell *matHeaderCellDef> Reference </th>
+      <td mat-cell *matCellDef="let element"> {{element.reference}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Brand Column -->
+    <ng-container matColumnDef="brand">
+      <th mat-header-cell *matHeaderCellDef> Brand </th>
+      <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
+    </ng-container>
+
+    <!-- Price Column -->
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Price </th>
+      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+    </ng-container>
+
+    <!-- Activation Date Column -->
+    <ng-container matColumnDef="activation_date">
+      <th mat-header-cell *matHeaderCellDef> Activation Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.activationDate}} </td>
+    </ng-container>
+
+    <!-- Live Status Column -->
+    <ng-container matColumnDef="live_status">
+      <th mat-header-cell *matHeaderCellDef> Live Status </th>
+      <td mat-cell *matCellDef="let element"> {{element.liveStatus}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <div class="flex-row">
+          <mat-icon (click)="edit(element)">edit</mat-icon>
+          <mat-icon (click)="delete(element.id)">delete</mat-icon>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
